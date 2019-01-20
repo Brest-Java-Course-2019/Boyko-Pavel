@@ -7,39 +7,20 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
-public class DeliveryCost {
+public class DeliveryKoefJson implements ICreateDeliveryParams {
 
     private double weight;
-    private double distans;
-    private Scanner scan;
     private double koef;
 
-    {
-        scan = new Scanner(System.in);
-    }
+    DeliveryKoefJson(double weight) {
 
-    public DeliveryCost() {
-        this.weight = scan("Enter weight");
-        this.distans = scan("Enter distans");
+        this.weight = weight;
         setKoef();
     }
 
-    public void costDelivey() {
-
-        double value = this.distans * this.weight * this.koef;
-        System.out.printf("Cost delivery: %.3f $", value);
-    }
-
-    public double scan(String text) {
-
-        System.out.println(text);
-        while (!this.scan.hasNextDouble()) {
-            System.out.println("Enter correct value");
-            this.scan.nextLine();
-        }
-        return this.scan.nextDouble();
+    public double getKoef() {
+        return this.koef;
     }
 
     public void setKoef() {
@@ -57,6 +38,9 @@ public class DeliveryCost {
                 if (this.weight >= start & this.weight < end) {
                     this.koef = koef;
                 }
+            }
+            if (this.koef == 0) {
+                System.out.println("Max weight can be: 500 kg");
             }
         } catch (ParseException | IOException e) {
             e.printStackTrace();

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<koefs>
+    <group>
+        <start>1</start>
+        <end>10</end>
+        <koef>2.4</koef>
+    </group>
+    <group>
+        <start>10</start>
+        <end>100</end>
+        <koef>5.4</koef>
+    </group>
+    <group>
+        <start>100</start>
+        <end>1000</end>
+        <koef>9.4</koef>
+    </group>
+
+</koefs>
