@@ -6,6 +6,11 @@ public class ScannerDeliveryParams {
 
     private double weight;
     private double distanc;
+    Scanner scan;
+
+    {
+        scan = new Scanner(System.in);
+    }
 
     ScannerDeliveryParams() {
         this.weight = scanSet("Enter weight");
@@ -21,7 +26,6 @@ public class ScannerDeliveryParams {
     }
 
     public double scanSet(String text) {
-        Scanner scan = new Scanner(System.in);
         System.out.println(text);
         while (!scan.hasNextDouble()) {
             System.out.println("Enter correct value");

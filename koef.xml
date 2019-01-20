@@ -15,5 +15,10 @@
         <end>1000</end>
         <koef>9.4</koef>
     </group>
+    <group>
+        <start>1000</start>
+        <end>5000</end>
+        <koef>9.4</koef>
+    </group>
 
 </koefs>

@@ -40,7 +40,7 @@ public class DeliveryKoefJson implements ICreateDeliveryParams {
                 }
             }
             if (this.koef == 0) {
-                System.out.println("Max weight can be: 500 kg");
+                System.out.println("Weight can be: (1- 5000) kg ");
             }
         } catch (ParseException | IOException e) {
             e.printStackTrace();
