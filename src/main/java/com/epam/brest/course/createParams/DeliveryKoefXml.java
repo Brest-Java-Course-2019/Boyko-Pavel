@@ -1,5 +1,4 @@
-package com.epam.brest.course;
-
+package com.epam.brest.course.createParams;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -12,15 +11,18 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class DeliveryKoefXml implements ICreateDeliveryParams {
+public class DeliveryKoefXml extends CreateDeliveryKoef {
     private double weight;
     private double koef;
+    private String filePath;
 
-    DeliveryKoefXml(double weight) {
+    public DeliveryKoefXml(double weight, String fileName) throws FileNotFoundException {
 
         this.weight = weight;
+        this.filePath = filePath(fileName);
         setKoef();
     }
 
@@ -28,10 +30,9 @@ public class DeliveryKoefXml implements ICreateDeliveryParams {
         return this.koef;
     }
 
-    public void setKoef() {
-
+     public void setKoef() {
         try {
-            File fXmlFile = new File("koef.xml");
+            File fXmlFile = new File(filePath);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -48,7 +49,7 @@ public class DeliveryKoefXml implements ICreateDeliveryParams {
                 }
             }
             if (this.koef == 0) {
-                System.out.println("Max weight can be: 500 kg");
+                System.out.println("max Weight can be 5000kg, min weight 1 kg");
             }
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();

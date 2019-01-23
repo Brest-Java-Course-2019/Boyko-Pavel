@@ -1,4 +1,4 @@
-package com.epam.brest.course;
+package com.epam.brest.course.createParams;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -8,15 +8,15 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class DeliveryKoefJson implements ICreateDeliveryParams {
+public class DeliveryKoefJson extends CreateDeliveryKoef {
 
     private double weight;
     private double koef;
+    private String fielPath;
 
-    DeliveryKoefJson(double weight) {
-
+    public DeliveryKoefJson(double weight, String fileName) {
         this.weight = weight;
-        setKoef();
+        this.fielPath = filePath(fileName);
     }
 
     public double getKoef() {
@@ -27,7 +27,7 @@ public class DeliveryKoefJson implements ICreateDeliveryParams {
 
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("koef.json"));
+            Object obj = parser.parse(new FileReader(this.fielPath));
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray jsonArray = (JSONArray) jsonObject.get("koefs");
             for (Object koefItem : jsonArray) {

@@ -1,4 +1,4 @@
-package com.epam.brest.course;
+package com.epam.brest.course.createParams;
 
 import java.util.Scanner;
 
@@ -6,13 +6,13 @@ public class ScannerDeliveryParams {
 
     private double weight;
     private double distanc;
-    Scanner scan;
+    private Scanner scan;
 
     {
         scan = new Scanner(System.in);
     }
 
-    ScannerDeliveryParams() {
+    public ScannerDeliveryParams() {
         this.weight = scanSet("Enter weight");
         this.distanc = scanSet("Enter distance");
     }
@@ -31,6 +31,10 @@ public class ScannerDeliveryParams {
             System.out.println("Enter correct value");
             scan.nextLine();
         }
-        return scan.nextDouble();
+        double value = scan.nextDouble();
+        if (value <  0){
+            throw new IllegalArgumentException("The value can't be negative");
+        }
+        return value;
     }
 }
