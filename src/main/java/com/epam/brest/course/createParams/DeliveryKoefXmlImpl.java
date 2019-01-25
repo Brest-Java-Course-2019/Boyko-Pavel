@@ -11,15 +11,14 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class DeliveryKoefXml extends CreateDeliveryKoef {
+public class DeliveryKoefXmlImpl extends ReadingFile implements CreateDeliveryKoef {
     private double weight;
     private double koef;
     private String filePath;
 
-    public DeliveryKoefXml(double weight, String fileName) throws FileNotFoundException {
+    public DeliveryKoefXmlImpl(double weight, String fileName) throws IOException {
 
         this.weight = weight;
         this.filePath = filePath(fileName);

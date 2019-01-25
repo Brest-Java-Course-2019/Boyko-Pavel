@@ -8,13 +8,13 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class DeliveryKoefJson extends CreateDeliveryKoef {
+public class DeliveryKoefJsonImpl extends ReadingFile implements CreateDeliveryKoef {
 
     private double weight;
     private double koef;
     private String fielPath;
 
-    public DeliveryKoefJson(double weight, String fileName) {
+    public DeliveryKoefJsonImpl(double weight, String fileName) throws IOException {
         this.weight = weight;
         this.fielPath = filePath(fileName);
     }
