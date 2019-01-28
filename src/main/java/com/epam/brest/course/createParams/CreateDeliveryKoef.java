@@ -1,11 +1,11 @@
 package com.epam.brest.course.createParams;
 
 
-public  interface CreateDeliveryKoef {
+public interface CreateDeliveryKoef {
 
-    public abstract void setKoef();
+    void setKoef();
 
-    public abstract double getKoef();
+    double getKoef();
 
 
 }

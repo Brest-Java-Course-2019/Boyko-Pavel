@@ -35,12 +35,13 @@ public class DeliveryKoefJsonImpl extends ReadingFile implements CreateDeliveryK
                 Double start = (Double) item.get("start");
                 Double end = (Double) item.get("end");
                 Double koef = (Double) item.get("koef");
-                if (this.weight >= start & this.weight < end) {
+                if (this.weight >= start && this.weight < end) {
                     this.koef = koef;
                 }
             }
             if (this.koef == 0) {
                 System.out.println("Weight can be: (1- 5000) kg ");
+                ((JSONObject) obj).clear();
             }
         } catch (ParseException | IOException e) {
             e.printStackTrace();

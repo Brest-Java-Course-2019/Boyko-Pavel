@@ -43,11 +43,11 @@ public class DeliveryKoefXmlImpl extends ReadingFile implements CreateDeliveryKo
                 double start = Double.parseDouble(eElement.getElementsByTagName("start").item(0).getTextContent());
                 double end = Double.parseDouble(eElement.getElementsByTagName("end").item(0).getTextContent());
                 double koef = Double.parseDouble(eElement.getElementsByTagName("koef").item(0).getTextContent());
-                if (this.weight >= start & this.weight < end) {
+                if (this.weight >= start && this.weight < end) {
                     this.koef = koef;
                 }
             }
-            if (this.koef == 0) {
+            if ((this.koef == 0)) {
                 System.out.println("max Weight can be 5000kg, min weight 1 kg");
             }
         } catch (ParserConfigurationException | IOException | SAXException e) {
