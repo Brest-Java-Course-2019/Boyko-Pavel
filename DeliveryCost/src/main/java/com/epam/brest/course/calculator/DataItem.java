@@ -2,16 +2,17 @@ package com.epam.brest.course.calculator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.math.BigDecimal;
 
-public class TransformationParametrs {
+public class DataItem {
     private final static Logger LOGGER = LogManager.getLogger();
 
     private BigDecimal weight;
     private BigDecimal distance;
     private BigDecimal coefficient;
 
-    public TransformationParametrs(float weight, float distance, float coefficient){
+    public DataItem(float weight, float distance, float coefficient) {
         this.weight = new BigDecimal(weight);
         this.distance = new BigDecimal(distance);
         this.coefficient = new BigDecimal(coefficient);
@@ -42,11 +43,13 @@ public class TransformationParametrs {
     }
 
 
-    public BigDecimal getCoefficient() { return coefficient; }
+    public BigDecimal getCoefficient() {
+        return coefficient;
+    }
 
     @Override
     public String toString() {
-        return "TransformationParametrs{" +
+        return "DataItem{" +
                 "weight=" + weight +
                 ", distance=" + distance +
                 ", coefficient=" + coefficient +

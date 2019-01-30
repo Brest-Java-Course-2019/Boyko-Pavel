@@ -10,7 +10,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class CoefficientFromJsonFileImpl implements CreateDeliveryCoefficient {
+public class FromJsonFileImpl implements DeliveryCoefficient {
 
     private float weight;
     private float coefficient;
@@ -20,7 +20,7 @@ public class CoefficientFromJsonFileImpl implements CreateDeliveryCoefficient {
     private static final String TAG_END = "end";
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public CoefficientFromJsonFileImpl(float weight) {
+    public FromJsonFileImpl(float weight) {
         this.weight = weight;
     }
 
@@ -45,6 +45,7 @@ public class CoefficientFromJsonFileImpl implements CreateDeliveryCoefficient {
                 System.out.println("Weight can be: (1 - 5000) kg ");
             }
         } catch (ParseException | IOException e) {
+
             LOGGER.error("Incorrect parse data. Error: [{}]", e);
         }
     }

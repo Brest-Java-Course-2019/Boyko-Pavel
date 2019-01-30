@@ -3,7 +3,7 @@ package com.epam.brest.course.createParams;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class DeliveryParamsFromScanner {
+public class ParameterFromScanner {
 
     private float weight;
     private float distance;
@@ -15,7 +15,7 @@ public class DeliveryParamsFromScanner {
         scan = new Scanner(System.in, StandardCharsets.UTF_8);
     }
 
-    public DeliveryParamsFromScanner() {
+    public ParameterFromScanner() {
         this.weight = setParameter(WEIGT);
         this.distance = setParameter(DICTANCE);
     }

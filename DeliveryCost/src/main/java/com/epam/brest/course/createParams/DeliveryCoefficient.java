@@ -1,6 +1,6 @@
 package com.epam.brest.course.createParams;
 
-public interface CreateDeliveryCoefficient {
+public interface DeliveryCoefficient {
 
     void setCoefficientFromFile(String filePath);
 

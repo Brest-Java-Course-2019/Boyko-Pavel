@@ -30,7 +30,7 @@ public class CountDeliveryCost {
     public String toString() {
         return "Cost delivey(" +
                 "distance(km): " + this.distance +
-                " weigt: " + this.weight +") - "
+                " weigt: " + this.weight + ") - "
                 + String.format("%.3f", costDelivey()) + "$";
     }
 }

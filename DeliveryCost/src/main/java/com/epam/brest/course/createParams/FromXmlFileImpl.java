@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 import java.io.File;
 import java.io.IOException;
 
-public class СoefficientFromXmlFileImpl implements CreateDeliveryCoefficient {
+public class FromXmlFileImpl implements DeliveryCoefficient {
     private float weight;
     private float coefficient;
     private static final Logger LOGGER = LogManager.getLogger();
@@ -24,7 +24,7 @@ public class СoefficientFromXmlFileImpl implements CreateDeliveryCoefficient {
     private static final String TAG_START = "start";
     private static final String TAG_END = "end";
 
-    public СoefficientFromXmlFileImpl(Float weight) {
+    public FromXmlFileImpl(Float weight) {
         LOGGER.debug(weight);
         this.weight = weight;
     }
