@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<coefficients>
+    <group>
+        <start>1</start>
+        <end>10</end>
+        <coefficient>2.4</coefficient>
+    </group>
+    <group>
+        <start>10</start>
+        <end>100</end>
+        <coefficient>5.4</coefficient>
+    </group>
+    <group>
+        <start>100</start>
+        <end>1000</end>
+        <coefficient>9.4</coefficient>
+    </group>
+    <group>
+        <start>1000</start>
+        <end>5000</end>
+        <coefficient>9.4</coefficient>
+    </group>
+
+</coefficients>
