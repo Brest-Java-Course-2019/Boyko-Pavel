@@ -2,6 +2,8 @@ language: java
 jdk:
   - oraclejdk8
   - oraclejdk11
+  - openjdk10
+  - openjdk11
 before_install: cd DeliveryCost/
 #script: mvn clean package
 after_success:
