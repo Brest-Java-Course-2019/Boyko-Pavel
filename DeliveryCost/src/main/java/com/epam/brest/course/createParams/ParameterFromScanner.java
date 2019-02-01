@@ -12,7 +12,7 @@ public class ParameterFromScanner {
     private final static String DICTANCE = "Enter distance";
 
     {
-        scan = new Scanner(System.in, StandardCharsets.UTF_8);
+        scan = new Scanner(System.in, String.valueOf(StandardCharsets.UTF_8));
     }
 
     public ParameterFromScanner() {
