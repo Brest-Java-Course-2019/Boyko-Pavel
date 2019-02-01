@@ -384,9 +384,6 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <configuration>
-                    <repoToken>delivery-cost</repoToken>
-                </configuration>
             </plugin>
         </plugins>
     </reporting>
