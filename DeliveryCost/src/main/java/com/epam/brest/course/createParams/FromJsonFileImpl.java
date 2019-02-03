@@ -38,6 +38,7 @@ public class FromJsonFileImpl implements DeliveryCoefficient {
                 Float coefficient = (Float) item.get(TAG_COEFFICIENT);
                 if (this.weight >= start && this.weight < end) {
                     this.coefficient = coefficient;
+                    System.out.println(coefficient);
                 }
             }
             jsonObject.clear();

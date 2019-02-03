@@ -5,12 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class FilePathTest {
     private final static String WRONG_PATH = "home/coefficient.json";
     private final static String RIGHT_PATH = "coefficient.json";
-    private FilePath file = new FilePath();
+    FilePath file = new FilePath();
 
 
     @Test
