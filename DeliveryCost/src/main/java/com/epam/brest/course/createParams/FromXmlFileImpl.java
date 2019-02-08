@@ -55,7 +55,7 @@ public class FromXmlFileImpl implements DeliveryCoefficient {
                     this.coefficient = coefficient;
                 }
             }
-            if ((this.coefficient == 0)) {
+            if (this.coefficient == 0) {
                 System.out.println("max Weight can be 5000kg, min weight 1 kg");
             }
         } catch (ParserConfigurationException | SAXException e) {
