@@ -49,10 +49,10 @@ public class DataItem {
 
     @Override
     public String toString() {
-        return "DataItem{" +
-                "weight=" + weight +
-                ", distance=" + distance +
-                ", coefficient=" + coefficient +
+        return "DataItem{"
+                + "weight=" + weight
+                + ", distance=" + distance
+                + ", coefficient=" + coefficient +
                 '}';
     }
 }
