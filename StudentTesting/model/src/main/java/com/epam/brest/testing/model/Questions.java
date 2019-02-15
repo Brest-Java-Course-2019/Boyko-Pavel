@@ -1,4 +1,4 @@
-package com.epam.test.model;
+package com.epam.brest.testing.model;
 
 public class Questions {
     private Integer id_test_question;
@@ -27,5 +27,14 @@ public class Questions {
 
     public void setSubject_id_subject(String subject_id_subject) {
         this.subject_id_subject = subject_id_subject;
+    }
+
+    @Override
+    public String toString() {
+        return "Questions{" +
+                "id_test_question=" + id_test_question +
+                ", test_question='" + test_question + '\'' +
+                ", subject_id_subject='" + subject_id_subject + '\'' +
+                '}';
     }
 }

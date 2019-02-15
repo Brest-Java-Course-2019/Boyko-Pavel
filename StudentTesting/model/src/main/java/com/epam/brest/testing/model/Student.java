@@ -1,7 +1,9 @@
-package com.epam.test.model;
+package com.epam.brest.testing.model;
 
 public class Student {
     private Integer id_student;
+    private String student_first_name;
+    private String student_last_name;
 
     public Integer getId_student() {
         return id_student;
@@ -27,6 +29,12 @@ public class Student {
         this.student_last_name = student_last_name;
     }
 
-    private String student_first_name;
-    private String student_last_name;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id_student=" + id_student +
+                ", student_first_name='" + student_first_name + '\'' +
+                ", student_last_name='" + student_last_name + '\'' +
+                '}';
+    }
 }

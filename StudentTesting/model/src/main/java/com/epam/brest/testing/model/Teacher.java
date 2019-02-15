@@ -1,4 +1,4 @@
-package com.epam.test.model;
+package com.epam.brest.testing.model;
 
 public class Teacher {
 
@@ -37,5 +37,15 @@ public class Teacher {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "login_teach='" + login_teach + '\'' +
+                ", teacher_first_name='" + teacher_first_name + '\'' +
+                ", teacher_last_name='" + teacher_last_name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

@@ -1,0 +1,1098 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="578f94cf-b646-4775-99f2-bea0bd03d17a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDaoJpaImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDaoJpaImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com/epam/brest/testing/model/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com/epam/brest/testing/model/Subject.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/dao/target/" />
+    <ignored path="$PROJECT_DIR$/hr-db/target/" />
+    <ignored path="$PROJECT_DIR$/test/target/" />
+    <ignored path="$PROJECT_DIR$/model/target/" />
+    <ignored path="$PROJECT_DIR$/test-db/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDaoJpaImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="34" column="60" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dao/src/test/resource/test-dao.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="41" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test-db/src/main/resources/test-db.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="550">
+              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dao/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="505">
+              <caret line="33" column="45" lean-forward="true" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>`</find>
+      <find>fl</find>
+      <find>slf</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/module/pom.xml" />
+        <option value="$PROJECT_DIR$/model/src/main/java/Teacher.java" />
+        <option value="$PROJECT_DIR$/model/src/main/java/com/epam/test/model/tests.java" />
+        <option value="$PROJECT_DIR$/model/src/main/java/com/epam/test/model/QuestionItems.java" />
+        <option value="$PROJECT_DIR$/model/src/main/java/com/epam/test/model/Teacher.java" />
+        <option value="$PROJECT_DIR$/model/src/main/java/com/epam/test/model/Tests.java" />
+        <option value="$PROJECT_DIR$/model/src/main/java/com/epam/test/model/Subject.java" />
+        <option value="$PROJECT_DIR$/model/src/main/java/com/epam/test/model/Student.java" />
+        <option value="$PROJECT_DIR$/model/src/main/java/com/epam/test/model/Questions.java" />
+        <option value="$PROJECT_DIR$/dao/src/TestingDao.java" />
+        <option value="$PROJECT_DIR$/dao/src/main/java/dao/TestingDao.java" />
+        <option value="$PROJECT_DIR$/dao/src/main/java/testing/TestingDao.java" />
+        <option value="$PROJECT_DIR$/dao/src/com/epam/brest/testing/TestingDao.java" />
+        <option value="$PROJECT_DIR$/dao/src/main/java/TestingDao.java" />
+        <option value="$PROJECT_DIR$/model/pom.xml" />
+        <option value="$PROJECT_DIR$/test/pom.xml" />
+        <option value="$PROJECT_DIR$/hr-db/pom.xml" />
+        <option value="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDao.java" />
+        <option value="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDaoJpaImplTest.groovy" />
+        <option value="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDaoJpaImplTest.java" />
+        <option value="$PROJECT_DIR$/dao/src/test/resource/logback.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/test-db/pom.xml" />
+        <option value="$PROJECT_DIR$/test-db/src/main/resources/test-db.xml" />
+        <option value="$PROJECT_DIR$/hr-db/src/main/codota/Codota.java" />
+        <option value="$PROJECT_DIR$/dao/src/test/resource/test-dao.xml" />
+        <option value="$PROJECT_DIR$/dao/src/test/com/epam/brest/testing/dao/TestingDaoJpaImplTest.java" />
+        <option value="$PROJECT_DIR$/test-db/src/main/resources/data-script.sql" />
+        <option value="$PROJECT_DIR$/model/src/main/java/com/epam/brest/testing/model/Subject.java" />
+        <option value="$PROJECT_DIR$/hr-db/src/main/resources/db/1-schema/V100_1001__ddl_initial schema.sql" />
+        <option value="$PROJECT_DIR$/test-db/src/main/resources/create-tables.sql" />
+        <option value="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDaoJpaImpl.java" />
+        <option value="$PROJECT_DIR$/dao/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="hr-db" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="hr-db" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Student Testing" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Student Testing" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="407" />
+    <option name="y" value="503" />
+    <option name="width" value="3112" />
+    <option name="height" value="1556" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="hr-db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="hr-db" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="hr-db" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="hr-db" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="hr-db" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="hr-db" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+              <item name="1-schema" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="test-db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="test-db" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="test-db" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="test-db" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudentTesting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudentTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="test-db" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550227980293" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/dao/src/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.epam.brest.testing.dao" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dao/src" />
+      <recent name="$PROJECT_DIR$/module" />
+      <recent name="$PROJECT_DIR$/dao" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="main.java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/hr-db/src/main/resources/db" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="BufferedReader bufferedReader" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.TestingDaoJpaImplTest">
+    <configuration name="TestingDaoJpaImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.epam.brest.testing.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.epam.brest.testing.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.epam.brest.testing.dao.TestingDaoJpaImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestingDaoJpaImplTest.getDepartments" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.epam.brest.testing.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.epam.brest.testing.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.epam.brest.testing.dao.TestingDaoJpaImplTest" />
+      <option name="METHOD_NAME" value="getDepartments" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="V100_1001__ddl_initial schema.sql" type="OdpsQLRunnerConfigurationType" factoryName="MaxCompute SQL">
+      <odps_target_file>$PROJECT_DIR$/hr-db/src/main/resources/db/1-schema/V100_1001__ddl_initial schema.sql</odps_target_file>
+      <odps_output_dir>/tmp</odps_output_dir>
+      <job_name />
+      <odps_parameter name="odps.sql.type.system.odps2" value="true" />
+      <odps_parameter name="odps.compiler.runmode" value="Studio" />
+      <method v="2" />
+    </configuration>
+    <configuration name="create-tables.sql" type="OdpsQLRunnerConfigurationType" factoryName="MaxCompute SQL">
+      <odps_target_file>$PROJECT_DIR$/test-db/src/main/resources/create-tables.sql</odps_target_file>
+      <odps_output_dir>/tmp</odps_output_dir>
+      <job_name />
+      <odps_parameter name="odps.sql.type.system.odps2" value="true" />
+      <odps_parameter name="odps.compiler.runmode" value="Studio" />
+      <method v="2" />
+    </configuration>
+    <configuration name="data-script.sql" type="OdpsQLRunnerConfigurationType" factoryName="MaxCompute SQL">
+      <odps_target_file>$PROJECT_DIR$/test-db/src/main/resources/data-script.sql</odps_target_file>
+      <odps_output_dir>/tmp</odps_output_dir>
+      <job_name />
+      <odps_parameter name="odps.sql.type.system.odps2" value="true" />
+      <odps_parameter name="odps.compiler.runmode" value="Studio" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestingDaoJpaImplTest" />
+        <item itemvalue="JUnit.TestingDaoJpaImplTest.getDepartments" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="578f94cf-b646-4775-99f2-bea0bd03d17a" name="Default Changelist" comment="" />
+      <created>1550042056155</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1550042056155</updated>
+    </task>
+    <task id="LOCAL-00001" summary="init commit">
+      <created>1550047394727</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1550047394727</updated>
+    </task>
+    <task id="LOCAL-00002" summary="del course project">
+      <created>1550047744162</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1550047744162</updated>
+    </task>
+    <task id="LOCAL-00003" summary="dao test">
+      <created>1550225429478</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1550225429478</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 00m 00s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 00m 45s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 01m 22s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 02m 25s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 17m 16s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 21m 48s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 23m 11s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 27m 41s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 44m 32s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestingDaoJpaImplTest - 2019.02.15 at 13h 44m 48s.xml">
+      <configuration name="TestingDaoJpaImplTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="407" y="503" width="3112" height="1556" extended-state="0" />
+    <layout>
+      <window_info id="Job Explorer" order="0" weight="0.32950065" />
+      <window_info id="Project Explorer" order="1" weight="0.32917213" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.32555848" />
+      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="4" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="UI Designer" order="7" />
+      <window_info id="Learn" order="8" weight="0.3298272" />
+      <window_info id="Favorites" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.32970226" />
+      <window_info anchor="bottom" id="Console" order="0" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.49891067" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32970226" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.33260712" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32970226" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24981217" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" weight="0.3298272" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" x="2330" y="796" width="908" height="920" id="Codota" order="8" weight="0.32950065" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Job Explorer" order="0" weight="0.3298272" />
+      <window_info id="Project Explorer" order="1" weight="0.3298272" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.32555848" />
+      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="4" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="UI Designer" order="7" />
+      <window_info id="Learn" order="8" weight="0.3298272" />
+      <window_info id="Favorites" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="0" />
+      <window_info anchor="bottom" id="Console" order="1" />
+      <window_info anchor="bottom" id="Message" order="2" />
+      <window_info anchor="bottom" id="Find" order="3" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.49891067" />
+      <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="8" weight="0.32970226" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.33260712" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32970226" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24981217" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" weight="0.3298272" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" x="2330" y="796" width="908" height="920" id="Codota" order="8" weight="0.3298272" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init commit" />
+    <MESSAGE value="del course project" />
+    <MESSAGE value="dao test" />
+    <option name="LAST_COMMIT_MESSAGE" value="dao test" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/dao/src/com/epam/brest/testing/TestingDao.java" />
+    <entry file="file://$PROJECT_DIR$/dao/dao.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/target/maven-archiver/pom.properties" />
+    <entry file="file://$PROJECT_DIR$/hr-db/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/com/epam/brest/testing/model/Tests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="51" column="18" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/com/epam/brest/testing/model/Questions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="22" />
+          <folding>
+            <element signature="e#208#209#0" expanded="true" />
+            <element signature="e#247#248#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#408#409#0" expanded="true" />
+            <element signature="e#444#445#0" expanded="true" />
+            <element signature="e#502#503#0" expanded="true" />
+            <element signature="e#552#553#0" expanded="true" />
+            <element signature="e#597#598#0" expanded="true" />
+            <element signature="e#638#639#0" expanded="true" />
+            <element signature="e#706#707#0" expanded="true" />
+            <element signature="e#766#767#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/apache/maven/plugins/maven-compiler-plugin/3.8.0/maven-compiler-plugin-3.8.0.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2838" />
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/maven/plugins/maven-javadoc-plugin/3.0.1/maven-javadoc-plugin-3.0.1.jar!/META-INF/maven/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="5171" column="4" selection-start-line="5171" selection-start-column="4" selection-end-line="5171" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/maven/plugins/maven-checkstyle-plugin/3.0.0/maven-checkstyle-plugin-3.0.0.jar!/META-INF/maven/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="118" column="8" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/flywaydb/flyway-maven-plugin/5.2.4/flyway-maven-plugin-5.2.4.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-198" />
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1122" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDaoJpaImplTest.groovy" />
+    <entry file="file://$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDaoJpaImplTest.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/5.1.4.RELEASE/spring-jdbc-5.1.4.RELEASE.jar!/org/springframework/jdbc/core/namedparam/NamedParameterJdbcOperations.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#3884#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar!/ch/qos/logback/core/ConsoleAppender.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar!/ch/qos/logback/classic/BasicConfigurator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar!/ch/qos/logback/classic/AsyncAppender.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/5.1.4.RELEASE/spring-test-5.1.4.RELEASE.jar!/org/springframework/test/context/ContextConfiguration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/5.1.4.RELEASE/spring-jdbc-5.1.4.RELEASE.jar!/org/springframework/jdbc/datasource/DataSourceTransactionManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="33" column="56" lean-forward="true" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/Optional.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="49" column="19" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/sql/ResultSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="147" column="17" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/5.1.4.RELEASE/spring-jdbc-5.1.4.RELEASE.jar!/org/springframework/jdbc/core/namedparam/NamedParameterJdbcTemplate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2046">
+          <caret line="130" column="23" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/5.1.4.RELEASE/spring-jdbc-5.1.4.RELEASE.jar!/org/springframework/jdbc/core/RowMapper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.4.RELEASE/spring-beans-5.1.4.RELEASE.jar!/org/springframework/beans/factory/xml/spring-beans.xsd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="796">
+          <caret line="568" column="72" selection-start-line="568" selection-start-column="66" selection-end-line="568" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/javax/sql/DataSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hr-db/src/main/codota/Codota.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/5.1.4.RELEASE/spring-test-5.1.4.RELEASE.jar!/org/springframework/test/context/cache/DefaultCacheAwareContextLoaderDelegate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/5.1.4.RELEASE/spring-test-5.1.4.RELEASE.jar!/org/springframework/test/context/support/DependencyInjectionTestExecutionListener.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/stream/ReferencePipeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="417" selection-start-line="417" selection-end-line="417" />
+          <folding>
+            <element signature="e#15205#15206#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/Iterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="115" selection-start-line="115" selection-end-line="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/5.1.4.RELEASE/spring-test-5.1.4.RELEASE.jar!/org/springframework/test/context/support/DefaultTestContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.4.RELEASE/spring-beans-5.1.4.RELEASE.jar!/org/springframework/beans/factory/annotation/Autowired.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/src/test/resource/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-db/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hr-db/src/main/resources/db/1-schema/V100_1001__ddl_initial schema.sql">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="2692">
+          <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
+        </state>
+      </provider>
+      <provider editor-type-id="OdpsQlGraph" />
+      <provider selected="true" editor-type-id="OdpsQlEditor">
+        <state relative-caret-position="858">
+          <caret line="39" column="16" lean-forward="true" selection-start-line="35" selection-end-line="39" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-db/src/main/resources/create-tables.sql">
+      <provider editor-type-id="OdpsQlGraph" />
+      <provider selected="true" editor-type-id="OdpsQlEditor">
+        <state relative-caret-position="88">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/com/epam/brest/testing/model/Subject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding>
+            <element signature="e#161#162#0" expanded="true" />
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#324#325#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#412#413#0" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-db/src/main/resources/data-script.sql">
+      <provider editor-type-id="OdpsQlGraph" />
+      <provider selected="true" editor-type-id="OdpsQlEditor">
+        <state relative-caret-position="66">
+          <caret line="3" column="43" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/com/epam/brest/testing/model/Teacher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/src/test/com/epam/brest/testing/dao/TestingDaoJpaImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/com/epam/brest/testing/model/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+          <folding>
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#337#338#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/com/epam/brest/testing/model/QuestionItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/5.1.4.RELEASE/spring-jdbc-5.1.4.RELEASE-sources.jar!/org/springframework/jdbc/core/RowMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/5.1.4.RELEASE/spring-jdbc-5.1.4.RELEASE-sources.jar!/org/springframework/jdbc/core/namedparam/NamedParameterJdbcTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="225" column="23" selection-start-line="225" selection-start-column="23" selection-end-line="225" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/src/main/java/com/epam/brest/testing/dao/TestingDaoJpaImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="34" column="60" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/src/test/resource/test-dao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="41" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-db/src/main/resources/test-db.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="33" column="45" lean-forward="true" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>dao</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: junit:junit:4.12</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -1,4 +1,4 @@
-package com.epam.test.model;
+package com.epam.brest.testing.model;
 
 public class Tests {
 
@@ -48,5 +48,14 @@ public class Tests {
         this.student_id_student = student_id_student;
     }
 
-
+    @Override
+    public String toString() {
+        return "Tests{" +
+                "id_tests=" + id_tests +
+                ", test_name='" + test_name + '\'' +
+                ", teacher_login_teach='" + teacher_login_teach + '\'' +
+                ", subject_id_subject='" + subject_id_subject + '\'' +
+                ", student_id_student='" + student_id_student + '\'' +
+                '}';
+    }
 }
