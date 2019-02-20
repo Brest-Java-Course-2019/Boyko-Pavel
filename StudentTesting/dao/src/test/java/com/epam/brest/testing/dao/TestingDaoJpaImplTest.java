@@ -4,8 +4,6 @@ import com.epam.brest.testing.model.Subject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.Rollback;
@@ -13,8 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
@@ -27,16 +23,16 @@ class TestingDaoJpaImplTest {
 
     private static final int ID_SUBJECT = 1;
     private static final String CHEMISTRY = "chemistry";
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestingDaoJpaImpl.class);
     private static final String MUSIC = "music";
+
     @Autowired
     private TestingDao testingDao;
 
 
     @Test
     void findAll() {
-        List<Subject> departments = testingDao.findall().collect(Collectors.toList());
-        assertFalse(departments.isEmpty());
+        Stream<Subject> subjects = testingDao.findall();
+        assertNotNull(subjects);
     }
 
     @Test
@@ -55,7 +51,9 @@ class TestingDaoJpaImplTest {
         subject.setSubjectName(CHEMISTRY);
         Subject subjectAfterAddInDB = testingDao.create(subject).get();
         assertNotNull(subjectAfterAddInDB);
-//      check duplicate subject
+        /**
+         * check duplicate subject
+         */
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             testingDao.create(subject);
         });
@@ -80,7 +78,7 @@ class TestingDaoJpaImplTest {
     void delete() {
         Stream<Subject> stream = testingDao.findall();
         Subject subject = stream.findFirst().get();
-        LOGGER.info("{}", subject.getIdSubject());
+//        LOGGER.info("{}", subject.getIdSubject());
         testingDao.delete(subject.getIdSubject());
 
         Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {

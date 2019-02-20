@@ -14,6 +14,7 @@
         <module>hr-db</module>
         <module>model</module>
         <module>test-db</module>
+        <module>servicec</module>
     </modules>
 
     <name>Student Testing</name>
@@ -44,7 +45,7 @@
             </dependency>
             <dependency>
                 <groupId>com.epam.brest.testing</groupId>
-                <artifactId>test</artifactId>
+                <artifactId>test-db</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -205,6 +206,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>false</skipTests>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -415,6 +419,9 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
+                <configuration>
+                    <repoToken>${project.version}</repoToken>
+                </configuration>
             </plugin>
         </plugins>
     </reporting>
