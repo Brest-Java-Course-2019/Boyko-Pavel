@@ -10,9 +10,9 @@ public interface TestingDao {
 
     Optional<Subject> findById(final Integer id);
 
-    int create(final Subject department);
+    Optional<Subject> create(final Subject department);
 
     void update(final Subject department);
 
-    void delete(final Integer id);
+    void delete(final int id);
 }

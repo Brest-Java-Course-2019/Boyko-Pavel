@@ -4,9 +4,13 @@ import com.epam.brest.testing.model.Subject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,10 +22,15 @@ public class TestingDaoJpaImpl implements TestingDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TestingDaoJpaImpl.class);
 
-    private static final String SELECT_SQL ="SELECT id_subject, subject_name FROM subject";
+    private static final String SELECT_SQL = "SELECT idSubject, subjectName FROM subject";
+    private static final String SELECT_SUBJECT_BY_ID = "SELECT idSubject, subjectName FROM subject WHERE idSubject = :idSubject";
+    private static final String CHECK_COUN_NAME = "SELECT count(idSubject) FROM subject WHERE lower(subjectName) = lower(:subjectName)";
+    private static final String INSERT = "INSERT into subject (subjectName) VALUES (:subjectName)";
+    private static final String UPDATE = "UPDATE subject SET  subjectName = :subjectName";
+    private static final String DELETE = "DELETE FROM subject WHERE idSubject = :idSubject";
 
-    private static final String SUBJECT_ID = "id_subject";
-    private static final String SUBJECT_NAME = "subject_name";
+    private static final String SUBJECT_ID = "idSubject";
+    private static final String SUBJECT_NAME = "subjectName";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -38,21 +47,54 @@ public class TestingDaoJpaImpl implements TestingDao {
 
     @Override
     public Optional<Subject> findById(Integer id) {
-        return Optional.empty();
+        LOGGER.debug("findBuId({})", id);
+        SqlParameterSource namedParameter = new MapSqlParameterSource(SUBJECT_ID, id);
+        Subject subject = namedParameterJdbcTemplate.queryForObject(SELECT_SUBJECT_BY_ID, namedParameter, BeanPropertyRowMapper.newInstance(Subject.class));
+        return Optional.ofNullable(subject);
     }
 
     @Override
-    public int create(Subject department) {
-        return 0;
+    public Optional<Subject> create(Subject subject) {
+        LOGGER.debug("create({})", subject);
+        return Optional.of(subject)
+                .filter(this::isNameUnique)
+                .map(this::insertSubject)
+                .orElseThrow(() -> new IllegalArgumentException("Subject with the this name already exist in DB.subject"));
+    }
+
+    private boolean isNameUnique(Subject subject) {
+        Integer getCounIdSubject = namedParameterJdbcTemplate.queryForObject(CHECK_COUN_NAME,
+                new MapSqlParameterSource(SUBJECT_NAME, subject.getSubjectName()),
+                Integer.class);
+        return getCounIdSubject == 0;
+    }
+
+    private Optional<Subject> insertSubject(Subject subject) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue(SUBJECT_NAME, subject.getSubjectName());
+        KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+        int getKeySubject = namedParameterJdbcTemplate.update(INSERT, mapSqlParameterSource, generatedKeyHolder);
+//        LOGGER.info("add( result update = {}, keyholder = {})", getKeySubject, generatedKeyHolder.getKey().intValue());
+        subject.setIdSubject(generatedKeyHolder.getKey().intValue());
+        return Optional.of(subject);
     }
 
     @Override
     public void update(Subject department) {
+        Optional.of(namedParameterJdbcTemplate.update(UPDATE, new MapSqlParameterSource(SUBJECT_NAME, department.getSubjectName())))
+                .filter(this::successfullyUpdated)
+                .orElseThrow(() -> new NegativeArraySizeException("Failed to update subject in DB"));
+    }
 
+    private boolean successfullyUpdated(int numRowsUpdated) {
+        return numRowsUpdated > 0;
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int idSubject) {
+        Optional.of(namedParameterJdbcTemplate.update(DELETE, new MapSqlParameterSource(SUBJECT_ID, idSubject)))
+                .filter(this::successfullyUpdated)
+                .orElseThrow(() -> new RuntimeException("Failed to delete subject from DB"));
     }
 
     private class SubjectRowMapper implements RowMapper<Subject> {
