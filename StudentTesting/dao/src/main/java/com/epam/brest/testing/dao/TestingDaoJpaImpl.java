@@ -73,7 +73,7 @@ public class TestingDaoJpaImpl implements TestingDao {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(SUBJECT_NAME, subject.getSubjectName());
         KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
-        int getKeySubject = namedParameterJdbcTemplate.update(INSERT, mapSqlParameterSource, generatedKeyHolder);
+        namedParameterJdbcTemplate.update(INSERT, mapSqlParameterSource, generatedKeyHolder);
 //        LOGGER.info("add( result update = {}, keyholder = {})", getKeySubject, generatedKeyHolder.getKey().intValue());
         subject.setIdSubject(generatedKeyHolder.getKey().intValue());
         return Optional.of(subject);
