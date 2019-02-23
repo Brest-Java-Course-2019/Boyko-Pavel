@@ -18,9 +18,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class TestingDaoJpaImpl implements TestingDao {
+public class SubjectDaoJpaImpl implements SubjectDao {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestingDaoJpaImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SubjectDaoJpaImpl.class);
 
     private static final String SELECT_SQL = "SELECT idSubject, subjectName FROM subject";
     private static final String SELECT_SUBJECT_BY_ID = "SELECT idSubject, subjectName FROM subject WHERE idSubject = :idSubject";
@@ -34,7 +34,7 @@ public class TestingDaoJpaImpl implements TestingDao {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public TestingDaoJpaImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public SubjectDaoJpaImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
@@ -49,13 +49,13 @@ public class TestingDaoJpaImpl implements TestingDao {
     public Optional<Subject> findById(Integer id) {
         LOGGER.debug("findBuId({})", id);
         SqlParameterSource namedParameter = new MapSqlParameterSource(SUBJECT_ID, id);
-        Subject subject = namedParameterJdbcTemplate.queryForObject(SELECT_SUBJECT_BY_ID, namedParameter, BeanPropertyRowMapper.newInstance(Subject.class));
+        Subject subject = namedParameterJdbcTemplate.queryForObject(SELECT_SUBJECT_BY_ID, namedParameter, new SubjectRowMapper());
         return Optional.ofNullable(subject);
     }
 
     @Override
-    public Optional<Subject> create(Subject subject) {
-        LOGGER.debug("create({})", subject);
+    public Optional<Subject> add(Subject subject) {
+        LOGGER.debug("add({})", subject);
         return Optional.of(subject)
                 .filter(this::isNameUnique)
                 .map(this::insertSubject)
