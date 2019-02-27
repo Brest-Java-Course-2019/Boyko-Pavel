@@ -16,9 +16,9 @@ import java.util.stream.Stream;
 import static org.junit.Assert.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:test-dao.xml"})
-@Rollback
+@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath:test-dao.xml"})
 @Transactional
+@Rollback
 class SubjectDaoJpaImplTest {
 
     private static final int ID_SUBJECT = 1;
@@ -26,7 +26,7 @@ class SubjectDaoJpaImplTest {
     private static final String MUSIC = "music";
 
     @Autowired
-    SubjectDao subjectDao;
+    private SubjectDao subjectDao;
 
 
     @Test

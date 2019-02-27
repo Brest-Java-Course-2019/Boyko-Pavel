@@ -7,6 +7,16 @@
     <groupId>com.epam.brest.testing</groupId>
     <artifactId>student-testing</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+    </dependencies>
     <packaging>pom</packaging>
 
     <modules>
@@ -14,7 +24,8 @@
         <module>hr-db</module>
         <module>model</module>
         <module>test-db</module>
-        <module>servicec</module>
+        <!--<module>servicec</module>-->
+        <module>web-app</module>
     </modules>
 
     <name>Student Testing</name>
@@ -38,6 +49,7 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>com.epam.brest.testing</groupId>
                 <artifactId>model</artifactId>
@@ -55,7 +67,17 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
                 <version>${org.springframework.version}</version>
             </dependency>
             <dependency>
@@ -72,6 +94,22 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-tx</artifactId>
                 <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.thymeleaf</groupId>
+                <artifactId>thymeleaf-spring5</artifactId>
+                <version>3.0.11.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>4.0.0</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -190,6 +228,23 @@
                     <artifactId>flyway-maven-plugin</artifactId>
                     <version>5.2.4</version>
                 </plugin>
+
+                <!-- Embedded Jetty HTTP Server for testing war application -->
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.4.8.v20171121</version>
+                    <configuration>
+                        <scanIntervalSeconds>10</scanIntervalSeconds>
+                        <webApp>
+                            <contextPath>/</contextPath>
+                        </webApp>
+                        <httpConnector>
+                            <port>8001</port>
+                        </httpConnector>
+                    </configuration>
+                </plugin>
+
             </plugins>
         </pluginManagement>
 
@@ -206,9 +261,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skipTests>false</skipTests>
-                </configuration>
+                <!--<configuration>-->
+                    <!--<skipTests>false</skipTests>-->
+                <!--</configuration>-->
             </plugin>
 
             <plugin>

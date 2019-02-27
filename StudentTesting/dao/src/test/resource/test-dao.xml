@@ -9,7 +9,7 @@
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean class="com.epam.brest.testing.dao.SubjectDaoJpaImpl">
+    <bean id="subjectDao" class="com.epam.brest.testing.dao.SubjectDaoJpaImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
