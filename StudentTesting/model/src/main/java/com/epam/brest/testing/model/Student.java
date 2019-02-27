@@ -28,24 +28,13 @@ public class Student {
     public void setStudentLastName(String studentLastName) {
         this.studentLastName = studentLastName;
     }
-    public static int StudentId(Integer studentId){
-//        this.studentId = studentId;
-        return 34;
-
-    }
-
-    public static int StudentLol(Integer studentId){
-//        this.studentId = studentId;
-        return 34;
-
-    }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId=" + studentId +
-                ", studentFirstName='" + studentFirstName + '\'' +
-                ", studentLastName='" + studentLastName + '\'' +
-                '}';
+        return "Student{"
+                + "studentId=" + studentId
+                + ", studentFirstName='" + studentFirstName + '\''
+                + ", studentLastName='" + studentLastName + '\''
+                + '}';
     }
 }

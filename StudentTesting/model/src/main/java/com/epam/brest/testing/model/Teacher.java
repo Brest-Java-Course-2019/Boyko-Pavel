@@ -2,33 +2,33 @@ package com.epam.brest.testing.model;
 
 public class Teacher {
 
-    private String login_teach;
-    private String teacher_first_name;
-    private String teacher_last_name;
+    private String loginTeach;
+    private String teacherFirstName;
+    private String teacherLastName;
     private String password;
 
-    public String getTeacher_last_name() {
-        return teacher_last_name;
+    public String getLoginTeach() {
+        return loginTeach;
     }
 
-    public void setTeacher_last_name(String teacher_last_name) {
-        this.teacher_last_name = teacher_last_name;
+    public void setLoginTeach(String loginTeach) {
+        this.loginTeach = loginTeach;
     }
 
-    public String getLogin_teach() {
-        return login_teach;
+    public String getTeacherFirstName() {
+        return teacherFirstName;
     }
 
-    public void setLogin_teach(String login_teach) {
-        this.login_teach = login_teach;
+    public void setTeacherFirstName(String teacherFirstName) {
+        this.teacherFirstName = teacherFirstName;
     }
 
-    public String getTeacher_first_name() {
-        return teacher_first_name;
+    public String getTeacherLastName() {
+        return teacherLastName;
     }
 
-    public void setTeacher_first_name(String teacher_first_name) {
-        this.teacher_first_name = teacher_first_name;
+    public void setTeacherLastName(String teacherLastName) {
+        this.teacherLastName = teacherLastName;
     }
 
     public String getPassword() {
@@ -42,9 +42,9 @@ public class Teacher {
     @Override
     public String toString() {
         return "Teacher{" +
-                "login_teach='" + login_teach + '\'' +
-                ", teacher_first_name='" + teacher_first_name + '\'' +
-                ", teacher_last_name='" + teacher_last_name + '\'' +
+                "loginTeach='" + loginTeach + '\'' +
+                ", teacherFirstName='" + teacherFirstName + '\'' +
+                ", teacherLastName='" + teacherLastName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

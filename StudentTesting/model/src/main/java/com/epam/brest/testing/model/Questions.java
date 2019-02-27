@@ -1,40 +1,40 @@
 package com.epam.brest.testing.model;
 
 public class Questions {
-    private Integer id_test_question;
-    private String test_question;
-    private String subject_id_subject;
+    private Integer idTestQuestion;
+    private String testQuestion;
+    private String subjectIdSubject;
 
-    public Integer getId_test_question() {
-        return id_test_question;
+    public Integer getIdTestQuestion() {
+        return idTestQuestion;
     }
 
-    public void setId_test_question(Integer id_test_question) {
-        this.id_test_question = id_test_question;
+    public void setIdTestQuestion(Integer idTestQuestion) {
+        this.idTestQuestion = idTestQuestion;
     }
 
-    public String getTest_question() {
-        return test_question;
+    public String getTestQuestion() {
+        return testQuestion;
     }
 
-    public void setTest_question(String test_question) {
-        this.test_question = test_question;
+    public void setTestQuestion(String testQuestion) {
+        this.testQuestion = testQuestion;
     }
 
-    public String getSubject_id_subject() {
-        return subject_id_subject;
+    public String getSubjectIdSubject() {
+        return subjectIdSubject;
     }
 
-    public void setSubject_id_subject(String subject_id_subject) {
-        this.subject_id_subject = subject_id_subject;
+    public void setSubjectIdSubject(String subjectIdSubject) {
+        this.subjectIdSubject = subjectIdSubject;
     }
 
     @Override
     public String toString() {
         return "Questions{" +
-                "id_test_question=" + id_test_question +
-                ", test_question='" + test_question + '\'' +
-                ", subject_id_subject='" + subject_id_subject + '\'' +
-                '}';
+                "idTestQuestion=" + idTestQuestion
+                + ", testQuestion='" + testQuestion + '\''
+                + ", subjectIdSubject='" + subjectIdSubject + '\''
+                + '}';
     }
 }

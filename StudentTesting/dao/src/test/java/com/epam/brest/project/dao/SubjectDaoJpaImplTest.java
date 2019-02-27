@@ -1,4 +1,4 @@
-package com.epam.brest.testing.dao;
+package com.epam.brest.project.dao;
 
 import com.epam.brest.testing.model.Subject;
 import org.junit.jupiter.api.Assertions;
@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.junit.Assert.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath:testdao.xml"})
+@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:testdao.xml"})
 @Transactional
 @Rollback
 class SubjectDaoJpaImplTest {
@@ -72,9 +72,8 @@ class SubjectDaoJpaImplTest {
         Stream<Subject> stream = subjectDao.findall();
         Subject subject = stream.findFirst().get();
         subjectDao.delete(subject.getIdSubject());
-        Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
-            subjectDao.findById(subject.getIdSubject());
-        });
+        Assertions.assertThrows(EmptyResultDataAccessException.class, () ->
+                subjectDao.findById(subject.getIdSubject()));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.epam.brest.testing.dao;
+package com.epam.brest.project.dao;
 
 import com.epam.brest.testing.model.Student;
 

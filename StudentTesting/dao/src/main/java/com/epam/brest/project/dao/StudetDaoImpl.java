@@ -1,4 +1,4 @@
-package com.epam.brest.testing.dao;
+package com.epam.brest.project.dao;
 
 import com.epam.brest.testing.model.Student;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -38,7 +38,7 @@ public class StudetDaoImpl implements StudentDao {
 
     @Override
     public Optional<Student> findById(Integer id) {
-        Student student = namedParameterJdbcTemplate.queryForObject(SELECT_BY_ID_STUDENT, new MapSqlParameterSource(ID_STUDENT, id), (ResultSet rs, int rowNum)->{
+        Student student = namedParameterJdbcTemplate.queryForObject(SELECT_BY_ID_STUDENT, new MapSqlParameterSource(ID_STUDENT, id), (ResultSet rs, int rowNum) -> {
             Student student1 = new Student();
             student1.setStudentId(rs.getInt(ID_STUDENT));
             student1.setStudentFirstName(rs.getString(FIRST_NAME_STUDENT));

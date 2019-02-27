@@ -64,11 +64,11 @@
 ////        <constructor-arg name="dataSource" ref="dataSource"/>
 ////    </bean>
 ////
-////    <bean id="subjectDao" class="com.epam.brest.testing.dao.SubjectDaoJpaImpl">
+////    <bean id="subjectDao" class="SubjectDaoJpaImpl">
 ////        <constructor-arg ref="namedParameterJdbcTemplate"/>
 ////    </bean>
 ////
-////    <bean id="studentDao" class="com.epam.brest.testing.dao.StudetDaoImpl">
+////    <bean id="studentDao" class="StudetDaoImpl">
 ////        <constructor-arg ref="namedParameterJdbcTemplate"/>
 ////    </bean>
 ////    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
