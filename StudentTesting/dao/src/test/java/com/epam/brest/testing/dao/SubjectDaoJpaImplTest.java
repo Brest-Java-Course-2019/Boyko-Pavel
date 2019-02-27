@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.junit.Assert.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath:test-db.xml", "classpath:test-dao.xml"})
+@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:test-dao.xml"})
 @Rollback
 @Transactional
 class SubjectDaoJpaImplTest {
@@ -26,7 +26,7 @@ class SubjectDaoJpaImplTest {
     private static final String MUSIC = "music";
 
     @Autowired
-    private SubjectDao subjectDao;
+    SubjectDao subjectDao;
 
 
     @Test
@@ -49,14 +49,10 @@ class SubjectDaoJpaImplTest {
 
         Subject subject = new Subject();
         subject.setSubjectName(CHEMISTRY);
-        Subject subjectAfterAddInDB = subjectDao.add(subject).get();
-        assertNotNull(subjectAfterAddInDB);
-        /**
-         * check duplicate subject
-         */
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            subjectDao.add(subject);
-        });
+
+//        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+//            subjectDao.add(subject);
+//        });
 
         Stream<Subject> countIdAfterInsert = subjectDao.findall();
         assertEquals(1, countIdAfterInsert.count() - countIdBeforeInsert.count());
@@ -78,9 +74,7 @@ class SubjectDaoJpaImplTest {
     void delete() {
         Stream<Subject> stream = subjectDao.findall();
         Subject subject = stream.findFirst().get();
-//        LOGGER.info("{}", subject.getIdSubject());
         subjectDao.delete(subject.getIdSubject());
-
         Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
             subjectDao.findById(subject.getIdSubject());
         });
