@@ -41,12 +41,12 @@
         <dependencies>
 
             <dependency>
-                <groupId>com.epam.brest.testing</groupId>
+                <groupId>com.epam.brest.project</groupId>
                 <artifactId>model</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.epam.brest.testing</groupId>
+                <groupId>com.epam.brest.project</groupId>
                 <artifactId>test-db</artifactId>
                 <version>${project.version}</version>
             </dependency>

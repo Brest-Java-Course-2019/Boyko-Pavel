@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.junit.Assert.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:testdao.xml"})
+@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:tstd.xml"})
 @Transactional
 @Rollback
 class SubjectDaoJpaImplTest {

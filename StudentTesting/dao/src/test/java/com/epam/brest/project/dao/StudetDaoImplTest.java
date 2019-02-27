@@ -15,7 +15,7 @@
 //import static org.junit.jupiter.api.Assertions.*;
 //
 //@ExtendWith(SpringExtension.class)
-//@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:testdao.xml"})
+//@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:tstd.xml"})
 //@Rollback
 //@Transactional
 //class StudetDaoImplTest {
