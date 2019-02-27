@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.junit.Assert.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath:test-dao.xml"})
+@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath:testdao.xml"})
 @Transactional
 @Rollback
 class SubjectDaoJpaImplTest {
@@ -49,11 +49,8 @@ class SubjectDaoJpaImplTest {
 
         Subject subject = new Subject();
         subject.setSubjectName(CHEMISTRY);
-
-//        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-//            subjectDao.add(subject);
-//        });
-
+        Subject newDepartment = subjectDao.add(subject).get();
+        assertNotNull(newDepartment.getIdSubject());
         Stream<Subject> countIdAfterInsert = subjectDao.findall();
         assertEquals(1, countIdAfterInsert.count() - countIdBeforeInsert.count());
     }
