@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <!--<context:component-scan base-package="com.epam.brest.project.*"/>-->
-    <!--<context:component-scan base-package="com.epam.brest.project.dao.StudentTestDaoJdbcDaoImpl"/>-->
 
 
     <bean id="namedParameterJdbcTemplate"
@@ -14,21 +10,25 @@
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
 
     <!--<bean id="subjectDao" class="com.epam.brest.project.dao.SubjectDaoJdbcImpl">-->
         <!--<constructor-arg ref="namedParameterJdbcTemplate"/>-->
     <!--</bean>-->
 
-    <!--<bean id="questionItemDao" class="com.epam.brest.project.dao.QuestionItemDaoJdbcImpl">-->
-        <!--<constructor-arg ref="namedParameterJdbcTemplate"/>-->
-    <!--</bean>-->
+    <bean id="questionItemDao" class="com.epam.brest.project.dao.QuestionItemDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
 
     <!--<bean id="newTestingubjectDao" class="com.epam.brest.project.dao.NewTestingDaoJdbcImpl">-->
         <!--<constructor-arg ref="namedParameterJdbcTemplate"/>-->
     <!--</bean>-->
 
     <bean id="studentTestJdbc" class="com.epam.brest.project.dao.StudentTestDaoJdbcDaoImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="questionDaoJdbcImpl" class="com.epam.brest.project.dao.QuestionDaoJdbcImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 

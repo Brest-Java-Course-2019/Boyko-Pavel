@@ -1,4 +1,4 @@
-package com.epam.brest.project.dao.old;
+package com.epam.brest.project.dao;
 
 import com.epam.brest.project.model.QuestionItem;
 

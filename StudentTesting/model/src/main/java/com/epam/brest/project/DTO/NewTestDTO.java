@@ -1,6 +1,5 @@
 package com.epam.brest.project.DTO;
 
-import com.epam.brest.project.model.Question;
 import com.epam.brest.project.model.QuestionItem;
 
 import java.util.List;
@@ -14,8 +13,7 @@ public class NewTestDTO {
     private String subjectName;
     private String testName;
     private List<List<QuestionItem>> testQuestion;
-//    private String questionItems;
-//    private Boolean answer;
+
 
     public Integer getIdTests() {
         return idTests;

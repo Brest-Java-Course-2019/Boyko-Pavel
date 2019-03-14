@@ -249,11 +249,13 @@
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.flywaydb</groupId>
-                    <artifactId>flyway-maven-plugin</artifactId>
-                    <version>5.2.4</version>
-                </plugin>
+
+
+                <!--<plugin>-->
+                    <!--<groupId>org.flywaydb</groupId>-->
+                    <!--<artifactId>flyway-maven-plugin</artifactId>-->
+                    <!--<version>5.2.4</version>-->
+                <!--</plugin>-->
 
                 <!-- Embedded Jetty HTTP Server for testing war application -->
                 <plugin>
@@ -270,7 +272,6 @@
                         </httpConnector>
                     </configuration>
                 </plugin>
-
             </plugins>
         </pluginManagement>
 
@@ -287,11 +288,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <additionalClasspathElements>
-                        <!--<additionalClasspathElement>dao/src/test/resources/xml</additionalClasspathElement>-->
-                    </additionalClasspathElements>
-                </configuration>
             </plugin>
 
             <plugin>
@@ -324,7 +320,7 @@
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>false</failsOnError>
                             <failOnViolation>false</failOnViolation>
-                            <!--<linkXRef>false</linkXRef>-->
+                            <linkXRef>false</linkXRef>
                         </configuration>
                         <goals>
                             <goal>check</goal>
@@ -406,6 +402,7 @@
                 <artifactId>maven-site-plugin</artifactId>
             </plugin>
         </plugins>
+
     </build>
 
     <reporting>
@@ -502,8 +499,17 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
+                <version>3.0.1</version>
+
                 <configuration>
-                    <repoToken>${project.version}</repoToken>
+                    <coberturaReports>
+                        <coberturaReport>
+                            ${basedir}/target/coverage.xml
+                        </coberturaReport>
+                    </coberturaReports>
+                    <sourceEncoding>UTF-8</sourceEncoding>
+                    <serviceName>travis-ci</serviceName>
+                    <!--<serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>-->
                 </configuration>
             </plugin>
         </plugins>

@@ -2,16 +2,16 @@ package com.epam.brest.project.model;
 
 public class Question {
 
-    private Integer question_id;
+    private Integer questionId;
     private String question;
-    private String test_id;
+    private Integer testId;
 
-    public Integer getQuestion_id() {
-        return question_id;
+    public Integer getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestion_id(Integer question_id) {
-        this.question_id = question_id;
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
     }
 
     public String getQuestion() {
@@ -22,20 +22,20 @@ public class Question {
         this.question = question;
     }
 
-    public String getTest_id() {
-        return test_id;
+    public Integer getTestId() {
+        return testId;
     }
 
-    public void setTest_id(String test_id) {
-        this.test_id = test_id;
+    public void setTestId(Integer testId) {
+        this.testId = testId;
     }
 
     @Override
     public String toString() {
         return "Question{" +
-                "question_id=" + question_id +
+                "questionId=" + questionId +
                 ", question='" + question + '\'' +
-                ", test_id='" + test_id + '\'' +
+                ", testId='" + testId + '\'' +
                 '}';
     }
 }

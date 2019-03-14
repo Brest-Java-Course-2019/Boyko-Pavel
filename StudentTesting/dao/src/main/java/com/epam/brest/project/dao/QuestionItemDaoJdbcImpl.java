@@ -1,6 +1,5 @@
 package com.epam.brest.project.dao;
 
-import com.epam.brest.project.dao.old.QuestionItemDao;
 import com.epam.brest.project.model.QuestionItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +13,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -43,6 +43,9 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
 
     @Value("${questionItem.updateQuestionItem}")
     private String updateQuestionItem;
+
+    @Value("${questionItem.deleteQuestionItem}")
+    private String deleteQuestionItem;
 
     public QuestionItemDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -87,7 +90,8 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
 
         KeyHolder generatorKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(insertQuestionItem, mapSqlParameterSource, generatorKeyHolder);
-        questionItem.setQuestionItemId(generatorKeyHolder.getKey().intValue());
+        Map<String, Object> keyMap = generatorKeyHolder.getKeys();
+        questionItem.setQuestionItemId((Integer) keyMap.get(QUESTION_ITEM_ID));
         return Optional.of(questionItem);
     }
 
@@ -100,7 +104,7 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         mapSqlParameterSource.addValue(QUESTION_ITEM_ID, questionItem.getQuestionItemId());
         Optional.of(namedParameterJdbcTemplate.update(updateQuestionItem, mapSqlParameterSource))
                 .filter(this::countAffectedRow)
-                .orElseThrow(() -> new IllegalArgumentException("34334343434"));
+                .orElseThrow(() -> new IllegalArgumentException("Failed to update questionItem"));
     }
 
     private Boolean countAffectedRow(int numRowsUpdated){
@@ -108,7 +112,11 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
     }
     @Override
     public void delete(int id) {
-
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue(QUESTION_ITEM_ID, id);
+        Optional.of(namedParameterJdbcTemplate.update(deleteQuestionItem, mapSqlParameterSource))
+                .filter(this::countAffectedRow)
+                .orElseThrow(() -> new RuntimeException("Failed to delete questionItem from DB"));
     }
 
     private class QuestionItemRowMapper implements RowMapper<QuestionItem> {

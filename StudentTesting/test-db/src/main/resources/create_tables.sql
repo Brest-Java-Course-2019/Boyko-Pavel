@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS question_item (
   description VARCHAR(200) NOT NULL,
   question_id INT NOT NULL,
   answer TINYINT(1) NOT NULL,
+  deleted TINYINT(1) NOT NULL DEFAULT 0,
 PRIMARY KEY (question_item_id, question_id),
 INDEX fk_question_item_question1_idx (question_id ASC),
 CONSTRAINT fk_question_item_question1
