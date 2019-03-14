@@ -18,12 +18,12 @@
 //        return new DataSourceTransactionManager(getDriverManagerDataSource());
 //    }
 //    @Bean
-//    protected SubjectDaoJpaImpl subjectDaoJpa(){
-//        return new SubjectDaoJpaImpl(namedParameterJdbcTemplate());
+//    protected SubjectDaoJdbcImpl subjectDaoJpa(){
+//        return new SubjectDaoJdbcImpl(namedParameterJdbcTemplate());
 //    }
 //    @Bean
-//    protected StudetDaoImpl studetDao(){
-//        return new StudetDaoImpl(namedParameterJdbcTemplate());
+//    protected StudetDaoJdbcImpl studetDao(){
+//        return new StudetDaoJdbcImpl(namedParameterJdbcTemplate());
 //    }
 //    @Value("org.h2.Driver")
 //    private String driverClass;
@@ -64,11 +64,11 @@
 ////        <constructor-arg name="dataSource" ref="dataSource"/>
 ////    </bean>
 ////
-////    <bean id="subjectDao" class="SubjectDaoJpaImpl">
+////    <bean id="subjectDao" class="SubjectDaoJdbcImpl">
 ////        <constructor-arg ref="namedParameterJdbcTemplate"/>
 ////    </bean>
 ////
-////    <bean id="studentDao" class="StudetDaoImpl">
+////    <bean id="studentDao" class="StudetDaoJdbcImpl">
 ////        <constructor-arg ref="namedParameterJdbcTemplate"/>
 ////    </bean>
 ////    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

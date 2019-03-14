@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<nav class="pr-2 navbar navbar-expand-lg navbar-light bg-light pt-0 pb-1">
+<nav class="pr-2 navbar navbar-expand-lg navbar-light bg-light pt-0 pb-1 mb-3">
     <a class="navbar-brand"><img src="img/image.svg" height="32" width="32"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,8 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">You sure end create test(current question don't save)</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">You sure end create test(current question
+                                    don't save)</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -57,84 +58,107 @@
         <div class="row">
             <div class="col col align-self-center">
                 <div class="card">
-                        <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label text-center">Question</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPassword" placeholder="enter question">
-                        </div>
-                        </div>
-                        <div class="form-group row">
-                        <label for="inputPassword2" class="col-sm-2 col-form-label text-center">Subject</label>
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr class="text-center">
+                            <td>
+                                <div class="form-group row">
+                                    <label for="subject" class="col-sm-2 col-form-label text-center">Subject</label>
 
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="subject"
+                                               placeholder="enter subject">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group row">
+                                    <label for="testname" class="col-sm-2 col-form-label text-center">Test name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="testname"
+                                               placeholder="enter test name">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+
+                    <div class="form-group row">
+                        <label for="question" class="col-sm-2 col-form-label text-center">Question</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPassword2" placeholder="enter subject">
-                        </div>
-                        </div>
-                            <table class="table table-striped">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox0"
-                                                   value="option3">
-                                            <label for="inputPassword" class="col-sm-4 col-form-label text-center">Answer
-                                                1</label>
-                                            <div class="col-sm-12">
-                                                <input type="text" class="form-control" placeholder="enter answer">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                   value="option3">
-                                            <label for="inputPassword" class="col-sm-4 col-form-label text-center">Answer
-                                                2</label>
-                                            <div class="col-sm-12">
-                                                <input type="text" class="form-control" placeholder="enter answer">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                   value="option3">
-                                            <label for="inputPassword" class="col-sm-4 col-form-label text-center">Answer
-                                                3</label>
-                                            <div class="col-sm-12">
-                                                <input type="text" class="form-control" placeholder="enter answer">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                                   value="option3">
-                                            <label for="inputPassword" class="col-sm-4 col-form-label text-center">Answer 4</label>
-                                            <div class="col-sm-12">
-                                                <input type="text" class="form-control" placeholder="enter answer">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <a href="editTest.html" type="button" class="btn btn-secondary btn-lg btn-block">Next
-                                question</a>
-                            <a href="editTest.html" type="button" class="btn btn-secondary btn-lg btn-block">Previous
-                                question</a>
+                            <input type="text" class="form-control" id="question" placeholder="enter question">
                         </div>
                     </div>
-                </div>
-                    </div>
+
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox0"
+                                           value="option3">
+                                    <label for="inlineCheckbox0" class="col-sm-4 col-form-label text-center">Answer
+                                        1</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="enter answer">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                           value="option3">
+                                    <label for="inlineCheckbox1" class="col-sm-4 col-form-label text-center">Answer
+                                        2</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="enter answer">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                           value="option3">
+                                    <label for="inlineCheckbox2" class="col-sm-4 col-form-label text-center">Answer
+                                        3</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="enter answer">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                           value="option3">
+                                    <label for="inlineCheckbox3" class="col-sm-4 col-form-label text-center">Answer
+                                        4</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="enter answer">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href="editTest.html" type="button" class="btn btn-secondary btn-lg btn-block">Next
+                        question</a>
+                    <a href="editTest.html" type="button" class="btn btn-secondary btn-lg btn-block">Previous
+                        question</a>
                 </div>
             </div>
+        </div>
+    </div>
+    </div>
+    </div>
 </section>
 
 
@@ -144,8 +168,8 @@
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 <script src="popper.min.js"></script>
-        <!--integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
-        <!--crossorigin="anonymous">-->
+<!--integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
+<!--crossorigin="anonymous">-->
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"

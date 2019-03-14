@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="../../resources/static/css/font-awesome.min.css"
+          th:href="@{/resources/static/css/font-awesome.min.css}">
+    <link rel="stylesheet"
+          href="../../resources/static/css/bootstrap.css"
+          th:href="@{/resources/static/css/bootstrap.css}">
+    <link rel="stylesheet"
+          href="../../resources/static/css/style.css"
+          th:href="@{/resources/static/css/style.css}">
+
+    <link rel="shortcut icon" type="image/x-icon"
+          href="../../resources/static/img/logo.ico"
+          th:href="@{/resources/static/img/logo.ico}"/>
+
+    <title>Tests</title>
+</head>
+<body>
+
+<nav class="pr-2 navbar navbar-expand-lg navbar-light bg-light pt-0 pb-1 mb-3">
+    <a class="navbar-brand"><img src="img/image.svg" height="32" width="32"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <div class="navbar-nav">
+                <!--<a class="nav-item nav-link" href="student">Student <span class="sr-only">(current)</span></a>-->
+                <button id="student" type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                        data-target="#exampleModal" data-whatever="@mdo">Out test
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">You sure end test your result don't save</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a class="btn btn-danger" href="student.html" role="button">End</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar-nav">
+                    <button id="teacher" type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                            data-target="#teacherModal" data-whatever="@mdo">Teacher
+                    </button>
+
+                    <div class="modal fade" id="teacherModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="teacherModalModalLabel">Enter your information</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="login" class="col-form-label">Login:</label>
+                                            <input type="text" class="form-control" id="login">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password" class="col-form-label">Password:</label>
+                                            <input class="form-control" id="password">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a class="btn btn-primary" href="teacher.html" role="button">Enter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section id="tests">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col align-self-center">
+                <div class="card">
+                    <table class="table table-striped">
+                        <thead class="thead-inverse text-center">
+                        <tr>
+                            <th>Question</th>
+                        </tr>
+                        </thead>
+                    </table>
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr class="text-center">
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox0"
+                                           value="option3">
+                                    <label class="form-check-label" for="inlineCheckbox3">answer0</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                           value="option3">
+                                    <label class="form-check-label" for="inlineCheckbox3">answer1</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                           value="option3">
+                                    <label class="form-check-label" for="inlineCheckbox3">answer2</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                           value="option3">
+                                    <label class="form-check-label" for="inlineCheckbox3">answer3</label>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href="startTest.html" type="button" class="btn btn-secondary btn-lg btn-block">Next question</a>
+                    <a href="startTest.html" type="button" class="btn btn-secondary btn-lg btn-block">Previous
+                        question</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="../../resources/static/js/jquery.min.js"
+        th:src="@{/resources/static/js/jquery.min.js}"></script>
+<script src="../../resources/static/js/popper.min.js"
+        th:src="@{/resources/static/js/popper.min.js}"></script>
+<script src="../../resources/static/js/bootstrap.min.js"
+        th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+</body>
+</html>

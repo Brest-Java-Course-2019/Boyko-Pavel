@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<nav class="pr-2 navbar navbar-expand-lg navbar-light bg-light pt-0 pb-1">
+<nav class="pr-2 navbar navbar-expand-lg navbar-light bg-light pt-0 pb-1 mb-3">
     <a href="index.html" class="navbar-brand"><img src="img/image.svg" height="32" width="32"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,10 +93,10 @@
                             <td>14</td>
                             <td class="text-right">
                                 <a href="editTest.html"
-                                   class="btn-sm btn-outline-secondary"
-                                   title="Edit test"
+                                   class="btn-sm btn-outline-secondary arrow"
                                    data-toggle="tooltip"
-                                   data-placement="top">
+                                   data-placement="top"
+                                   title="Edit test">
                                     <i class="fa fa-pencil"></i> <span
                                         class="d-none d-md-inline">Edit</span></a>
                                 <span data-toggle="modal" data-target="#deleteDialog">
@@ -158,19 +158,20 @@
     </div>
 </div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!--<script>-->
-    <!--$(function () {-->
-        <!--$('[data-toggle="tooltip"]').tooltip()-->
-    <!--})-->
-<!--</script>-->
+ <!--Optional JavaScript-->
+ <!--jQuery first, then Popper.js, then Bootstrap JS-->
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-<script src="popper.min.js"></script>
+<script src="js/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 </body>
 </html>
