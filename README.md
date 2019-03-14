@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/Brest-Java-Course-2019/Boyko-Pavel.svg?branch=master)](https://travis-ci.org/Brest-Java-Course-2019/Boyko-Pavel)
-[![Coverage Status](https://coveralls.io/repos/github/Brest-Java-Course-2019/Boyko-Pavel/badge.svg?branch=master)](https://coveralls.io/github/Brest-Java-Course-2019/Boyko-Pavel?branch=master)
+<a href='https://coveralls.io/github/Brest-Java-Course-2019/Boyko-Pavel?branch=my_project'><img src='https://coveralls.io/repos/github/Brest-Java-Course-2019/Boyko-Pavel/badge.svg?branch=my_project' alt='Coverage Status' /></a>
+
 
 # Project Title
 
