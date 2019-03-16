@@ -320,7 +320,7 @@
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>false</failsOnError>
                             <failOnViolation>false</failOnViolation>
-                            <linkXRef>false</linkXRef>
+                            <!--<linkXRef>false</linkXRef>-->
                         </configuration>
                         <goals>
                             <goal>check</goal>
