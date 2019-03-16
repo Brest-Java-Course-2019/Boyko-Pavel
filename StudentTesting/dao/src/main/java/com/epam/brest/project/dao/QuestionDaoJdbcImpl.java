@@ -12,9 +12,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 
@@ -23,7 +21,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(QuestionDaoJdbcImpl.class);
 
     private static final String QUESTION_ID = "question_id";
-    private static final String QUESTION = "question";
+    private static final String QUESTION_NAME = "question";
     private static final String TEST_ID = "test_id";
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -36,6 +34,9 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
 
     @Value("${question.insertQuestion}")
     private String insertQuestionItem;
+
+    @Value("${question.selectAllQuestionByTestId}")
+    private String selectAllQuestionByTestId;
 
     @Value("${question.existTestById}")
     private String existTestById;
@@ -55,6 +56,18 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
         LOGGER.warn("start findall()");
         List<Question> questionItems = namedParameterJdbcTemplate.query(selectAllQuestionItem, new QuestionRowMapper());
         return questionItems.stream();
+    }
+
+
+    @Override
+    public List<Question> findallQuestionByTestId(Integer id) {
+        LOGGER.warn("start findallQuestionByTestId()");
+        Map<String, Integer> map = new HashMap<>();
+        map.put(TEST_ID, id);
+        new HashMap<>().put(TEST_ID, id);
+        List<Question> questionList = namedParameterJdbcTemplate.query(selectAllQuestionByTestId,
+                map, new QuestionRowMapper());
+        return questionList;
     }
 
     @Override
@@ -83,7 +96,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     private Optional<Question> insertQuestionItem(Question question) {
         LOGGER.warn("start insertQuestionItem()");
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue(QUESTION, question.getQuestion());
+        mapSqlParameterSource.addValue(QUESTION_NAME, question.getQuestionName());
         mapSqlParameterSource.addValue(TEST_ID, question.getTestId());
 
         KeyHolder generatorKeyHolder = new GeneratedKeyHolder();
@@ -97,7 +110,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     public void update(Question question) {
         LOGGER.warn("start update()");
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue(QUESTION, question.getQuestion());
+        mapSqlParameterSource.addValue(QUESTION_NAME, question.getQuestionName());
         mapSqlParameterSource.addValue(QUESTION_ID, question.getQuestionId());
         Optional.of(namedParameterJdbcTemplate.update(updateQuestionItem, mapSqlParameterSource))
                 .filter(this::countAffectedRow)
@@ -121,7 +134,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
         public Question mapRow(ResultSet resultSet, int i) throws SQLException {
             Question question = new Question();
             question.setQuestionId(resultSet.getInt(QUESTION_ID));
-            question.setQuestion(resultSet.getString(QUESTION));
+            question.setQuestionName(resultSet.getString(QUESTION_NAME));
             question.setTestId(resultSet.getInt(TEST_ID));
             return question;
         }

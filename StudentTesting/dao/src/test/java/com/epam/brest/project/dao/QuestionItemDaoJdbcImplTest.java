@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,7 +24,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class QuestionItemDaoJdbcImplTest {
 
     private static final int ID_QUESTION_ITEM = 2;
-    public static final int DELETED_QUESTION_ID = 3;
+    private static final int DELETED_QUESTION_ID = 3;
+    private static final int TEST_ID = 1;
 
     @Autowired
     private QuestionItemDaoJdbcImpl questionItemDao;
@@ -40,6 +42,12 @@ class QuestionItemDaoJdbcImplTest {
         QuestionItem questionItem = questionItemDao.findById(ID_QUESTION_ITEM).get();
 
         assertEquals("ANSWER: 2", questionItem.getDescription());
+    }
+
+    @Test
+    void findallQuestionByTestId(){
+        List<QuestionItem> questionList = questionItemDao.findallQuestionItemByQuestionId(TEST_ID);
+        assertEquals("ANSWER: 2", questionList.get(1).getDescription());
     }
 
     @Test

@@ -12,6 +12,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,6 +27,7 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
     private static final String ANSWER = "answer";
     private static final String QUESTION_ID = "question_id";
     private static final String DESCRIPTION = "description";
+    private static final String TEST_ID = "test_id";
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -34,6 +36,9 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
 
     @Value("${questionItem.selectByQuestionItem}")
     private String selectByQuestionItem;
+
+    @Value("${questionItem.selectAllQuestionItemByQuestionId}")
+    private String selectAllQuestionItemByQuestionId;
 
     @Value("${questionItem.insertQuestionItem}")
     private String insertQuestionItem;
@@ -64,6 +69,15 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         QuestionItem questionItem = namedParameterJdbcTemplate.queryForObject(selectByQuestionItem,
                 new MapSqlParameterSource(QUESTION_ITEM_ID, id), new QuestionItemRowMapper());
         return Optional.ofNullable(questionItem);
+    }
+
+    @Override
+    public List<QuestionItem> findallQuestionItemByQuestionId(Integer id) {
+        LOGGER.warn("start findallQuestionByTestId()");
+        Map<String, Integer> map = new HashMap<>();
+        map.put(TEST_ID, id);
+        return namedParameterJdbcTemplate.query(selectAllQuestionItemByQuestionId,
+                map, new QuestionItemRowMapper());
     }
 
     @Override

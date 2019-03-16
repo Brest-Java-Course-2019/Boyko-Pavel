@@ -10,25 +10,28 @@
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
 
-
-
-    <!--<bean id="subjectDao" class="com.epam.brest.project.dao.SubjectDaoJdbcImpl">-->
-        <!--<constructor-arg ref="namedParameterJdbcTemplate"/>-->
-    <!--</bean>-->
-
-    <bean id="questionItemDao" class="com.epam.brest.project.dao.QuestionItemDaoJdbcImpl">
+    <bean id="studentTestJdbc" class="com.epam.brest.project.dao.StudentTestDaoJdbcDaoImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
+
 
     <!--<bean id="newTestingubjectDao" class="com.epam.brest.project.dao.NewTestingDaoJdbcImpl">-->
         <!--<constructor-arg ref="namedParameterJdbcTemplate"/>-->
     <!--</bean>-->
 
-    <bean id="studentTestJdbc" class="com.epam.brest.project.dao.StudentTestDaoJdbcDaoImpl">
+    <bean id="subjectDao" class="com.epam.brest.project.dao.SubjectDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="testDaoJdbcImpl" class="com.epam.brest.project.dao.TestDaoJdbcImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
     <bean id="questionDaoJdbcImpl" class="com.epam.brest.project.dao.QuestionDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="questionItemDao" class="com.epam.brest.project.dao.QuestionItemDaoJdbcImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 

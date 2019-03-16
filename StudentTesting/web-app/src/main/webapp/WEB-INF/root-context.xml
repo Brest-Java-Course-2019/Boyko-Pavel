@@ -54,6 +54,34 @@
         <constructor-arg ref="studentTestJdbc"/>
     </bean>
 
+
+
+    <bean id="subjectDaoJdbcImpl" class="com.epam.brest.project.dao.SubjectDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="testDaoJdbcImpl" class="com.epam.brest.project.dao.TestDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="questionDaoJdbcImpl" class="com.epam.brest.project.dao.QuestionDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="questionItemDaoJdbcImpl" class="com.epam.brest.project.dao.QuestionItemDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="testDTOServiceImpl" class="com.epam.brest.project.service.TestDTOServiceImpl">
+        <constructor-arg ref="testDaoJdbcImpl"/>
+        <constructor-arg ref="questionItemDaoJdbcImpl"/>
+        <constructor-arg ref="questionDaoJdbcImpl"/>
+    </bean>
+
+    <bean id="subjectService" class="com.epam.brest.project.service.SubjectServiceImpl">
+        <constructor-arg ref="subjectDaoJdbcImpl"/>
+    </bean>
+
     <context:property-placeholder location="classpath:application.properties"/>
 
     <!-- Thymeleaf Template Resolver -->

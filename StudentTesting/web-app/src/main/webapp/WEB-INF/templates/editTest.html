@@ -41,7 +41,8 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">You sure end create test(current question
+                                <h5 class="modal-title" id="exampleModalLabel">You sure end create test(current
+                                    questionName
                                     don't save)</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -63,19 +64,29 @@
 </nav>
 <section id="tests">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" >
             <div class="col col align-self-center">
-                <div class="card">
-                    <table class="table table-striped">
+                <!--<div class="card" th:if ="not ${TestsDTO.questions.isEmpty()}">-->
+                    <div class="card" >
+                    <table class="table table-str">
                         <tbody>
-                        <tr class="text-center">
+                        <tr class="text-right">
                             <td>
                                 <div class="form-group row">
                                     <label for="subject" class="col-sm-2 col-form-label text-center">Subject</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="subject"
-                                               placeholder="enter subject">
+                                        <input type="text" class="form-control"
+                                               id="subject"
+                                               placeholder="enter subject"
+                                               th:field="${TestDTO.subjectName}">
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
                                     </div>
                                 </div>
                             </td>
@@ -83,8 +94,10 @@
                                 <div class="form-group row">
                                     <label for="testname" class="col-sm-2 col-form-label text-center">Test name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="testname"
-                                               placeholder="enter test name">
+                                        <input type="text" class="form-control"
+                                               id="testname"
+                                               placeholder="enter test name"
+                                               th:field="${TestDTO.testName}">
                                     </div>
                                 </div>
                             </td>
@@ -92,80 +105,113 @@
 
                         </tbody>
                     </table>
+                    <div class="container-fluid pb-2">
+                        <!--th:unless="${TestsDTO.questions.isEmpty()}">-->
+                        <div class="row">
+                            <div class="col col align-self-center">
+                                <div class="card" th:each="question, stat : ${TestDTO.questions}">
+                                    <div>
+                                        <div class="text-center">
+                                            <h2>Question № <span th:text="${stat.count}"> 1 </span>
+                                            </h2>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inlineCheckbox0"
+                                                   class="col-sm-2 col-form-label text-center">Question</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control"
+                                                       id="inlineCheckbox0"
+                                                       placeholder="enter questionName"
+                                                       th:id="${question.questionId}"
+                                                       th:text="${question.questionName}">
+                                            </div>
+                                        </div>
 
+                                        <table class="table table-striped">
+                                            <tbody>
+                                            <tr>
+                                                <td th:each="questionItem, itemStat : ${TestDTO.questionItems[__${stat.index}__]}">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               id="inlineCheckbox1"
+                                                               value="reg"
+                                                               checked="checked"
+                                                               th:checked="${questionItem.answer}">
+                                                        <label for="inlineCheckbox1"
+                                                               class="col-sm-4 col-form-label text-center">Possible answer
+                                                            <span th:text="${itemStat.count}"> 1 </span></label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="enter answer"
+                                                                   th:text="${questionItem.description}">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
-                    <div class="form-group row">
-                        <label for="question" class="col-sm-2 col-form-label text-center">Question</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="question" placeholder="enter question">
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               id="inlineCheckbox2"
+                                                               value="option3">
+                                                        <label for="inlineCheckbox2"
+                                                               class="col-sm-4 col-form-label text-center">Possible answer 2</label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="enter answer"   >
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               id="inlineCheckbox3"
+                                                               value="option3">
+                                                        <label for="inlineCheckbox3"
+                                                               class="col-sm-4 col-form-label text-center">Possible answer 3</label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="enter answer">
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               id="inlineCheckbox4"
+                                                               value="option3">
+                                                        <label for="inlineCheckbox4"
+                                                               class="col-sm-4 col-form-label text-center">Possible answer 4 </label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="enter answer">
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <table class="table table-striped">
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox0"
-                                           value="option3">
-                                    <label for="inlineCheckbox0" class="col-sm-4 col-form-label text-center">Answer
-                                        1</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" placeholder="enter answer">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                           value="option3">
-                                    <label for="inlineCheckbox1" class="col-sm-4 col-form-label text-center">Answer
-                                        2</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" placeholder="enter answer">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                           value="option3">
-                                    <label for="inlineCheckbox2" class="col-sm-4 col-form-label text-center">Answer
-                                        3</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" placeholder="enter answer">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label for="inlineCheckbox3" class="col-sm-4 col-form-label text-center">Answer
-                                        4</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" placeholder="enter answer">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <a href="editTest.html" type="button" class="btn btn-secondary btn-lg btn-block">Next
-                        question</a>
-                    <a href="editTest.html" type="button" class="btn btn-secondary btn-lg btn-block">Previous
-                        question</a>
+                    <a href="editTest.html" type="button" class="btn btn-secondary btn-lg btn-block">Add new question</a>
+
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </section>
 

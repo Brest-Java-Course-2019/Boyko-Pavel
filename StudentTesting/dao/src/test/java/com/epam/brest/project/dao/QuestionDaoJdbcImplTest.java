@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +26,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class QuestionDaoJdbcImplTest {
 
     private static final int ID_QUESTION = 3;
-    public static final int DELETED_QUESTION_ID = 2;
+    private static final int DELETED_QUESTION_ID = 2;
+    private static final int TEST_ID = 2;
 
     @Autowired
     @Qualifier("questionDaoJdbcImpl")
@@ -41,7 +43,14 @@ class QuestionDaoJdbcImplTest {
     @Test
     void findQuestionByID(){
         Question question = questionDao.findById(ID_QUESTION).get();
-        assertEquals("Count 3+2=", question.getQuestion());
+        assertEquals("Count 3+2=", question.getQuestionName());
+    }
+
+
+    @Test
+    void findallQuestionByTestId(){
+        List<Question> questionList = questionDao.findallQuestionByTestId(TEST_ID);
+        assertEquals("Count 3+2=", questionList.get(1).getQuestionName());
     }
 
     @Test
@@ -56,7 +65,7 @@ class QuestionDaoJdbcImplTest {
         Stream<Question> countIdBeforeInsert = questionDao.findall();
         Question questionItem = new Question();
         questionItem.setTestId(2);
-        questionItem.setQuestion("Question №4");
+        questionItem.setQuestionName("Question №4");
         questionDao.add(questionItem);
         Stream<Question> countIdAfterInsert = questionDao.findall();
 
@@ -67,11 +76,11 @@ class QuestionDaoJdbcImplTest {
     @Test
     void updateQuestion(){
         Question question = questionDao.findById(ID_QUESTION).get();
-        String questionBeforeUpdate = question.getQuestion();
-        question.setQuestion(questionBeforeUpdate +"_update");
+        String questionBeforeUpdate = question.getQuestionName();
+        question.setQuestionName(questionBeforeUpdate +"_update");
         questionDao.update(question);
         Question questionAfterUpdate = questionDao.findById(question.getQuestionId()).get();
-        assertEquals(question.getQuestion(), questionAfterUpdate.getQuestion());
+        assertEquals(question.getQuestionName(), questionAfterUpdate.getQuestionName());
     }
 
 

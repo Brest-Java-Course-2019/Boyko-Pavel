@@ -1,10 +1,8 @@
 package com.epam.brest.project.service;
 
-import com.epam.brest.project.DTO.StudentTestDTO;
+import com.epam.brest.project.model.Subject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -13,19 +11,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath:test-service.xml", "classpath*:dao-context.xml"})
-class StudentServiceImplTest {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentServiceImpl.class);
+class SubjectServiceImplTest {
 
     @Autowired
-    private StudentService studentService;
+    private SubjectService subjectService;
 
     @Test
-    void findAllDto() {
-        List<StudentTestDTO> studentTestDTOS = studentService.findAllDto();
-        assertEquals(2, studentTestDTOS.size());
+    void findAllSubject() {
+        List<Subject> subject = subjectService.findAllSubject();
+        assertEquals(3, subject.size());
     }
 }

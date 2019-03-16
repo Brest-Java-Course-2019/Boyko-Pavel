@@ -15,7 +15,7 @@ public class StudentTestDaoJdbcDaoImpl implements StudentTestDao {
     private static final String ID_TESTS = "test_id";
     private static final String TEST_NAME = "name";
     private static final String SUBJECT_NAME = "subject_name";
-    private static final String DATE_OF_CRETING = "created_at";
+    private static final String DATE_OF_CREATING = "created_at";
 
     @Value("${studentTestDTO.findAllDTO}")
     private String findAllDTO;
@@ -46,7 +46,7 @@ public class StudentTestDaoJdbcDaoImpl implements StudentTestDao {
             studentTestDTO.setIdTests(resultSet.getInt(ID_TESTS));
             studentTestDTO.setTestName(resultSet.getString(TEST_NAME));
             studentTestDTO.setSubjectName(resultSet.getString(SUBJECT_NAME));
-            studentTestDTO.setDateOfCreating(resultSet.getDate(DATE_OF_CRETING));
+            studentTestDTO.setDateOfCreating(resultSet.getDate(DATE_OF_CREATING));
             return studentTestDTO;
         }
     }

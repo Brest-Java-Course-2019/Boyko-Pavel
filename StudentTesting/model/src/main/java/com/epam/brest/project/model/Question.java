@@ -3,7 +3,7 @@ package com.epam.brest.project.model;
 public class Question {
 
     private Integer questionId;
-    private String question;
+    private String questionName;
     private Integer testId;
 
     public Integer getQuestionId() {
@@ -14,12 +14,12 @@ public class Question {
         this.questionId = questionId;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getQuestionName() {
+        return questionName;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setQuestionName(String questionName) {
+        this.questionName = questionName;
     }
 
     public Integer getTestId() {
@@ -34,7 +34,7 @@ public class Question {
     public String toString() {
         return "Question{" +
                 "questionId=" + questionId +
-                ", question='" + question + '\'' +
+                ", questionName='" + questionName + '\'' +
                 ", testId='" + testId + '\'' +
                 '}';
     }

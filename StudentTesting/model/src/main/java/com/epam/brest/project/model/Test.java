@@ -2,17 +2,18 @@ package com.epam.brest.project.model;
 
 public class Test {
 
-    private Integer test_id;
+    private Integer testId;
     private String name;
-    private String teacher_id;
-    private String subject_id;
+    private Integer teacherId;
+    private String subjectName;
+    private Integer subjectId;
 
-    public Integer getTest_id() {
-        return test_id;
+    public Integer getTestId() {
+        return testId;
     }
 
-    public void setTest_id(Integer test_id) {
-        this.test_id = test_id;
+    public void setTestId(Integer testId) {
+        this.testId = testId;
     }
 
     public String getName() {
@@ -23,29 +24,38 @@ public class Test {
         this.name = name;
     }
 
-    public String getTeacher_id() {
-        return teacher_id;
+    public Integer getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacher_id(String teacher_id) {
-        this.teacher_id = teacher_id;
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public String getSubject_id() {
-        return subject_id;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setSubject_id(String subject_id) {
-        this.subject_id = subject_id;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public Integer getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
     }
 
     @Override
     public String toString() {
         return "Test{" +
-                "test_id=" + test_id +
+                "testId=" + testId +
                 ", name='" + name + '\'' +
-                ", teacher_id='" + teacher_id + '\'' +
-                ", subject_id='" + subject_id + '\'' +
+                ", teacherId=" + teacherId +
+                ", subjectName='" + subjectName + '\'' +
+                ", subjectId=" + subjectId +
                 '}';
     }
 }
