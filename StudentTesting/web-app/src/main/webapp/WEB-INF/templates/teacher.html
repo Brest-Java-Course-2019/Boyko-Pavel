@@ -25,18 +25,38 @@
 <body>
 
 <nav class="pr-2 navbar navbar-expand-lg navbar-light bg-light pt-0 pb-1 mb-3">
-    <a href="index.html" class="navbar-brand"><img src="img/image.svg" height="32" width="32"></a>
+    <a href="start.html" class="navbar-brand"><img src="../../resources/static/img/logo.svg"
+                                                   th:src="@{/resources/static/img/logo.svg}"
+                                                   height="32" width="32"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
+            <ul class="navbar-nav float-lg-left">
+                <li class="nav-item"
+                    title="Back to start page"
+                    data-toggle="tooltip"
+                    data-placement="bottom"><a href="start.html"
+                                               th:href="@{/employees}"
+                                               class="btn btn-light btn-block"><i
+                        class="fa fa-arrow-left"></i></a></li>
+                <li class="nav-item"
+                    title="Create new test"
+                    data-toggle="tooltip"
+                    data-placement="bottom"><a href="start.html"
+                                               th:href="@{/employees}"
+                                               class="btn btn-light btn-block">Create test</a></li>
+            </ul>
             <!--<a class="nav-item nav-link" href="student">Student <span class="sr-only">(current)</span></a>-->
-            <a  href="editTest.html" id="student" type="button" class="btn btn-outline-secondary">Create test</a>
-            <div class="navbar-nav">
-                <a  href="teacher.html" id="studenttt" type="button" class="btn btn-outline-secondary active">Teacher</a>
-            </div>
+            <a href="start.html"  type="button" class="btn btn-outline-secondary" id="back"><---</a>
+            <a href="editTest.html" id="student" type="button" class="btn btn-outline-secondary">Create test</a>
+            <!--<div class="navbar-nav">-->
+            <!---->
+            <!--</div>-->
+
+
         </div>
     </div>
 </nav>
@@ -167,8 +187,8 @@
     </div>
 </div>
 
- <!--Optional JavaScript-->
- <!--jQuery first, then Popper.js, then Bootstrap JS-->
+<!--Optional JavaScript-->
+<!--jQuery first, then Popper.js, then Bootstrap JS-->
 
 <script src="../../resources/static/js/jquery.min.js"
         th:src="@{/resources/static/js/jquery.min.js}"></script>
@@ -180,6 +200,7 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+
 </script>
 </body>
 </html>

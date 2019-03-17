@@ -43,17 +43,17 @@ class EditTestControllerTest {
         ;
     }
 
-    @Test
-    public void createTest() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/edit")
-        ).andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
+//    @Test
+//    public void createTest() throws Exception {
+//        mockMvc.perform(
+//                MockMvcRequestBuilders.get("/edit")
+//        ).andDo(MockMvcResultHandlers.print())
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
 //                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("Math")))
 //                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<h1>Hello Java!</h1>")))
-        ;
-    }
+//        ;
+//    }
 
 
 }

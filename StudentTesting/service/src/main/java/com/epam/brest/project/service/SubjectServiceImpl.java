@@ -19,11 +19,13 @@ public class SubjectServiceImpl implements SubjectService {
     private SubjectDao subjectDao;
 
     public SubjectServiceImpl(SubjectDao subjectDao) {
+
         this.subjectDao = subjectDao;
     }
 
     @Override
     public List<Subject> findAllSubject() {
+        LOGGER.debug("start findAllSubject()");
         return subjectDao.findall().collect(Collectors.toList());
     }
 }
