@@ -24,7 +24,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public List<Subject> findAllSubject() {
+    public List<Subject> findAll() {
         LOGGER.debug("start findAllSubject()");
         return subjectDao.findall().collect(Collectors.toList());
     }

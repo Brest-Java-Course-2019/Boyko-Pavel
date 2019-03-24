@@ -1,6 +1,6 @@
 package com.epam.brest.project.dao;
 
-import com.epam.brest.project.DTO.StudentTestDTO;
+import com.epam.brest.project.DTO.StudentTestDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +21,11 @@ import java.util.stream.Stream;
 class StudentTestDTODaoImplTestDao {
 
     @Autowired
-    private StudentTestDao studentTestDao;
+    private StudentTestDtoDao studentTestDTODao;
 
     @Test
-    void findall() {
-        Stream<StudentTestDTO> studentTestDTOList = studentTestDao.findallDto();
-        assertEquals(2, studentTestDTOList.count());
+    void findAll() {
+        Stream<StudentTestDto> studentTestDTOList = studentTestDTODao.findAllDto();
+        assertEquals(3, studentTestDTOList.count());
     }
 }

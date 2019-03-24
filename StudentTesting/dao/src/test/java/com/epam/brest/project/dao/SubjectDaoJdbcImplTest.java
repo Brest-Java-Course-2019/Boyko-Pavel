@@ -1,6 +1,5 @@
 package com.epam.brest.project.dao;
 
-import com.epam.brest.project.dao.SubjectDao;
 import com.epam.brest.project.model.Subject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

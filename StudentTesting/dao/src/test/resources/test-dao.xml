@@ -10,7 +10,7 @@
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="studentTestJdbc" class="com.epam.brest.project.dao.StudentTestDaoJdbcDaoImpl">
+    <bean id="studentTestDtoJdbcDaoImpl" class="com.epam.brest.project.dao.StudentTestDtoJdbcDaoImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
@@ -32,6 +32,10 @@
     </bean>
 
     <bean id="questionItemDao" class="com.epam.brest.project.dao.QuestionItemDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="teacherJdbcDaoImpl" class="com.epam.brest.project.dao.TeacherJdbcDaoImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 

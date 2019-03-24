@@ -19,4 +19,8 @@ public interface QuestionItemDao {
     void update(final QuestionItem questionItem);
 
     void delete(final int id);
+
+    void batchUpdate(List<List<QuestionItem>> questionItems);
+
+    void batchDelete(List<List<QuestionItem>> questionItems);
 }

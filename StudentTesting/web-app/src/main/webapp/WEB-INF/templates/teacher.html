@@ -34,29 +34,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <ul class="navbar-nav float-lg-left">
-                <li class="nav-item"
-                    title="Back to start page"
-                    data-toggle="tooltip"
-                    data-placement="bottom"><a href="start.html"
-                                               th:href="@{/employees}"
-                                               class="btn btn-light btn-block"><i
-                        class="fa fa-arrow-left"></i></a></li>
-                <li class="nav-item"
-                    title="Create new test"
-                    data-toggle="tooltip"
-                    data-placement="bottom"><a href="start.html"
-                                               th:href="@{/employees}"
-                                               class="btn btn-light btn-block">Create test</a></li>
-            </ul>
             <!--<a class="nav-item nav-link" href="student">Student <span class="sr-only">(current)</span></a>-->
-            <a href="start.html"  type="button" class="btn btn-outline-secondary" id="back"><---</a>
-            <a href="editTest.html" id="student" type="button" class="btn btn-outline-secondary">Create test</a>
-            <!--<div class="navbar-nav">-->
-            <!---->
-            <!--</div>-->
-
-
+            <a href="start.html"  type="button" class="btn btn-outline-secondary"
+               th:href="@{/start}"
+               title="Back to start page"
+               data-toggle="tooltip"
+               data-placement="bottom"><i
+                    class="fa fa-arrow-left"></i> </a>
+            <a href="editTest.html" id="student" type="button" class="btn btn-outline-secondary"
+               th:href="@{/editTest}" >Create test</a>
         </div>
     </div>
 </nav>
@@ -64,67 +50,75 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <div class="card">
+                <div class="card" >
+                     <!--th:unless="${studentTestsDTOs.isEmpty()}">-->
                     <table class="table table-striped text-center">
                         <thead class="thead-inverse">
                         <tr>
                             <th>Subject</th>
                             <th>Test name</th>
                             <th>Number of questions</th>
+                            <th>Date of Creating</th>
                         </tr>
                         </thead>
                         <tbody class="pb-1">
-                        <tr class="text-center">
-                            <td>Physics</td>
-                            <td>Optics</td>
-                            <td>32</td>
+                        <tr class="text-center"
+                            th:each="dto : ${teacherTestsDto}">
+                            <td th:text="${dto.subjectName}">Physics</td>
+                            <td th:text="${dto.testName}"> Optics</td>
+                            <td th:text="${dto.countQuestion}">32</td>
+                            <td th:text="${dto.dateOfCreating}">2018-02-03</td>
                             <td class="text-right">
                                 <a href="editTest.html"
+                                   th:href="@{|/editTest/${dto.idTests}|}"
                                    class="btn-sm btn-outline-secondary"
                                    title="Edit test"
                                    data-toggle="tooltip"
-                                   data-placement="top">
-                                    <i class="fa fa-pencil"></i> <span
-                                        class="d-none d-md-inline">Edit</span></a>
+                                   data-placement="bottom"><i class="fa fa-pencil"></i>
+                                    <span class="d-none d-md-inline"> Edit </span>
+                                </a>
                                 <span data-toggle="modal" data-target="#deleteDialog">
                                 <a href="#" class="btn-sm btn-outline-secondary"
+                                   th:href="@{teacher}"
                                    title="delete test"
                                    data-toggle="tooltip"
-                                   data-placement="top">
+                                   data-placement="bottom">
                                     <i class="fa fa-trash"></i> <span class="d-none d-md-inline">Delete</span></a>
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>Physics</td>
                             <td>Elementary particles</td>
                             <td>12</td>
+                            <td>2018-02-03</td>
                             <td class="text-right">
                                 <a href="editTest.html"
                                    class="btn-sm btn-outline-secondary"
                                    title="Edit test"
                                    data-toggle="tooltip"
-                                   data-placement="top">
+                                   data-placement="bottom">
                                     <i class="fa fa-pencil"></i> <span
                                         class="d-none d-md-inline">Edit</span></a>
                                 <span data-toggle="modal" data-target="#deleteDialog">
                                 <a href="#" class="btn-sm btn-outline-secondary"
                                    data-toggle="tooltip"
-                                   data-placement="top"
+                                   data-placement="bottom"
                                    title="delete test">
                                     <i class="fa fa-trash"></i> <span class="d-none d-md-inline">Delete</span></a>
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>Math</td>
                             <td>Probability theory</td>
                             <td>14</td>
+                            <td>2018-02-03</td>
                             <td class="text-right">
                                 <a href="editTest.html"
                                    class="btn-sm btn-outline-secondary arrow"
                                    data-toggle="tooltip"
-                                   data-placement="top"
+                                   data-placement="bottom"
                                    title="Edit test">
                                     <i class="fa fa-pencil"></i> <span
                                         class="d-none d-md-inline">Edit</span></a>
@@ -132,28 +126,29 @@
                                 <a href="#" class="btn-sm btn-outline-secondary"
                                    title="delete test"
                                    data-toggle="tooltip"
-                                   data-placement="top">
+                                   data-placement="bottom">
                                     <i class="fa fa-trash"></i> <span class="d-none d-md-inline">Delete</span></a>
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>Math</td>
                             <td>Trigonometry</td>
                             <td>15</td>
+                            <td>2018-02-03</td>
                             <td class="text-right">
                                 <a href="editTest.html"
                                    class="btn-sm btn-outline-secondary"
                                    title="Edit test"
                                    data-toggle="tooltip"
-                                   data-placement="top">
+                                   data-placement="bottom">
                                     <i class="fa fa-pencil"></i> <span
                                         class="d-none d-md-inline">Edit</span></a>
                                 <span data-toggle="modal" data-target="#deleteDialog">
                                 <a href="#" class="btn-sm btn-outline-secondary"
                                    title="delete test"
                                    data-toggle="tooltip"
-                                   data-placement="top">
+                                   data-placement="bottom">
                                     <i class="fa fa-trash"></i> <span class="d-none d-md-inline">Delete</span></a>
                                 </span>
                             </td>

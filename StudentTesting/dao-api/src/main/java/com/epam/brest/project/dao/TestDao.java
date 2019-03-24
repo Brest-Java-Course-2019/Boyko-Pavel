@@ -1,6 +1,6 @@
 package com.epam.brest.project.dao;
 
-import com.epam.brest.project.DTO.TestDTO;
+import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.Test;
 
 import java.util.Optional;
@@ -12,7 +12,7 @@ public interface TestDao {
 
     Optional<Test> findById(final Integer id);
 
-    Optional<TestDTO> findTestDTOById(final Integer id);
+    Optional<TestDto> findTestDTOById(final Integer id);
 
     Optional<Test> add(final Test test);
 

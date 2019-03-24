@@ -1,12 +1,15 @@
 package com.epam.brest.project.dao.DTO;
 
-import com.epam.brest.project.DTO.StudentTestDTO;
+import com.epam.brest.project.DTO.StudentTestDto;
+import com.epam.brest.project.DTO.TestDto;
 
 import java.util.stream.Stream;
 
 public interface TestDTODao {
 
-    Stream<TestDTODao> findall();
+    Stream<TestDto> findall();
 
-    Stream<StudentTestDTO> findallDto();
+    Stream<StudentTestDto> findallDto();
+
+    void add(TestDto testDTO);
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -28,6 +29,8 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
     private static final String QUESTION_ID = "question_id";
     private static final String DESCRIPTION = "description";
     private static final String TEST_ID = "test_id";
+    public static final String UPDATE = "update";
+    public static final String DELETE = "delete";
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -84,16 +87,11 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
     public Optional<QuestionItem> add(QuestionItem questionItem) {
         LOGGER.warn("start add()");
         return Optional.of(questionItem)
-                .filter(this::existQuestion)
                 .map(this::insertQuestionItem)
                 .orElseThrow(() -> new IllegalArgumentException("Enter exist question"));
     }
 
-    private Boolean existQuestion(QuestionItem questionItem) {
-        return namedParameterJdbcTemplate.queryForObject(existQuestionById,
-                new MapSqlParameterSource(QUESTION_ID, questionItem.getQuestionId()),
-                Integer.class) != 0;
-    }
+
 
     private Optional<QuestionItem> insertQuestionItem(QuestionItem questionItem) {
         LOGGER.warn("start insertQuestionItem()");
@@ -121,6 +119,7 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
                 .orElseThrow(() -> new IllegalArgumentException("Failed to update questionItem"));
     }
 
+
     private Boolean countAffectedRow(int numRowsUpdated){
         return numRowsUpdated > 0;
     }
@@ -132,6 +131,58 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
                 .filter(this::countAffectedRow)
                 .orElseThrow(() -> new RuntimeException("Failed to delete questionItem from DB"));
     }
+
+    @Override
+    public void batchDelete(List<List<QuestionItem>> questionItems) {
+//        SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questionItems.size()];
+//        for (int x =0; x<questionItems.size(); x++) {
+//            List<QuestionItem> questionItemList = questionItems.get(x);
+//            for (int j = 0; j < questionItemList.size(); j++) {
+//                MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+//                mapSqlParameterSource.addValue(QUESTION_ITEM_ID, questionItems.get(x).get(j).getQuestionItemId());
+//                sqlParameterSources[x] = mapSqlParameterSource;
+//            }
+//        }
+        Optional.of(namedParameterJdbcTemplate.batchUpdate(deleteQuestionItem,
+                sqlParameterSource(questionItems, DELETE)));
+    }
+
+    @Override
+    public void batchUpdate(List<List<QuestionItem>> questionItems) {
+//        SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questionItems.size()];
+//        for (int x =0; x<questionItems.size(); x++) {
+//            List<QuestionItem> questionItemList = questionItems.get(x);
+//            for (int j = 0; j < questionItemList.size(); j++) {
+//                MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+//                mapSqlParameterSource.addValue(QUESTION_ITEM_ID, questionItems.get(x).get(j).getQuestionItemId());
+//                mapSqlParameterSource.addValue(DESCRIPTION, questionItems.get(x).get(j).getDescription());
+////            mapSqlParameterSource.addValue(QUESTION_ID, questionItems.get(x).get(j).getQuestionId());
+//                mapSqlParameterSource.addValue(ANSWER, questionItems.get(x).get(j).getAnswer());
+//                sqlParameterSources[x] = mapSqlParameterSource;
+//            }
+//        }
+
+        Optional.of(namedParameterJdbcTemplate.batchUpdate(updateQuestionItem,
+                sqlParameterSource(questionItems, UPDATE)));
+    }
+
+    private SqlParameterSource[] sqlParameterSource (List<List<QuestionItem>> questionItems, String info){
+        SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questionItems.size()];
+        for (int x =0; x<questionItems.size(); x++) {
+            List<QuestionItem> questionItemList = questionItems.get(x);
+            for (int j = 0; j < questionItemList.size(); j++) {
+                MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+                if (info.equals("update")){
+                    mapSqlParameterSource.addValue(DESCRIPTION, questionItems.get(x).get(j).getDescription());
+                    mapSqlParameterSource.addValue(ANSWER, questionItems.get(x).get(j).getAnswer());
+                }
+                mapSqlParameterSource.addValue(QUESTION_ITEM_ID, questionItems.get(x).get(j).getQuestionItemId());
+                sqlParameterSources[x] = mapSqlParameterSource;
+            }
+        }
+        return sqlParameterSources;
+    }
+
 
     private class QuestionItemRowMapper implements RowMapper<QuestionItem> {
         @Override

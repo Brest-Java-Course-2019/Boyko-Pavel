@@ -1,6 +1,6 @@
 package com.epam.brest.project.dao;
 
-import com.epam.brest.project.DTO.TestDTO;
+import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,14 +69,16 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     @Override
-    public Optional<TestDTO> findTestDTOById(Integer id) {
+    public Optional<TestDto> findTestDTOById(Integer id) {
         LOGGER.warn("start findTestDTOById()");
-        TestDTO testDTO = namedParameterJdbcTemplate.queryForObject(selectTestDTOByID,
+        TestDto testDTO = namedParameterJdbcTemplate.queryForObject(selectTestDTOByID,
                 new MapSqlParameterSource(TEST_ID, id),
-                (resultSet, i) ->  new TestDTO()
+                (resultSet, i) ->  new TestDto()
                         .idTests(resultSet.getInt(TEST_ID))
                         .subjectName(resultSet.getString(SUBJECT_NAME))
                         .testName(resultSet.getString(TEST_NAME))
+                        .subjectId(resultSet.getInt(SUBJECT_ID))
+                        .teacherId(resultSet.getInt(TEACHER_ID))
                         );
         return Optional.ofNullable(testDTO);
     }

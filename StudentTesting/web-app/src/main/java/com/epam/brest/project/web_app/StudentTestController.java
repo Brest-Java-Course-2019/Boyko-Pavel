@@ -1,5 +1,6 @@
 package com.epam.brest.project.web_app;
 
+import com.epam.brest.project.model.Teacher;
 import com.epam.brest.project.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +20,18 @@ public class StudentTestController {
     @Autowired()
     private StudentService studentService;
 
-    @GetMapping(value = {"/", "/start"})
+    @GetMapping(value = {"/"})
+    public final String redirectStudentTests() {
+
+        LOGGER.debug("redirect");
+        return "redirect:/start";
+    }
+
+    @GetMapping(value = {"/start"})
     public final String studentTests(Model model) {
 
         LOGGER.debug("findAllDTO({})", model);
+        model.addAttribute("teacher", new Teacher());
         model.addAttribute("studentTestsDTOs", studentService.findAllDto());
         return "start";
     }

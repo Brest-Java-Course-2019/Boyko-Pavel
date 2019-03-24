@@ -21,7 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/root-context.xml"})
-class EditTestControllerTest {
+class TeacherControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
@@ -37,7 +37,22 @@ class EditTestControllerTest {
     void editTest() throws Exception {
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/editTest/1")
+                    MockMvcRequestBuilders.post("/start")
+                            .param("login","admin1")
+                            .param("password", "1")
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("Math")))
+        ;
+    }
+
+
+    @Test
+    void gotToTestTeacher() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/start")
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))

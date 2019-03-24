@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface SubjectService {
 
-    List<Subject> findAllSubject();
+    List<Subject> findAll();
 
 }

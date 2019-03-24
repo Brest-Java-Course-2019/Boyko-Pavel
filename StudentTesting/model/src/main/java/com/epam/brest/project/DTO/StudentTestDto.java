@@ -2,11 +2,12 @@ package com.epam.brest.project.DTO;
 
 import java.util.Date;
 
-public class StudentTestDTO {
+public class StudentTestDto {
 
     private Integer idTests;
     private String testName;
     private String subjectName;
+    private Integer teacherId;
     private Integer countQuestion;
     private Date dateOfCreating;
 
@@ -46,16 +47,25 @@ public class StudentTestDTO {
         return dateOfCreating;
     }
 
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
+    }
+
     public void setDateOfCreating(Date dateOfCreting) {
         this.dateOfCreating = dateOfCreting;
     }
 
     @Override
     public String toString() {
-        return "StudentTestDTO{" +
+        return "StudentTestDto{" +
                 "idTests=" + idTests +
                 ", testName='" + testName + '\'' +
                 ", subjectName='" + subjectName + '\'' +
+                ", teacherId=" + teacherId +
                 ", countQuestion=" + countQuestion +
                 ", dateOfCreating=" + dateOfCreating +
                 '}';

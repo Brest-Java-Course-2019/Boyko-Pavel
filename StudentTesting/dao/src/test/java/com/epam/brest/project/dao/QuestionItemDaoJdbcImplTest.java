@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -25,16 +26,16 @@ class QuestionItemDaoJdbcImplTest {
 
     private static final int ID_QUESTION_ITEM = 2;
     private static final int DELETED_QUESTION_ID = 3;
-    private static final int TEST_ID = 1;
+    private static final int DELETE_QUESTION_ITEM = 4;
 
     @Autowired
-    private QuestionItemDaoJdbcImpl questionItemDao;
+    private QuestionItemDao questionItemDao;
 
     @Test
     void findAllQuestionItem() {
         Stream<QuestionItem> questionItems = questionItemDao.findall();
         assertNotNull(questionItems);
-        assertEquals(4, questionItems.count());
+        assertEquals(6, questionItems.count());
     }
 
     @Test
@@ -46,8 +47,8 @@ class QuestionItemDaoJdbcImplTest {
 
     @Test
     void findallQuestionByTestId(){
-        List<QuestionItem> questionList = questionItemDao.findallQuestionItemByQuestionId(TEST_ID);
-        assertEquals("ANSWER: 2", questionList.get(1).getDescription());
+        List<QuestionItem> questionList = questionItemDao.findallQuestionItemByQuestionId(2);
+        assertEquals("ANSWER: 7", questionList.get(0).getDescription());
     }
 
     @Test
@@ -84,16 +85,37 @@ class QuestionItemDaoJdbcImplTest {
 
     @Test
     void deleteQuestionItemByID() {
-        questionItemDao.delete(ID_QUESTION_ITEM);
+        questionItemDao.delete(DELETE_QUESTION_ITEM);
         Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
+            questionItemDao.findById(DELETE_QUESTION_ITEM);
+        });
+    }
+
+
+    @Test
+    void batchDeleteQuestionItem() {
+        List<List<QuestionItem>> questionList = new ArrayList<>();
+        List<QuestionItem> questionItems = new ArrayList<>();
+        questionItems.add(questionItemDao.findById(ID_QUESTION_ITEM).get());
+        questionList.add(questionItems);
+        questionItemDao.batchDelete(questionList);
+        Assertions.assertThrows(RuntimeException.class, () -> {
             questionItemDao.findById(ID_QUESTION_ITEM);
         });
     }
 
     @Test
-    void deleteQuestionItemNotExistID() {
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            questionItemDao.delete(34343434);
-        });
+    void bathUpdateQuestionItem() {
+        String questionBeforeUpdate;
+        List<List<QuestionItem>> questionList = new ArrayList<>();
+        List<QuestionItem> questionItems = new ArrayList<>();
+        QuestionItem questionItem = questionItemDao.findById(ID_QUESTION_ITEM).get();
+        questionBeforeUpdate = questionItem.getDescription();
+        questionItem.setDescription(questionBeforeUpdate + "update");
+        questionItems.add(questionItem);
+        questionList.add(questionItems);
+        questionItemDao.batchUpdate(questionList);
+        QuestionItem newQuestionItem = questionItemDao.findById(ID_QUESTION_ITEM).get();
+        assertEquals(questionBeforeUpdate +"update", newQuestionItem.getDescription());
     }
 }

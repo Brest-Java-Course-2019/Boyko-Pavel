@@ -1,11 +1,14 @@
 package com.epam.brest.project.service;
 
-import com.epam.brest.project.DTO.StudentTestDTO;
+import com.epam.brest.project.DTO.StudentTestDto;
+import com.epam.brest.project.model.Teacher;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -25,7 +28,25 @@ class StudentServiceImplTest {
 
     @Test
     void findAllDto() {
-        List<StudentTestDTO> studentTestDTOS = studentService.findAllDto();
-        assertEquals(2, studentTestDTOS.size());
+        List<StudentTestDto> studentTestDtos = studentService.findAllDto();
+        assertEquals(3, studentTestDtos.size());
+    }
+
+    @Test
+    void findTeacherByLogin(){
+        Teacher teacher  = studentService.findTeacherByLogin("admin1");
+        assertEquals(new Integer(1), teacher.getTeacherId());
+    }
+
+//    @Test
+//    void findTeacherByWrongLogin(){
+//        Assertions.assertThrows(EmptyResultDataAccessException.class, () ->
+//                studentService.findTeacherByLogin("Admin4"));
+//    }
+    @Test
+    void findAllTestDtoTeacher() {
+        Teacher teacher  = studentService.findTeacherByLogin("admin1");
+        List<StudentTestDto> studentTestDto = studentService.findAllDtoTestTeacher(teacher.getTeacherId());
+        assertEquals("Probability theory", studentTestDto.get(1).getTestName());
     }
 }

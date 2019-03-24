@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -27,13 +28,13 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Value("${question.selectAllQuestion}")
-    private String selectAllQuestionItem;
+    private String selectAllQuestion;
 
     @Value("${question.selectQuestionById}")
     private String selectQuestionById;
 
     @Value("${question.insertQuestion}")
-    private String insertQuestionItem;
+    private String insertQuestion;
 
     @Value("${question.selectAllQuestionByTestId}")
     private String selectAllQuestionByTestId;
@@ -42,10 +43,10 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     private String existTestById;
 
     @Value("${question.updateQuestion}")
-    private String updateQuestionItem;
+    private String updateQuestion;
 
     @Value("${question.deleteQuestion}")
-    private String deleteQuestionItem;
+    private String deleteQuestion;
 
     public QuestionDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -54,7 +55,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     @Override
     public Stream<Question> findall() {
         LOGGER.warn("start findall()");
-        List<Question> questionItems = namedParameterJdbcTemplate.query(selectAllQuestionItem, new QuestionRowMapper());
+        List<Question> questionItems = namedParameterJdbcTemplate.query(selectAllQuestion, new QuestionRowMapper());
         return questionItems.stream();
     }
 
@@ -65,9 +66,8 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
         Map<String, Integer> map = new HashMap<>();
         map.put(TEST_ID, id);
         new HashMap<>().put(TEST_ID, id);
-        List<Question> questionList = namedParameterJdbcTemplate.query(selectAllQuestionByTestId,
+        return namedParameterJdbcTemplate.query(selectAllQuestionByTestId,
                 map, new QuestionRowMapper());
-        return questionList;
     }
 
     @Override
@@ -82,16 +82,10 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     public Optional<Question> add(Question question) {
         LOGGER.warn("start add()");
         return Optional.of(question)
-                .filter(this::existTest)
                 .map(this::insertQuestionItem)
                 .orElseThrow(() -> new IllegalArgumentException("Enter exist question"));
     }
 
-    private Boolean existTest(Question question) {
-        return namedParameterJdbcTemplate.queryForObject(existTestById,
-                new MapSqlParameterSource(TEST_ID, question.getTestId()),
-                Integer.class) != 0;
-    }
 
     private Optional<Question> insertQuestionItem(Question question) {
         LOGGER.warn("start insertQuestionItem()");
@@ -100,11 +94,13 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
         mapSqlParameterSource.addValue(TEST_ID, question.getTestId());
 
         KeyHolder generatorKeyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(insertQuestionItem, mapSqlParameterSource, generatorKeyHolder);
+        namedParameterJdbcTemplate.update(insertQuestion, mapSqlParameterSource, generatorKeyHolder);
         Map<String, Object> keyMap = generatorKeyHolder.getKeys();
         question.setQuestionId((Integer) keyMap.get(QUESTION_ID));
         return Optional.of(question);
     }
+
+
 
     @Override
     public void update(Question question) {
@@ -112,7 +108,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(QUESTION_NAME, question.getQuestionName());
         mapSqlParameterSource.addValue(QUESTION_ID, question.getQuestionId());
-        Optional.of(namedParameterJdbcTemplate.update(updateQuestionItem, mapSqlParameterSource))
+        Optional.of(namedParameterJdbcTemplate.update(updateQuestion, mapSqlParameterSource))
                 .filter(this::countAffectedRow)
                 .orElseThrow(() -> new IllegalArgumentException("Failed to update question"));
     }
@@ -120,13 +116,36 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     private Boolean countAffectedRow(int numRowsUpdated){
         return numRowsUpdated > 0;
     }
+
     @Override
     public void delete(int id) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(QUESTION_ID, id);
-        Optional.of(namedParameterJdbcTemplate.update(deleteQuestionItem, mapSqlParameterSource))
+        Optional.of(namedParameterJdbcTemplate.update(deleteQuestion, mapSqlParameterSource))
                 .filter(this::countAffectedRow)
                 .orElseThrow(() -> new RuntimeException("Failed to delete question"));
+    }
+
+    @Override
+    public void batchDelete(List<Question> questions) {
+        SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questions.size()];
+        for (int x =0; x<questions.size(); x++) {
+            MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+            mapSqlParameterSource.addValue(QUESTION_ID, questions.get(x).getQuestionId());
+            sqlParameterSources[x] = mapSqlParameterSource;
+        }
+        Optional.of(namedParameterJdbcTemplate.batchUpdate(deleteQuestion, sqlParameterSources));
+    }
+
+    public void batchUpdate(List<Question> questions) {
+        SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questions.size()];
+        for (int x =0; x<questions.size(); x++) {
+            MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+            mapSqlParameterSource.addValue(QUESTION_NAME, questions.get(x).getQuestionName());
+            mapSqlParameterSource.addValue(QUESTION_ID, questions.get(x).getQuestionId());
+            sqlParameterSources[x] = mapSqlParameterSource;
+        }
+        Optional.of(namedParameterJdbcTemplate.batchUpdate(updateQuestion, sqlParameterSources));
     }
 
     private class QuestionRowMapper implements RowMapper<Question> {
@@ -139,4 +158,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
             return question;
         }
     }
+
+
+
 }

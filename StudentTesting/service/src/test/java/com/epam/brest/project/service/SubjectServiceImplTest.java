@@ -20,7 +20,7 @@ class SubjectServiceImplTest {
 
     @Test
     void findAllSubject() {
-        List<Subject> subject = subjectService.findAllSubject();
+        List<Subject> subject = subjectService.findAll();
         assertEquals(3, subject.size());
     }
 }

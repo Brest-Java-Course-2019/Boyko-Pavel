@@ -1,11 +1,10 @@
 package com.epam.brest.project.dao;
 
-import com.epam.brest.project.DTO.TestDTO;
+import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -47,7 +46,7 @@ class TestDaoJdbcImplTest {
 
     @org.junit.jupiter.api.Test
     void findTestDTOByID(){
-        TestDTO testDTO = testDao.findTestDTOById(TEST_ID).get();
+        TestDto testDTO = testDao.findTestDTOById(TEST_ID).get();
         assertEquals("Math", testDTO.getSubjectName());
     }
 
@@ -69,16 +68,16 @@ class TestDaoJdbcImplTest {
         Stream<Test> countIdAfterInsert = testDao.findall();
 
         assertEquals(1 , countIdAfterInsert.count() - countIdBeforeInsert.count());
+        assertEquals(new Integer(5) , test.getTestId());
     }
 
     @org.junit.jupiter.api.Test
-    void addQuestio4n(){
+    void addWrongQuestion(){
         Stream<Test> countIdBeforeInsert = testDao.findall();
         Test test = new Test();
         test.setName("Trigonometry");
         test.setTeacherId(2);
         test.setSubjectId(SUBJECT_ID_UNCORRECT);
-
         Assertions.assertThrows(DataIntegrityViolationException.class, () -> {
             testDao.add(test);
         });
