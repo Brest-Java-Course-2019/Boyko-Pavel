@@ -29,8 +29,6 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
     private static final String QUESTION_ID = "question_id";
     private static final String DESCRIPTION = "description";
     private static final String TEST_ID = "test_id";
-    public static final String UPDATE = "update";
-    public static final String DELETE = "delete";
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -123,66 +121,32 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
     private Boolean countAffectedRow(int numRowsUpdated){
         return numRowsUpdated > 0;
     }
+
     @Override
-    public void delete(int id) {
+    public void deleteByTestId(int id) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue(QUESTION_ITEM_ID, id);
+        mapSqlParameterSource.addValue(TEST_ID, id);
         Optional.of(namedParameterJdbcTemplate.update(deleteQuestionItem, mapSqlParameterSource))
                 .filter(this::countAffectedRow)
                 .orElseThrow(() -> new RuntimeException("Failed to delete questionItem from DB"));
     }
 
     @Override
-    public void batchDelete(List<List<QuestionItem>> questionItems) {
-//        SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questionItems.size()];
-//        for (int x =0; x<questionItems.size(); x++) {
-//            List<QuestionItem> questionItemList = questionItems.get(x);
-//            for (int j = 0; j < questionItemList.size(); j++) {
-//                MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-//                mapSqlParameterSource.addValue(QUESTION_ITEM_ID, questionItems.get(x).get(j).getQuestionItemId());
-//                sqlParameterSources[x] = mapSqlParameterSource;
-//            }
-//        }
-        Optional.of(namedParameterJdbcTemplate.batchUpdate(deleteQuestionItem,
-                sqlParameterSource(questionItems, DELETE)));
-    }
-
-    @Override
     public void batchUpdate(List<List<QuestionItem>> questionItems) {
-//        SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questionItems.size()];
-//        for (int x =0; x<questionItems.size(); x++) {
-//            List<QuestionItem> questionItemList = questionItems.get(x);
-//            for (int j = 0; j < questionItemList.size(); j++) {
-//                MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-//                mapSqlParameterSource.addValue(QUESTION_ITEM_ID, questionItems.get(x).get(j).getQuestionItemId());
-//                mapSqlParameterSource.addValue(DESCRIPTION, questionItems.get(x).get(j).getDescription());
-////            mapSqlParameterSource.addValue(QUESTION_ID, questionItems.get(x).get(j).getQuestionId());
-//                mapSqlParameterSource.addValue(ANSWER, questionItems.get(x).get(j).getAnswer());
-//                sqlParameterSources[x] = mapSqlParameterSource;
-//            }
-//        }
-
-        Optional.of(namedParameterJdbcTemplate.batchUpdate(updateQuestionItem,
-                sqlParameterSource(questionItems, UPDATE)));
-    }
-
-    private SqlParameterSource[] sqlParameterSource (List<List<QuestionItem>> questionItems, String info){
         SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questionItems.size()];
         for (int x =0; x<questionItems.size(); x++) {
             List<QuestionItem> questionItemList = questionItems.get(x);
             for (int j = 0; j < questionItemList.size(); j++) {
                 MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-                if (info.equals("update")){
-                    mapSqlParameterSource.addValue(DESCRIPTION, questionItems.get(x).get(j).getDescription());
-                    mapSqlParameterSource.addValue(ANSWER, questionItems.get(x).get(j).getAnswer());
-                }
                 mapSqlParameterSource.addValue(QUESTION_ITEM_ID, questionItems.get(x).get(j).getQuestionItemId());
+                mapSqlParameterSource.addValue(DESCRIPTION, questionItems.get(x).get(j).getDescription());
+                mapSqlParameterSource.addValue(ANSWER, questionItems.get(x).get(j).getAnswer());
                 sqlParameterSources[x] = mapSqlParameterSource;
             }
         }
-        return sqlParameterSources;
+        Optional.of(namedParameterJdbcTemplate.batchUpdate(updateQuestionItem,
+                sqlParameterSources));
     }
-
 
     private class QuestionItemRowMapper implements RowMapper<QuestionItem> {
         @Override

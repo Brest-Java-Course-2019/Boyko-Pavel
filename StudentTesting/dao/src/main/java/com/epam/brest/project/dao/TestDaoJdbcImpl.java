@@ -49,6 +49,12 @@ public class TestDaoJdbcImpl implements TestDao {
     @Value("${test.deleteTest}")
     private String deleteTest;
 
+//    @Value("${delete.allTestDto}")
+//    private String deleteAllTestDto;
+
+//   @Value("${transaction.deleteTestDto}")
+//    private String deleteTestDto;
+
     public TestDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
@@ -126,6 +132,16 @@ public class TestDaoJdbcImpl implements TestDao {
     private Boolean countAffectedRow(int numRowsUpdated){
         return numRowsUpdated > 0;
     }
+
+//    @Override
+//    public void delete(int id) {
+//        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+//        mapSqlParameterSource.addValue(TEST_ID, id);
+//        Optional.of(namedParameterJdbcTemplate.update(deleteTest, mapSqlParameterSource))
+//                .filter(this::countAffectedRow)
+//                .orElseThrow(() -> new RuntimeException("Failed to delete question"));
+//    }
+
 
     @Override
     public void delete(int id) {

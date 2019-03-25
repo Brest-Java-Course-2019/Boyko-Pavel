@@ -93,10 +93,10 @@ public class TestDtoServiceImpl implements TestDtoService {
     }
 
     @Override
-    public void deleteTestDto(TestDto testDto) {
-        testDao.delete(testDto.getIdTests());
-        questionDao.batchDelete(testDto.getQuestions());
-        questionItemDao.batchDelete(testDto.getQuestionItems());
+    public void deleteTestDto(Integer id) {
+        testDao.delete(id);
+        questionDao.deleteByTestId(id);
+        questionItemDao.deleteByTestId(id);
     }
 
     @Override

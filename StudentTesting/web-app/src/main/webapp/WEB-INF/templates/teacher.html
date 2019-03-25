@@ -77,9 +77,12 @@
                                    data-placement="bottom"><i class="fa fa-pencil"></i>
                                     <span class="d-none d-md-inline"> Edit </span>
                                 </a>
-                                <span data-toggle="modal" data-target="#deleteDialog">
+                                <span data-toggle="modal"
+                                      data-target="#deleteDialog"
+                                      data-id="1"
+                                      data-name="test"
+                                      th:attr="data-id =${dto.idTests}, data-name=${dto.testName}">
                                 <a href="#" class="btn-sm btn-outline-secondary"
-                                   th:href="@{teacher}"
                                    title="delete test"
                                    data-toggle="tooltip"
                                    data-placement="bottom">
@@ -144,7 +147,10 @@
                                    data-placement="bottom">
                                     <i class="fa fa-pencil"></i> <span
                                         class="d-none d-md-inline">Edit</span></a>
-                                <span data-toggle="modal" data-target="#deleteDialog">
+                                <span data-toggle="modal"
+                                      data-target="#deleteDialog"
+                                      data-id="1"
+                                      data-name="test">
                                 <a href="#" class="btn-sm btn-outline-secondary"
                                    title="delete test"
                                    data-toggle="tooltip"
@@ -176,7 +182,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <a id="deleteUrl" href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
@@ -195,7 +201,11 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
-
+    $('#deleteDialog').on('show.bs.modal', function (event) {
+        var target = $(event.relatedTarget)
+        $(this).find('.modal-body').text('Please confirm delete test: "' + target.data('name') + '"')
+        document.getElementById('deleteUrl').href = '/teacher/' + target.data('id') + '/delete';
+    })
 </script>
 </body>
 </html>

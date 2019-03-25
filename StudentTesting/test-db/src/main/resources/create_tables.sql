@@ -122,3 +122,22 @@ CONSTRAINT fk_student_has_question_item_question_item1
     FOREIGN KEY (question_item_id)
 REFERENCES question_item (question_item_id)
 );
+
+
+
+--PROCEDURE  deleteTest (
+--idTest INT
+--)
+--IS
+--
+--UPDATE test SET deleted = 1 WHERE test_id = :test_id
+--UPDATE question SET deleted = 1 WHERE question_id = :test_id;
+--
+--BEGIN
+--FOR id IN (
+--SELECT question_id  FROM question
+--WHERE (test_id =  idTest and deleted = 0))
+--  LOOP
+--  UPDATE question_item SET deleted = 1 WHERE question_id = id;
+--  END LOOP;
+--END deleteTest;

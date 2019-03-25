@@ -109,6 +109,4 @@ class TestDaoJdbcImplTest {
             testDao.delete(34343434);
         });
     }
-
-
 }

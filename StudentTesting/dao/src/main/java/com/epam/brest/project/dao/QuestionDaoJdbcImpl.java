@@ -45,8 +45,8 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     @Value("${question.updateQuestion}")
     private String updateQuestion;
 
-    @Value("${question.deleteQuestion}")
-    private String deleteQuestion;
+    @Value("${question.deleteQuestionByTestId}")
+    private String deleteQuestions;
 
     public QuestionDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -118,24 +118,14 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteByTestId(int id) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue(QUESTION_ID, id);
-        Optional.of(namedParameterJdbcTemplate.update(deleteQuestion, mapSqlParameterSource))
+        mapSqlParameterSource.addValue(TEST_ID, id);
+        Optional.of(namedParameterJdbcTemplate.update(deleteQuestions, mapSqlParameterSource))
                 .filter(this::countAffectedRow)
                 .orElseThrow(() -> new RuntimeException("Failed to delete question"));
     }
 
-    @Override
-    public void batchDelete(List<Question> questions) {
-        SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questions.size()];
-        for (int x =0; x<questions.size(); x++) {
-            MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-            mapSqlParameterSource.addValue(QUESTION_ID, questions.get(x).getQuestionId());
-            sqlParameterSources[x] = mapSqlParameterSource;
-        }
-        Optional.of(namedParameterJdbcTemplate.batchUpdate(deleteQuestion, sqlParameterSources));
-    }
 
     public void batchUpdate(List<Question> questions) {
         SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questions.size()];

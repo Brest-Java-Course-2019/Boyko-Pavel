@@ -19,6 +19,33 @@ public class TestDto {
     private Integer teacherId;
     private List<Question> questions = new ArrayList<>();
     private List<List<QuestionItem>> questionItems = new ArrayList<>();
+    private Boolean[] newAnswer;
+    private String[] newQuestion;
+    private String[] newDescription;
+
+    public String[] getNewQuestion() {
+        return newQuestion;
+    }
+
+    public void setNewQuestion(String[] newQuestion) {
+        this.newQuestion = newQuestion;
+    }
+
+    public Boolean[] getNewAnswer() {
+        return newAnswer;
+    }
+
+    public void setNewAnswer(Boolean[] newAnswer) {
+        this.newAnswer = newAnswer;
+    }
+
+    public String[] getNewDescription() {
+        return newDescription;
+    }
+
+    public void setNewDescription(String[] newDescription) {
+        this.newDescription = newDescription;
+    }
 
     public Integer getIdTests() {
         return idTests;

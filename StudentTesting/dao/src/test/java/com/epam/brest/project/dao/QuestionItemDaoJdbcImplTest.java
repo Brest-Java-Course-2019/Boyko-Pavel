@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -85,24 +86,13 @@ class QuestionItemDaoJdbcImplTest {
 
     @Test
     void deleteQuestionItemByID() {
-        questionItemDao.delete(DELETE_QUESTION_ITEM);
-        Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
-            questionItemDao.findById(DELETE_QUESTION_ITEM);
-        });
+        int sizeBeforeDelete = questionItemDao.findall().collect(Collectors.toList()).size();
+        questionItemDao.deleteByTestId(1);
+        int sizeAfterDelete = questionItemDao.findall().collect(Collectors.toList()).size();
+        assertEquals((sizeAfterDelete +3), sizeBeforeDelete);
     }
 
 
-    @Test
-    void batchDeleteQuestionItem() {
-        List<List<QuestionItem>> questionList = new ArrayList<>();
-        List<QuestionItem> questionItems = new ArrayList<>();
-        questionItems.add(questionItemDao.findById(ID_QUESTION_ITEM).get());
-        questionList.add(questionItems);
-        questionItemDao.batchDelete(questionList);
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            questionItemDao.findById(ID_QUESTION_ITEM);
-        });
-    }
 
     @Test
     void bathUpdateQuestionItem() {

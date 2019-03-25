@@ -43,6 +43,12 @@ public class EditTestController {
     @PostMapping(value = {"/editTest/{id}"})
     public String updateTestById(TestDto testDTO,
                                         BindingResult result) {
+        TestDto testToadd = new TestDto();
+        testToadd.setTeacherId(testDTO.getTeacherId());
+        testToadd.setNewAnswer(testDTO.getNewAnswer());
+        testToadd.setNewDescription(testDTO.getNewDescription());
+        testToadd.setNewQuestion(testDTO.getNewQuestion());
+//        testDtoService.addTestDto(testToadd);
         LOGGER.debug("addTestDto({},{})", testDTO, result);
         testDtoService.updateTestDto(testDTO);
         return "redirect:/teacher";
@@ -51,6 +57,7 @@ public class EditTestController {
     @PostMapping(value = {"/editTest"})
     public String addNewTest(TestDto testDto,
                                 BindingResult result) {
+
         LOGGER.debug("addTestDto({},{})", testDto, result);
         testDtoService.addTestDto(testDto);
         return "redirect:/teacher";

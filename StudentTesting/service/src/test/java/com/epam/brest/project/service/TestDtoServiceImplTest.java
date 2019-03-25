@@ -86,10 +86,8 @@ class TestDtoServiceImplTest {
 
     @Test
     void deleteTestDto() {
-        testDtoService.deleteTestDto(testDtoService.findTestDtoById(2));
-        Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
-            testDtoService.findTestDtoById(2);
-
-        });
+        testDtoService.deleteTestDto(2);
+        Assertions.assertThrows(EmptyResultDataAccessException.class, () ->
+            testDtoService.findTestDtoById(2));
     }
 }

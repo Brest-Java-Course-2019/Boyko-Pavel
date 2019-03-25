@@ -8,7 +8,7 @@ public interface TestDtoService {
 
     void addTestDto(TestDto testDto);
 
-    void deleteTestDto(TestDto testDto);
+    void deleteTestDto(Integer id);
 
     void updateTestDto(TestDto testDto);
 

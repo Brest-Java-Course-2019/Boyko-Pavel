@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -122,24 +123,9 @@ class QuestionDaoJdbcImplTest {
         assertEquals(question2.getQuestionName(), questionAfterUpdate2.getQuestionName());
     }
 
-
     @Test
     void deleteQuestionByID() {
-        questionDao.delete(DELETE_TEST_BY_ID);
-        Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
-            questionDao.findById(DELETE_TEST_BY_ID);
-        });
+        questionDao.deleteByTestId(1);
+        assertEquals(0, questionDao.findallQuestionByTestId(1).size());
     }
-
-    @Test
-    void batchDeleteQuestionNotExistID() {
-        List<Question> questionList = new ArrayList<>();
-        questionList.add(questionDao.findById(ID_QUESTION).get());
-        questionDao.batchDelete(questionList);
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            questionDao.findById(ID_QUESTION);
-        });
-    }
-
-
 }
