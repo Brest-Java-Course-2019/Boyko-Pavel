@@ -82,7 +82,11 @@
                     <div class="card">
                         <table class="table table-str">
                             <tbody>
+
                             <tr class="text-right">
+                                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                                    <p>Please fix empty field below:</p>
+                                </div>
                                 <td>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label text-center">Subject</label>
@@ -108,6 +112,10 @@
                                             <input type="text" class="form-control"
                                                    placeholder="enter test name"
                                                    th:field="*{testName}"/>
+                                            <div th:if="${#fields.hasErrors('testName')}"
+                                                 class="invalid-feedback"
+                                                 th:errors="*{testName}">[errors]
+                                            </div>
                                             <input type="text"
                                                    hidden
                                                    th:field="*{idTests}"/>
@@ -124,7 +132,6 @@
                         </table>
                         <section id="listQuestion">
                             <div id="questionsAdd" class="container-fluid pb-2">
-                                <!--th:unless="${TestsDTO.questions.isEmpty()}">-->
                                 <div class="row">
                                     <div class="col col align-self-center">
                                         <div class="card" th:each="question, stat : *{questions}">
@@ -136,8 +143,8 @@
                                                 <div class="form-group row-conformity">
                                                     <div class="col-sm-12">
                                                         <input hidden type="number"
-                                                               th:field="*{questions[__${stat.index}__].questionId}"
-                                                        />
+                                                               th:field="*{questions[__${stat.index}__].questionId}"/>
+
                                                         <input type="text"
                                                                hidden
                                                                th:field="*{questions[__${stat.index}__].testId}"/>
@@ -145,6 +152,11 @@
                                                                   placeholder="enter questionName"
                                                                   th:field="*{questions[__${stat.index}__].questionName}"
                                                                   th:value="${question.questionName}"></textarea>
+                                                        <div th:if="${#fields.hasErrors('questions[__${stat.index}__].questionName')}"
+                                                             class="invalid-feedback"
+                                                             th:errors="*{questions[__${stat.index}__].questionName}">
+                                                            [errors]
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -231,22 +243,24 @@
                                 </div>
                             </div>
 
-
-
                         </section>
+                        <click>
+                            <button id="addQuegggs" type="button"
+                                    class="btn btn-secondary btn-lg btn-block pb-2">Add new question
+                            </button>
+                            <!--onclick="addQuestion()"-->
+                        </click>
 
-                        <button onclick="addQuestion()" type="button"
-                        class="btn btn-secondary btn-lg btn-block pb-2">Add new question
-                        </button>
+
                         <!--<button type="submit" name="add"-->
-                                <!--class="btn btn-secondary btn-lg btn-block pb-2">Add new question-->
+                        <!--class="btn btn-secondary btn-lg btn-block pb-2">Add new question-->
                         <!--</button>-->
                     </div>
                 </form>
-                <div hidden id="schemaNewQuestion" class="container-fluid pb-2">
+                <div id="schemaNewQuestion" class="container-fluid pb-2">
                     <div class="row">
                         <div class="col col align-self-center">
-                            <div  class="card">
+                            <div class="card">
                                 <div>
                                     <div>
                                         <h2>Question № </h2>
@@ -266,15 +280,13 @@
                                                 <div class="form-check form-check-inline">
 
                                                     <input type="checkbox">
-                                                    <input name="newAnswer" type="text">
+                                                    <input name="newAnswer" type="text" hidden value="0">
 
-                                                    <!--<input name="newAnswer" hidden type="text">-->
-                                                    <!--<input class="form-check-input" type="checkbox" id="newAnswer"/>-->
                                                     <label class="col-sm-5 col-form-label text-center">Possible
                                                         answer <span>1</span></label>
                                                     <div class="col-sm-12">
                                                     <textarea class="form-control" placeholder="enter answer"
-                                                               name="newDescription"></textarea>
+                                                              name="newDescription"></textarea>
                                                     </div>
                                                 </div>
                                             </td>
@@ -283,10 +295,8 @@
                                             <td>
                                                 <div class="form-check form-check-inline">
                                                     <input type="checkbox">
-                                                    <input name="newAnswer" type="text">
-                                                    <!--<input name="newAnswer" hidden type="text" value="0">-->
-                                                    <!--<input class="form-check-input" type="checkbox"-->
-                                                           <!--name="newAnswer" value="1"/>-->
+                                                    <input name="newAnswer" type="text" hidden value="0">
+
                                                     <label class="col-sm-5 col-form-label text-center">Possible
                                                         answer <span>1</span></label>
                                                     <div class="col-sm-12">
@@ -295,14 +305,13 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                        </tr><tr>
+                                        </tr>
+                                        <tr>
                                             <td>
                                                 <div class="form-check form-check-inline">
                                                     <input type="checkbox">
-                                                    <input name="newAnswer" type="text">
-                                                    <!--<input name="newAnswer" hidden type="text" value="0">-->
-                                                    <!--<input class="form-check-input" type="checkbox"-->
-                                                           <!--name="newAnswer" value="1"/>-->
+                                                    <input name="newAnswer" type="text" hidden value="0">
+
                                                     <label class="col-sm-5 col-form-label text-center">Possible
                                                         answer <span>1</span></label>
                                                     <div class="col-sm-12">
@@ -311,14 +320,13 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                        </tr><tr>
+                                        </tr>
+                                        <tr>
                                             <td>
                                                 <div class="form-check form-check-inline">
                                                     <input type="checkbox">
-                                                    <input name="newAnswer" type="text">
-                                                    <!--<input name="newAnswer" hidden type="text" value="0">-->
-                                                    <!--<input class="form-check-input" type="checkbox"-->
-                                                           <!--name="newAnswer" value="1"/>-->
+                                                    <input name="newAnswer" type="text" hidden value="0">
+
                                                     <label class="col-sm-5 col-form-label text-center">Possible
                                                         answer <span>1</span></label>
                                                     <div class="col-sm-12">
@@ -347,59 +355,37 @@
         th:src="@{/resources/static/js/popper.min.js}"></script>
 <script src="../../resources/static/js/bootstrap.min.js"
         th:src="@{/resources/static/js/bootstrap.min.js}"></script>
-<!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 
 <script>
-$('div.checkbox').click(function(){
-console.log('3434')
-    if ( $(this).is(':checked') ) {
-  	$(this).siblings('input').val('1');
-  	console.log('yees')
-  } else {
-  	$(this).siblings('input').val('0');
-  		console.log('nooot')
-  }
+
+$(function(){
+    var count = 0;
+    $('click').bind('click', function(){
+    count += 1;
+    <!--$("h2:last").text(aa);-->
+    $('#schemaNewQuestion').clone(true).removeAttr("hidden").appendTo('#listQuestion');
+       $('h2').each(function(index,elem){
+        if(index == count) {
+        var i = count +1
+        $(elem).text("Question №" + count);
+            }
+        });
+    });
 });
+
 </script>
 
-<!--<script>-->
-<!--$('input[type="checkbox"]').on('change', function() {-->
-	<!--if ( $(this).is(':checked') ) {-->
-  	<!--$(this).siblings('input').val('1');-->
-  <!--} else {-->
-  	<!--$(this).siblings('input').val('0');-->
-  <!--}-->
-<!--});-->
-<!--</script>-->
-
 
 <script>
-var elements = document.querySelectorAll('div.question');
-	    var len = elements.length;
-	    for (rez = 0; len--;) {
-	      if (elements[len].id > rez) {
-	        rez = elements[len].id;
-	      }
-	    }
-function outer(){
-let i = Number.parseInt(rez);
-console.log(rez)
-    return function inner() {
-        var count = i + 1;
-        console.log(rez)
-        var elem = document.getElementById('schemaNewQuestion');
-        var elemIdNew = elem.cloneNode(true);
-        elemIdNew.querySelector('h2').innerHTML = 'Question № ' + ' ' + count;
-        document.getElementById('listQuestion').appendChild(elemIdNew);
-        elemIdNew.removeAttribute('hidden');
-        <!--elemIdNew.querySelector('.schemaNewQuestion').id = 'nextQuestion' + i;-->
-        i++;
-    }
-}
-let addQuestion = outer();
-
-
-
+$("input:checkbox").on('change', function() {
+	if ( $(this).is(':checked') ) {
+  	$(this).siblings('input').val('1');
+  } else {
+  	$(this).siblings('input').val('0');
+  }
+});
 </script>
 
 </body>

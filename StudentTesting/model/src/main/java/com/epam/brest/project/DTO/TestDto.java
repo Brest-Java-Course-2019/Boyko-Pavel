@@ -2,6 +2,7 @@ package com.epam.brest.project.DTO;
 
 import com.epam.brest.project.model.Question;
 import com.epam.brest.project.model.QuestionItem;
+import javax.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +14,20 @@ import java.util.List;
 public class TestDto {
 
     private Integer idTests;
+    @NotNull
     private String testName;
     private String subjectName;
     private Integer subjectId;
     private Integer teacherId;
+    @NotNull
     private List<Question> questions = new ArrayList<>();
+    @NotNull
     private List<List<QuestionItem>> questionItems = new ArrayList<>();
+    @NotNull
     private Boolean[] newAnswer;
+    @NotNull
     private String[] newQuestion;
+    @NotNull
     private String[] newDescription;
 
     public String[] getNewQuestion() {

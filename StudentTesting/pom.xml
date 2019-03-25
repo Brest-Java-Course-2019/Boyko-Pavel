@@ -43,9 +43,9 @@
     <dependencyManagement>
         <dependencies>
             <!--<dependency>-->
-                <!--<groupId>org.thymeleaf.extras</groupId>-->
-                <!--<artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
-                <!--<version>3.0.3.RELEASE</version>-->
+            <!--<groupId>org.thymeleaf.extras</groupId>-->
+            <!--<artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
+            <!--<version>3.0.3.RELEASE</version>-->
             <!--</dependency>-->
 
             <dependency>
@@ -258,9 +258,9 @@
 
 
                 <!--<plugin>-->
-                    <!--<groupId>org.flywaydb</groupId>-->
-                    <!--<artifactId>flyway-maven-plugin</artifactId>-->
-                    <!--<version>5.2.4</version>-->
+                <!--<groupId>org.flywaydb</groupId>-->
+                <!--<artifactId>flyway-maven-plugin</artifactId>-->
+                <!--<version>5.2.4</version>-->
                 <!--</plugin>-->
 
                 <!-- Embedded Jetty HTTP Server for testing war application -->

@@ -1,7 +1,6 @@
 package com.epam.brest.project.web_app;
 
 import com.epam.brest.project.DTO.TestDto;
-import com.epam.brest.project.model.Question;
 import com.epam.brest.project.service.SubjectService;
 import com.epam.brest.project.service.TestDtoService;
 import org.slf4j.Logger;
@@ -13,7 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
+
 
 
 @Controller
@@ -30,7 +30,8 @@ public class EditTestController {
     @Autowired
     private SubjectService subjectService;
 
-
+//    @Autowired
+//    TestValidator validator;
     @GetMapping(value = {"/editTest/{id}"})
     public final String gotoEditTest(@PathVariable Integer id, Model model) {
 
@@ -41,23 +42,27 @@ public class EditTestController {
     }
 
     @PostMapping(value = {"/editTest/{id}"})
-    public String updateTestById(TestDto testDTO,
+    public String updateTestById(@Valid TestDto testDTO,
                                         BindingResult result) {
-        TestDto testToadd = new TestDto();
-        testToadd.setTeacherId(testDTO.getTeacherId());
-        testToadd.setNewAnswer(testDTO.getNewAnswer());
-        testToadd.setNewDescription(testDTO.getNewDescription());
-        testToadd.setNewQuestion(testDTO.getNewQuestion());
-//        testDtoService.addTestDto(testToadd);
-        LOGGER.debug("addTestDto({},{})", testDTO, result);
-        testDtoService.updateTestDto(testDTO);
-        return "redirect:/teacher";
+        LOGGER.debug("updateTestById({}, {})", testDTO, result);
+        if (result.hasErrors()){
+            return "editTest";
+        }
+        else {
+            TestDto testToAdd = new TestDto();
+            testToAdd.setTeacherId(testDTO.getTeacherId());
+            testToAdd.setNewAnswer(testDTO.getNewAnswer());
+            testToAdd.setNewDescription(testDTO.getNewDescription());
+            testToAdd.setNewQuestion(testDTO.getNewQuestion());
+            LOGGER.debug("addTestDto({},{})", testDTO, result);
+            testDtoService.updateTestDto(testDTO);
+            return "redirect:/teacher";
+        }
     }
 
     @PostMapping(value = {"/editTest"})
     public String addNewTest(TestDto testDto,
                                 BindingResult result) {
-
         LOGGER.debug("addTestDto({},{})", testDto, result);
         testDtoService.addTestDto(testDto);
         return "redirect:/teacher";
@@ -71,33 +76,4 @@ public class EditTestController {
         return "editTest";
     }
 
-//    @PostMapping(value = {"/editTest/{id}/add"})
-//    public String addNewQuestion(TestDto testDto,
-//                                       BindingResult result) {
-//        LOGGER.debug("-----------------------------({},{})", testDto, result);
-//        testDto.addQuestion().add(new Question());
-//        testDto.addQuestionItem().add(new ArrayList<>(4));
-//        return "editTest";
-//    }
-
-
-    @RequestMapping(value="/seedstartermng", params={"add"})
-    public String addRow(final TestDto testDto, final BindingResult bindingResult) {
-        testDto.addQuestion().add(new Question());
-        testDto.addQuestionItem().add(new ArrayList<>(4));
-        return "editTest";
-    }
-
-
-//    /**
-//     * Delete department.
-//     *
-//     * @return view name
-//     */
-//    @GetMapping(value = "/department/{id}/delete")
-//    public final String deleteDepartmentById(@PathVariable Integer id, Model model) {
-//        LOGGER.debug("delete({},{})", id, model);
-//        testDtoService.deleteTestDto(id);
-//        return "redirect:/departments";
-//    }
 }
