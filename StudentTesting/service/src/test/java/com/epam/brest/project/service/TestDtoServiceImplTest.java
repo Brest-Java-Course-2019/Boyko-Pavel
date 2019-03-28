@@ -51,8 +51,8 @@ class TestDtoServiceImplTest {
         testDTO.setSubjectId(2);
         testDTO.setSubjectName("434g34g");
         testDTO.setTestName("New Test");
-        testDTO.setQuestions(createNewQuestion());
-        testDTO.setQuestionItems(createNewQuestionitem());
+        testDTO.setQuestionsToAdd(createNewQuestion());
+        testDTO.setQuestionItemsToAdd(createNewQuestionitem());
         testDTO.setTeacherId(1);
         return testDTO;
     }
@@ -63,7 +63,7 @@ class TestDtoServiceImplTest {
         assertEquals("Algebra", testDTO.getTestName());
         assertEquals("Math", testDTO.getSubjectName());
         assertEquals("Count 2+2=", testDTO.getQuestions().get(0).getQuestionName());
-        assertEquals("ANSWER: 4", testDTO.getQuestionItems().get(0).get(2).getDescription());
+        assertEquals("ANSWER: 5", testDTO.getQuestionItems().get(0).get(3).getDescription());
     }
 
     @Test
@@ -77,6 +77,8 @@ class TestDtoServiceImplTest {
     @Test
     void updateTestDto() {
         TestDto testDTO = testDtoService.findTestDtoById(ID_TEST_DTO);
+        testDTO.setQuestionItemsToAdd(createNewQuestionitem());
+        testDTO.setQuestionsToAdd(createNewQuestion());
         String testName = testDTO.getTestName();
         testDTO.setTestName(testName + "_update");
         testDtoService.updateTestDto(testDTO);

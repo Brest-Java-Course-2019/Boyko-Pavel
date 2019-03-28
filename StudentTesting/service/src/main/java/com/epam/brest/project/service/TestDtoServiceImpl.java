@@ -36,12 +36,12 @@ public class TestDtoServiceImpl implements TestDtoService {
         LOGGER.debug("Find findTestDtoById()");
         TestDto testDTO = testDao.findTestDTOById(id).get();
         testDTO.setQuestions(questionDao.findallQuestionByTestId(id));
-        List<List<QuestionItem>> mapQuestionItemsList = new ArrayList<>();
+        List<List<QuestionItem>> questionItemsList = new ArrayList<>();
         for (Question question : testDTO.getQuestions()) {
-            mapQuestionItemsList.add(getQuestionItemForIdQuestion(
-                    questionItemDao.findallQuestionItemByQuestionId(id), question.getQuestionId()));
+            questionItemsList.add(getQuestionItemForIdQuestion(
+                    questionItemDao.findAllQuestionItemByTestId(id), question.getQuestionId()));
         }
-        testDTO.setQuestionItems(mapQuestionItemsList);
+        testDTO.setQuestionItems(questionItemsList);
         return testDTO;
     }
 
@@ -59,14 +59,17 @@ public class TestDtoServiceImpl implements TestDtoService {
     @Override
     public void addTestDto(TestDto testDto) {
         Test test = new Test();
-        test.setSubjectId(testDto.getSubjectId());
-        test.setSubjectName(testDto.getSubjectName());
-        test.setName(testDto.getTestName());
-        test.setTeacherId(testDto.getTeacherId());
-        testDao.add(test);
-        List<Integer> questionId = addQuestion(testDto.getQuestions(), test.getTestId());
+        Integer testId = testDto.getIdTests();
+        if (testDto.getIdTests() == null){
+            test.setSubjectId(testDto.getSubjectId());
+            test.setName(testDto.getTestName());
+            test.setTeacherId(testDto.getTeacherId());
+            testDao.add(test);
+            testId = test.getTestId();
+        }
+        List<Integer> questionId = addQuestion(testDto.getQuestionsToAdd(), testId);
         for (int x = 0; x < questionId.size(); x++) {
-            addQuestionItem(testDto.getQuestionItems().get(x), questionId.get(x));
+            addQuestionItem(testDto.getQuestionItemsToAdd().get(x), questionId.get(x));
         }
     }
 
@@ -76,7 +79,7 @@ public class TestDtoServiceImpl implements TestDtoService {
             Question questionToAdd = new Question();
             questionToAdd.setQuestionName(question.getQuestionName());
             questionToAdd.setTestId(testId);
-            questionDao.add(questionToAdd);
+            questionDao.add(questionToAdd, testId);
             arrayQuestionId.add(questionToAdd.getQuestionId());
         }
         return arrayQuestionId;
@@ -90,6 +93,7 @@ public class TestDtoServiceImpl implements TestDtoService {
             questionItemToAdd.setQuestionId(questionId);
             questionItemDao.add(questionItemToAdd);
         }
+
     }
 
     @Override
@@ -101,6 +105,10 @@ public class TestDtoServiceImpl implements TestDtoService {
 
     @Override
     public void updateTestDto(TestDto testDto) {
+        List<Question> getQuestionsToAdd = testDto.getQuestionsToAdd();
+        if (getQuestionsToAdd.size() != 0){
+            addTestDto(testDto);
+        }
         Test test = new Test();
         test.setTestId(testDto.getIdTests());
         test.setName(testDto.getTestName());
@@ -109,4 +117,26 @@ public class TestDtoServiceImpl implements TestDtoService {
         questionDao.batchUpdate(testDto.getQuestions());
         questionItemDao.batchUpdate(testDto.getQuestionItems());
     }
+
+//    private List<Question> getQuestionsToAdd(TestDto testDto) {
+//        List<Question> questionToAdd = new ArrayList<>();
+//        for (Question question : testDto.getQuestions()) {
+//            if (question.getQuestionId() == null) {
+//                questionToAdd.add(question);
+//            }
+//        }
+//        return questionToAdd;
+//    }
+//
+//    private List<List<QuestionItem>> getQuestionItemsToAdd(TestDto testDto){
+//        List<List<QuestionItem>> questionItemToAdd = new ArrayList<>();
+//        List<List<QuestionItem>> listQuestionItem = testDto.getQuestionItems();
+//        List<Question> questionList = testDto.getQuestions();
+//        for (int i = 0; i <questionList.size() ; i++) {
+//            if (questionList.get(i).getQuestionId() == null) {
+//                questionItemToAdd.add(listQuestionItem.get(i));
+//            }
+//        }
+//        return questionItemToAdd;
+//    }
 }

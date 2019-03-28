@@ -79,20 +79,19 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     }
 
     @Override
-    public Optional<Question> add(Question question) {
+    public Optional<Question> add(Question question, Integer idTest) {
         LOGGER.warn("start add()");
         return Optional.of(question)
-                .map(this::insertQuestionItem)
+                .map((Question questionNew) -> insertQuestionItem(question, idTest))
                 .orElseThrow(() -> new IllegalArgumentException("Enter exist question"));
     }
 
 
-    private Optional<Question> insertQuestionItem(Question question) {
+    private Optional<Question> insertQuestionItem(Question question, Integer idTest) {
         LOGGER.warn("start insertQuestionItem()");
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(QUESTION_NAME, question.getQuestionName());
-        mapSqlParameterSource.addValue(TEST_ID, question.getTestId());
-
+        mapSqlParameterSource.addValue(TEST_ID, idTest);
         KeyHolder generatorKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(insertQuestion, mapSqlParameterSource, generatorKeyHolder);
         Map<String, Object> keyMap = generatorKeyHolder.getKeys();
@@ -126,7 +125,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
                 .orElseThrow(() -> new RuntimeException("Failed to delete question"));
     }
 
-
+    @Override
     public void batchUpdate(List<Question> questions) {
         SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questions.size()];
         for (int x =0; x<questions.size(); x++) {

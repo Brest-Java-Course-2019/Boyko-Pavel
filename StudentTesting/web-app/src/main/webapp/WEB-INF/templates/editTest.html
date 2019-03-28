@@ -70,6 +70,95 @@
         </div>
     </div>
 </nav>
+<section>
+    <div id="schemaNewQuestion" hidden class="container-fluid pb-2">
+        <div class="row">
+            <div class="col col align-self-center">
+                <div class="card">
+                    <div>
+                        <div>
+                            <h2>Question № schema</h2>
+                        </div>
+                        <div class="form-group row-conformity">
+                            <div class="col-sm-12">
+                                <textarea class="form-control"
+                                          placeholder="enter questionName"
+                                          name="newQuestion" value=" "> </textarea>
+                            </div>
+                        </div>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-inline">
+
+                                        <input type="checkbox">
+                                        <input name="newAnswer" type="text" hidden value="0">
+
+                                        <label class="col-sm-5 col-form-label text-center">Possible
+                                            answer <span>1</span></label>
+                                        <div class="col-sm-12">
+                                                    <textarea class="form-control" placeholder="enter answer"
+                                                              name="newDescription" value=" "> </textarea>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox">
+                                        <input name="newAnswer" type="text" hidden value="0">
+
+                                        <label class="col-sm-5 col-form-label text-center">Possible
+                                            answer <span>1</span></label>
+                                        <div class="col-sm-12">
+                                                    <textarea class="form-control" placeholder="enter answer"
+                                                              name="newDescription" value=" "> </textarea>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox">
+                                        <input name="newAnswer" type="text" hidden value="0">
+
+                                        <label class="col-sm-5 col-form-label text-center">Possible
+                                            answer <span>1</span></label>
+                                        <div class="col-sm-12">
+                                                    <textarea class="form-control" placeholder="enter answer"
+                                                              name="newDescription" value=" "> </textarea>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox">
+                                        <input name="newAnswer" type="text" hidden value="0">
+
+                                        <label class="col-sm-5 col-form-label text-center">Possible
+                                            answer <span>1</span></label>
+                                        <div class="col-sm-12">
+                                                    <textarea class="form-control" placeholder="enter answer"
+                                                              name="newDescription" value=" "> </textarea>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="tests">
     <div class="container-fluid">
         <div class="row">
@@ -111,239 +200,234 @@
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control"
                                                    placeholder="enter test name"
+                                                   th:errorclass="is-invalid"
                                                    th:field="*{testName}"/>
                                             <div th:if="${#fields.hasErrors('testName')}"
                                                  class="invalid-feedback"
                                                  th:errors="*{testName}">[errors]
                                             </div>
-                                            <input type="text"
-                                                   hidden
-                                                   th:field="*{idTests}"/>
-
-                                            <input type="text" name="teacherId"
-                                                   th:value="${#session.getAttribute('teacher').teacherId}"
-                                                   hidden="">
                                         </div>
+                                        <input type="text"
+                                               hidden
+                                               th:field="*{idTests}"/>
+                                        <input type="text" name="teacherId"
+                                               th:value="${#session.getAttribute('teacher').teacherId}"
+                                               hidden="">
                                     </div>
                                 </td>
                             </tr>
 
                             </tbody>
                         </table>
+
                         <section id="listQuestion">
-                            <div id="questionsAdd" class="container-fluid pb-2">
+                            <div class="container-fluid pb-2">
                                 <div class="row">
                                     <div class="col col align-self-center">
-                                        <div class="card" th:each="question, stat : *{questions}">
+                                        <div class="card" th:each="question, questStat : *{questions}">
                                             <div>
-                                                <div class="question" id="1" th:id="${stat.count}">
-                                                    <h2>Question № <span th:text="${stat.count}"> 4 </span>
+                                                <div class="question" id="1" th:id="${questStat.count}">
+                                                    <h2>Question № <span th:text="${questStat.count}"> start </span>
                                                     </h2>
                                                 </div>
                                                 <div class="form-group row-conformity">
                                                     <div class="col-sm-12">
                                                         <input hidden type="number"
-                                                               th:field="*{questions[__${stat.index}__].questionId}"/>
-
-                                                        <input type="text"
-                                                               hidden
-                                                               th:field="*{questions[__${stat.index}__].testId}"/>
+                                                               th:field="*{questions[__${questStat.index}__].questionId}"/>
                                                         <textarea class="form-control"
                                                                   placeholder="enter questionName"
-                                                                  th:field="*{questions[__${stat.index}__].questionName}"
-                                                                  th:value="${question.questionName}"></textarea>
-                                                        <div th:if="${#fields.hasErrors('questions[__${stat.index}__].questionName')}"
+                                                                  th:field="*{questions[__${questStat.index}__].questionName}"
+                                                                  th:errorclass="is-invalid">
+                                                        </textarea>
+                                                        <div th:if="${#fields.hasErrors('questions[__${questStat.index}__].questionName')}"
                                                              class="invalid-feedback"
-                                                             th:errors="*{questions[__${stat.index}__].questionName}">
+                                                             th:errors="*{questions[__${questStat.index}__].questionName}">
+                                                            [errors]
+                                                        </div>
+                                                    </div>
+
+                                                    <div th:if="${#fields.hasErrors('questions[__${questStat.index}__].questionName')}"
+                                                         class="invalid-feedback"
+                                                         th:errors="*{questions[__${questStat.index}__].questionName}">
+                                                        [errors]
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div th:if="${#fields.hasErrors('questionItems[__${questStat.index}__][__${0}__].answer')}"
+                                                 class="alert alert-danger">
+                                                <p>Please select at least 1 answer option</p>
+                                            </div>
+
+                                            <table class="table">
+                                                <tbody>
+                                                <tr th:each="questionItem, itemStat : *{questionItems[__${questStat.index}__]}">
+                                                    <td>
+                                                        <div class="form-check form-check-inline">
+                                                            <div>
+                                                                <input class="form-check-input" type="checkbox"
+                                                                       th:field="*{questionItems[__${questStat.index}__][__${itemStat.index}__].answer}"
+                                                                       th:value="${questionItem.answer}"/>
+                                                            </div>
+                                                            <input type="number" hidden
+                                                                   th:field="*{questionItems[__${questStat.index}__][__${itemStat.index}__].questionItemId}"
+                                                            />
+                                                            <label th:for="${#ids.next('answer')}"
+                                                                   class="col-sm-5 col-form-label text-center">Possible
+                                                                answer
+                                                                <span th:text="${itemStat.count}"> 1 </span></label>
+
+                                                            <div class="col-sm-12">
+                                                                <textarea class="form-control"
+                                                                          placeholder="enter answer"
+                                                                          th:field="*{questionItems[__${questStat.index}__][__${itemStat.index}__].description}"
+                                                                          th:errorclass="is-invalid"></textarea>
+                                                                <div th:if="${#fields.hasErrors('questionItems[__${questStat.index}__][__${itemStat.index}__].description')}"
+                                                                     class="invalid-feedback"
+                                                                     th:errors="*{questionItems[__${questStat.index}__][__${itemStat.index}__].description}">
+                                                                    [errors]
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr th:remove="all">
+                                                    <td>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox2"
+                                                                   value="option3">
+                                                            <label for="inlineCheckbox2"
+                                                                   class="col-sm-5 col-form-label text-center">Possible
+                                                                answer 2</label>
+                                                            <div class="col-sm-12">
+                                                                <textarea type="text" class="form-control"
+                                                                          placeholder="enter answer"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr th:remove="all">
+                                                    <td>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox3"
+                                                                   value="option3">
+                                                            <label for="inlineCheckbox3"
+                                                                   class="col-sm-5 col-form-label text-center">Possible
+                                                                answer 3</label>
+                                                            <div class="col-sm-12">
+                                                                <textarea type="text" class="form-control"
+                                                                          placeholder="enter answer"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr th:remove="all">
+                                                    <td>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox4"
+                                                                   value="option3">
+                                                            <label for="inlineCheckbox4"
+                                                                   class="col-sm-5 col-form-label text-center">Possible
+                                                                answer 4 </label>
+                                                            <div class="col-sm-12">
+                                                                <textarea type="text" class="form-control"
+                                                                          placeholder="enter answer"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--after validation-->
+                            <div class="container-fluid pb-2">
+                                <div class="row">
+                                    <div class="col col align-self-center">
+                                        <div class="card" th:each="add, addStat : *{questionsToAdd}">
+                                            <div>
+                                                <div class="question" th:id="${addStat.count}">
+                                                    <h2>Add question № <span
+                                                            th:text="${addStat.count}"> validation </span>
+                                                    </h2>
+                                                </div>
+                                                <div class="form-group row-conformity">
+                                                    <div class="col-sm-12">
+                                                        <textarea class="form-control"
+                                                                  placeholder="enter questionName"
+                                                                  th:field="*{questionsToAdd[__${addStat.index}__].questionName}"
+                                                                  th:value="${add.questionName}"
+                                                                  th:errorclass="is-invalid">
+                                                        </textarea>
+                                                        <div th:if="${#fields.hasErrors('questionsToAdd[__${addStat.index}__].questionName')}"
+                                                             class="invalid-feedback"
+                                                             th:errors="*{questionsToAdd[__${addStat.index}__].questionName}">
                                                             [errors]
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <table class="table">
-                                                    <tbody>
-                                                    <tr th:each="questionItem, itemStat : *{questionItems[__${stat.index}__]}">
-                                                        <td>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                       id="inlineCheckbox1"
-                                                                       th:field="*{questionItems[__${stat.index}__][__${itemStat.index}__].answer}"
-                                                                       th:value="${questionItem.answer}"/>
-                                                                <input type="number" hidden
-                                                                       th:field="*{questionItems[__${stat.index}__][__${itemStat.index}__].questionItemId}"
-                                                                />
-                                                                <label th:for="${#ids.next('answer')}"
-                                                                       class="col-sm-5 col-form-label text-center">Possible
-                                                                    answer
-                                                                    <span th:text="${itemStat.count}"> 1 </span></label>
+                                            <div th:if="${#fields.hasErrors('questionItemsToAdd[__${addStat.index}__][__${0}__].answer')}"
+                                                 class="alert alert-danger">
+                                                <p>Please select at least 1 answer option</p>
+                                            </div>
 
-                                                                <div class="col-sm-12">
+                                            <table class="table">
+                                                <tbody>
+                                                <tr th:each="addItem, addItemStat : *{questionItemsToAdd[__${addStat.index}__]}">
+                                                    <td>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox1"
+                                                                   th:field="*{questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].answer}"
+                                                                   th:value="${addItem.answer}"/>
+
+                                                            <label th:for="${#ids.next('answer')}"
+                                                                   class="col-sm-5 col-form-label text-center">Possible
+                                                                answer
+                                                                <span th:text="${addItemStat.count}"> 1 </span></label>
+
+                                                            <div class="col-sm-12">
                                                                 <textarea class="form-control"
                                                                           placeholder="enter answer"
-                                                                          th:field="*{questionItems[__${stat.index}__][__${itemStat.index}__].description}"></textarea>
+                                                                          th:field="*{questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].description}"
+                                                                          th:errorclass="is-invalid"></textarea>
+                                                                <div th:if="${#fields.hasErrors('questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].description')}"
+                                                                     class="invalid-feedback"
+                                                                     th:errors="*{questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].description}">
+                                                                    [errors]
                                                                 </div>
                                                             </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr th:remove="all">
-                                                        <td>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                       id="inlineCheckbox2"
-                                                                       value="option3">
-                                                                <label for="inlineCheckbox2"
-                                                                       class="col-sm-5 col-form-label text-center">Possible
-                                                                    answer 2</label>
-                                                                <div class="col-sm-12">
-                                                                <textarea type="text" class="form-control"
-                                                                          placeholder="enter answer"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr th:remove="all">
-                                                        <td>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                       id="inlineCheckbox3"
-                                                                       value="option3">
-                                                                <label for="inlineCheckbox3"
-                                                                       class="col-sm-5 col-form-label text-center">Possible
-                                                                    answer 3</label>
-                                                                <div class="col-sm-12">
-                                                                <textarea type="text" class="form-control"
-                                                                          placeholder="enter answer"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr th:remove="all">
-                                                        <td>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                       id="inlineCheckbox4"
-                                                                       value="option3">
-                                                                <label for="inlineCheckbox4"
-                                                                       class="col-sm-5 col-form-label text-center">Possible
-                                                                    answer 4 </label>
-                                                                <div class="col-sm-12">
-                                                                <textarea type="text" class="form-control"
-                                                                          placeholder="enter answer"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    </tbody>
-                                                </table>
-
-                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            <!--after validation-->
                         </section>
+
                         <click>
-                            <button id="addQuegggs" type="button"
+                            <button type="button"
                                     class="btn btn-secondary btn-lg btn-block pb-2">Add new question
                             </button>
-                            <!--onclick="addQuestion()"-->
                         </click>
 
-
-                        <!--<button type="submit" name="add"-->
-                        <!--class="btn btn-secondary btn-lg btn-block pb-2">Add new question-->
-                        <!--</button>-->
                     </div>
                 </form>
-                <div id="schemaNewQuestion" class="container-fluid pb-2">
-                    <div class="row">
-                        <div class="col col align-self-center">
-                            <div class="card">
-                                <div>
-                                    <div>
-                                        <h2>Question № </h2>
-                                    </div>
-                                    <div class="form-group row-conformity">
-                                        <div class="col-sm-12">
-                                                    <textarea class="form-control"
-                                                              placeholder="enter questionName"
-                                                              name="newQuestion"></textarea>
-                                        </div>
-                                    </div>
 
-                                    <table class="table">
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-inline">
-
-                                                    <input type="checkbox">
-                                                    <input name="newAnswer" type="text" hidden value="0">
-
-                                                    <label class="col-sm-5 col-form-label text-center">Possible
-                                                        answer <span>1</span></label>
-                                                    <div class="col-sm-12">
-                                                    <textarea class="form-control" placeholder="enter answer"
-                                                              name="newDescription"></textarea>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="checkbox">
-                                                    <input name="newAnswer" type="text" hidden value="0">
-
-                                                    <label class="col-sm-5 col-form-label text-center">Possible
-                                                        answer <span>1</span></label>
-                                                    <div class="col-sm-12">
-                                                    <textarea class="form-control" placeholder="enter answer"
-                                                              name="newDescription"></textarea>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="checkbox">
-                                                    <input name="newAnswer" type="text" hidden value="0">
-
-                                                    <label class="col-sm-5 col-form-label text-center">Possible
-                                                        answer <span>1</span></label>
-                                                    <div class="col-sm-12">
-                                                    <textarea class="form-control" placeholder="enter answer"
-                                                              name="newDescription"></textarea>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="checkbox">
-                                                    <input name="newAnswer" type="text" hidden value="0">
-
-                                                    <label class="col-sm-5 col-form-label text-center">Possible
-                                                        answer <span>1</span></label>
-                                                    <div class="col-sm-12">
-                                                    <textarea class="form-control" placeholder="enter answer"
-                                                              name="newDescription"></textarea>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -364,21 +448,19 @@ $(function(){
     var count = 0;
     $('click').bind('click', function(){
     count += 1;
-    <!--$("h2:last").text(aa);-->
-    $('#schemaNewQuestion').clone(true).removeAttr("hidden").appendTo('#listQuestion');
-       $('h2').each(function(index,elem){
-        if(index == count) {
-        var i = count +1
-        $(elem).text("Question №" + count);
-            }
-        });
+    $('#schemaNewQuestion').clone(true, false).removeAttr("hidden").appendTo('#listQuestion');
+    $('#schemaNewQuestion:first').attr('id', count);
+    var gg =$('h2:last').text("Add question №" + count);
     });
 });
+
+
 
 </script>
 
 
 <script>
+
 $("input:checkbox").on('change', function() {
 	if ( $(this).is(':checked') ) {
   	$(this).siblings('input').val('1');
@@ -386,6 +468,9 @@ $("input:checkbox").on('change', function() {
   	$(this).siblings('input').val('0');
   }
 });
+
+
+
 </script>
 
 </body>

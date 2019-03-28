@@ -21,6 +21,7 @@ INSERT INTO question (question_id, question, test_id) VALUES (5, 'Count 3+2=', 3
 INSERT INTO question_item (question_item_id, description, question_id, answer) VALUES (1, 'ANSWER: 1', 1, 0);
 INSERT INTO question_item (question_item_id, description, question_id, answer) VALUES (2, 'ANSWER: 2', 1, 0);
 INSERT INTO question_item (question_item_id, description, question_id, answer, deleted) VALUES (3, 'ANSWER: 3', 1, 0, 1);
+INSERT INTO question_item (question_item_id, description, question_id, answer) VALUES (8, 'ANSWER: 5', 1, 0);
 INSERT INTO question_item (question_item_id, description, question_id, answer) VALUES (4, 'ANSWER: 4', 1, 1);
 INSERT INTO question_item (question_item_id, description, question_id, answer) VALUES (5, 'ANSWER: 5', 2, 1);
 INSERT INTO question_item (question_item_id, description, question_id, answer) VALUES (6, 'ANSWER: 6', 4, 1);

@@ -36,7 +36,7 @@ class QuestionItemDaoJdbcImplTest {
     void findAllQuestionItem() {
         Stream<QuestionItem> questionItems = questionItemDao.findall();
         assertNotNull(questionItems);
-        assertEquals(6, questionItems.count());
+        assertEquals(7, questionItems.count());
     }
 
     @Test
@@ -48,8 +48,8 @@ class QuestionItemDaoJdbcImplTest {
 
     @Test
     void findallQuestionByTestId(){
-        List<QuestionItem> questionList = questionItemDao.findallQuestionItemByQuestionId(2);
-        assertEquals("ANSWER: 7", questionList.get(0).getDescription());
+        List<QuestionItem> questionList = questionItemDao.findAllQuestionItemByTestId(1);
+        assertEquals("ANSWER: 1", questionList.get(0).getDescription());
     }
 
     @Test
@@ -76,6 +76,7 @@ class QuestionItemDaoJdbcImplTest {
     @Test
     void updateQuestionItem() {
         QuestionItem questionItem = questionItemDao.findById(ID_QUESTION_ITEM).get();
+
         String descriptionBeforeUpdate = questionItem.getDescription();
         questionItem.setDescription(descriptionBeforeUpdate + "_update");
         questionItemDao.update(questionItem);
@@ -89,23 +90,23 @@ class QuestionItemDaoJdbcImplTest {
         int sizeBeforeDelete = questionItemDao.findall().collect(Collectors.toList()).size();
         questionItemDao.deleteByTestId(1);
         int sizeAfterDelete = questionItemDao.findall().collect(Collectors.toList()).size();
-        assertEquals((sizeAfterDelete +3), sizeBeforeDelete);
+        assertEquals((sizeAfterDelete +4), sizeBeforeDelete);
     }
 
 
 
     @Test
     void bathUpdateQuestionItem() {
-        String questionBeforeUpdate;
-        List<List<QuestionItem>> questionList = new ArrayList<>();
-        List<QuestionItem> questionItems = new ArrayList<>();
-        QuestionItem questionItem = questionItemDao.findById(ID_QUESTION_ITEM).get();
-        questionBeforeUpdate = questionItem.getDescription();
-        questionItem.setDescription(questionBeforeUpdate + "update");
-        questionItems.add(questionItem);
-        questionList.add(questionItems);
-        questionItemDao.batchUpdate(questionList);
-        QuestionItem newQuestionItem = questionItemDao.findById(ID_QUESTION_ITEM).get();
-        assertEquals(questionBeforeUpdate +"update", newQuestionItem.getDescription());
+        List<QuestionItem>  list = questionItemDao.findAllQuestionItemByTestId(1);
+        for (QuestionItem i: list) {
+            i.setDescription(i.getDescription() + "_update");
+            i.setAnswer(true);
+        }
+        List<List<QuestionItem>> updateList = new ArrayList<>();
+        updateList.add(list);
+        questionItemDao.batchUpdate(updateList);
+        List<QuestionItem> questionItemUpdate = questionItemDao.findAllQuestionItemByTestId(1);
+        assertEquals(list.get(1).getDescription(), questionItemUpdate.get(1).getDescription());
+        assertSame(list.get(2).getAnswer(), questionItemUpdate.get(2).getAnswer());
     }
 }

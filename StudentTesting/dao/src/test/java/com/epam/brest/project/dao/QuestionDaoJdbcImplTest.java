@@ -72,9 +72,8 @@ class QuestionDaoJdbcImplTest {
     void addQuestion() {
         Stream<Question> countIdBeforeInsert = questionDao.findall();
         Question questionItem = new Question();
-        questionItem.setTestId(2);
         questionItem.setQuestionName("Question №4");
-        questionDao.add(questionItem);
+        questionDao.add(questionItem, 2);
         Stream<Question> countIdAfterInsert = questionDao.findall();
 
         assertEquals(1, countIdAfterInsert.count() - countIdBeforeInsert.count());
@@ -87,7 +86,7 @@ class QuestionDaoJdbcImplTest {
         questionItem.setTestId(25);
         questionItem.setQuestionName("Question №4");
         Assertions.assertThrows(DataIntegrityViolationException.class, () -> {
-            questionDao.add(questionItem);
+            questionDao.add(questionItem, questionItem.getTestId());
         });
     }
 
@@ -105,22 +104,13 @@ class QuestionDaoJdbcImplTest {
 
     @Test
     void batchupdateQuestion() {
-        Question question1 = questionDao.findById(1).get();
-        Question question2 = questionDao.findById(3).get();
-
-
-        String questionBeforeUpdate1 = question1.getQuestionName();
-        question1.setQuestionName(questionBeforeUpdate1 + "_update");
-        String questionBeforeUpdate2 = question2.getQuestionName();
-        question2.setQuestionName(questionBeforeUpdate2 + "_update");
-        List<Question> questionList = new ArrayList<>();
-        questionList.add(question1);
-        questionList.add(question2);
-        questionDao.batchUpdate(questionList);
-        Question questionAfterUpdate1 = questionDao.findById(question1.getQuestionId()).get();
-        Question questionAfterUpdate2 = questionDao.findById(question2.getQuestionId()).get();
-        assertEquals(question1.getQuestionName(), questionAfterUpdate1.getQuestionName());
-        assertEquals(question2.getQuestionName(), questionAfterUpdate2.getQuestionName());
+        List<Question> questions = questionDao.findall().collect(Collectors.toList());;
+        for (Question question: questions) {
+            question.setQuestionName(question.getQuestionName()+ "_update");
+        }
+        questionDao.batchUpdate(questions);
+        List<Question> questionAfterUpdate = questionDao.findall().collect(Collectors.toList());
+        assertEquals(questions.get(1).getQuestionName(), questionAfterUpdate.get(1).getQuestionName());
     }
 
     @Test

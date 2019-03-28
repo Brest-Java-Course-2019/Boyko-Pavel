@@ -14,12 +14,11 @@ public interface QuestionDao {
 
     Optional<Question> findById(final Integer id);
 
-    Optional<Question> add(final Question question);
+    Optional<Question> add(final Question question, Integer idTest);
 
     void update(final Question question);
 
     void deleteByTestId(final int id);
 
     void batchUpdate(final List<Question> question);
-
 }

@@ -122,7 +122,6 @@ public class TestDaoJdbcImpl implements TestDao {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(TEST_ID, test.getTestId());
         mapSqlParameterSource.addValue(TEST_NAME, test.getName());
-        mapSqlParameterSource.addValue(TEACHER_ID, test.getTeacherId());
         mapSqlParameterSource.addValue(SUBJECT_ID, test.getSubjectId());
         Optional.of(namedParameterJdbcTemplate.update(updateTest, mapSqlParameterSource))
                 .filter(this::countAffectedRow)

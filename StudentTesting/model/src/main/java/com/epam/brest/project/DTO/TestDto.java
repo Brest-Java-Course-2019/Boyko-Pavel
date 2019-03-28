@@ -19,16 +19,14 @@ public class TestDto {
     private String subjectName;
     private Integer subjectId;
     private Integer teacherId;
-    @NotNull
     private List<Question> questions = new ArrayList<>();
-    @NotNull
     private List<List<QuestionItem>> questionItems = new ArrayList<>();
-    @NotNull
     private Boolean[] newAnswer;
-    @NotNull
     private String[] newQuestion;
-    @NotNull
     private String[] newDescription;
+
+    private List<Question> questionsToAdd = new ArrayList<>();
+    private List<List<QuestionItem>> questionItemsToAdd = new ArrayList<>();
 
     public String[] getNewQuestion() {
         return newQuestion;
@@ -116,6 +114,22 @@ public class TestDto {
 
     public List<List<QuestionItem>> addQuestionItem() {
         return this.questionItems;
+    }
+
+    public List<Question> getQuestionsToAdd() {
+        return questionsToAdd;
+    }
+
+    public void setQuestionsToAdd(List<Question> questionsToAdd) {
+        this.questionsToAdd = questionsToAdd;
+    }
+
+    public List<List<QuestionItem>> getQuestionItemsToAdd() {
+        return questionItemsToAdd;
+    }
+
+    public void setQuestionItemsToAdd(List<List<QuestionItem>> questionItemsToAdd) {
+        this.questionItemsToAdd = questionItemsToAdd;
     }
 
     public TestDto testName(String testName) {
