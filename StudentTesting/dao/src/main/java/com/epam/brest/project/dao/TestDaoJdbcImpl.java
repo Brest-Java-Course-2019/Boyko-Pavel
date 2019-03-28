@@ -49,11 +49,6 @@ public class TestDaoJdbcImpl implements TestDao {
     @Value("${test.deleteTest}")
     private String deleteTest;
 
-//    @Value("${delete.allTestDto}")
-//    private String deleteAllTestDto;
-
-//   @Value("${transaction.deleteTestDto}")
-//    private String deleteTestDto;
 
     public TestDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -79,13 +74,13 @@ public class TestDaoJdbcImpl implements TestDao {
         LOGGER.warn("start findTestDTOById()");
         TestDto testDTO = namedParameterJdbcTemplate.queryForObject(selectTestDTOByID,
                 new MapSqlParameterSource(TEST_ID, id),
-                (resultSet, i) ->  new TestDto()
+                (resultSet, i) -> new TestDto()
                         .idTests(resultSet.getInt(TEST_ID))
                         .subjectName(resultSet.getString(SUBJECT_NAME))
                         .testName(resultSet.getString(TEST_NAME))
                         .subjectId(resultSet.getInt(SUBJECT_ID))
                         .teacherId(resultSet.getInt(TEACHER_ID))
-                        );
+        );
         return Optional.ofNullable(testDTO);
     }
 
@@ -97,11 +92,6 @@ public class TestDaoJdbcImpl implements TestDao {
                 .orElseThrow(() -> new IllegalArgumentException("Enter exist question"));
     }
 
-//    private Boolean existTest(Test test) {
-//        return namedParameterJdbcTemplate.queryForObject(existTestById,
-//                new MapSqlParameterSource(TEST_ID, test.getTestId()),
-//                Integer.class) != 0;
-//    }
 
     private Optional<Test> insertTest(Test test) {
         LOGGER.warn("start insertQuestionItem()");
@@ -128,19 +118,9 @@ public class TestDaoJdbcImpl implements TestDao {
                 .orElseThrow(() -> new IllegalArgumentException("Failed to update question"));
     }
 
-    private Boolean countAffectedRow(int numRowsUpdated){
+    private Boolean countAffectedRow(int numRowsUpdated) {
         return numRowsUpdated > 0;
     }
-
-//    @Override
-//    public void delete(int id) {
-//        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-//        mapSqlParameterSource.addValue(TEST_ID, id);
-//        Optional.of(namedParameterJdbcTemplate.update(deleteTest, mapSqlParameterSource))
-//                .filter(this::countAffectedRow)
-//                .orElseThrow(() -> new RuntimeException("Failed to delete question"));
-//    }
-
 
     @Override
     public void delete(int id) {

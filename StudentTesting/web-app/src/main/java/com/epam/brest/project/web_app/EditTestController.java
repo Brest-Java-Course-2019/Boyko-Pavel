@@ -53,7 +53,7 @@ public class EditTestController {
             model.addAttribute("subjects", subjectService.findAll());
             return "editTest";
         } else {
-            LOGGER.debug("updateTestDto({},{})", testDtoBuilder);
+            LOGGER.debug("updateTestDto({})", testDtoBuilder);
             testDtoService.updateTestDto(testDTO);
             return "redirect:/teacher";
         }
@@ -67,11 +67,9 @@ public class EditTestController {
         validator.validate(testDtoBuilder, result);
         if (result.hasErrors()) {
             model.addAttribute("subjects", subjectService.findAll());
-            TestDto testDto1 = testDtoBuilder;
-            testDto1.getIdTests();
             return "editTest";
         } else {
-            LOGGER.debug("updateTestDto({},{})", testDtoBuilder);
+            LOGGER.debug("updateTestDto({})", testDtoBuilder);
 
             testDtoService.addTestDto(testDtoBuilder);
             return "redirect:/teacher";

@@ -39,9 +39,6 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     @Value("${question.selectAllQuestionByTestId}")
     private String selectAllQuestionByTestId;
 
-    @Value("${question.existTestById}")
-    private String existTestById;
-
     @Value("${question.updateQuestion}")
     private String updateQuestion;
 

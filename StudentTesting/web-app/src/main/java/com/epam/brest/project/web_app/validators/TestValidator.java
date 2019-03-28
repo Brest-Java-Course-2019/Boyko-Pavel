@@ -16,8 +16,8 @@ import java.util.List;
 @Component
 public class TestValidator implements Validator {
 
-    public static final String LISLT_TO_ADD = "add";
-    public static final String LIST_TO_UPDATE = "update";
+    private static final String LISLT_TO_ADD = "add";
+    private static final String LIST_TO_UPDATE = "update";
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -57,7 +57,7 @@ public class TestValidator implements Validator {
     private void validateQuestionItem(List<List<QuestionItem>> list, Errors errors, String version) {
         for (int i = 0; i < list.size(); i++) {
             List<QuestionItem> questionItem = list.get(i);
-            Integer countUncheckedAnswers = 0;
+            int countUncheckedAnswers = 0;
             for (int j = 0; j < questionItem.size(); j++) {
                 if (questionItem.get(j).getDescription().trim().length() == 0) {
                     if (version.equals(LIST_TO_UPDATE)) {

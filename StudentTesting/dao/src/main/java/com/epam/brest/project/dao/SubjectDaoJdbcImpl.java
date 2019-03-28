@@ -74,19 +74,19 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
     }
 
     private boolean isNameUnique(Subject subject) {
-        Integer getCounIdSubject = namedParameterJdbcTemplate.queryForObject(CHECK_COUNT_NAME,
+        Integer getCountIdSubject = namedParameterJdbcTemplate.queryForObject(CHECK_COUNT_NAME,
                 new MapSqlParameterSource(SUBJECT_NAME, subject.getName()),
                 Integer.class);
-        return getCounIdSubject == 0;
+        return getCountIdSubject == 0;
     }
 
     private Optional<Subject> insertSubject(Subject subject) {
+        LOGGER.info("add({})", subject);
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(SUBJECT_NAME.toLowerCase(), subject.getName().toLowerCase());
-        KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
 
+        KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(insertSubject, mapSqlParameterSource, generatedKeyHolder);
-//        LOGGER.info("add( result update = {}, keyholder = {})", getKeySubject, generatedKeyHolder.getKey().intValue());
         subject.setSubjectId(generatedKeyHolder.getKey().intValue());
 
         return Optional.of(subject);

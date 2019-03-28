@@ -26,7 +26,7 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
     private static final String QUESTION_ID = "question_id";
     private static final String DESCRIPTION = "description";
     private static final String TEST_ID = "test_id";
-    public static final int COUNT_QUESTION_ITEM_IN_QUESTION = 4;
+    private static final int COUNT_QUESTION_ITEM_IN_QUESTION = 4;
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -41,9 +41,6 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
 
     @Value("${questionItem.insertQuestionItem}")
     private String insertQuestionItem;
-
-    @Value("${questionItem.existQuestionById}")
-    private String existQuestionById;
 
     @Value("${questionItem.updateQuestionItem}")
     private String updateQuestionItem;

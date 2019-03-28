@@ -45,11 +45,14 @@
 
     <bean id="studentServiceImpl" class="com.epam.brest.project.service.StudentServiceImpl">
         <constructor-arg ref="studentTestJdbc"/>
-        <constructor-arg ref="teacherJdbcDaoImpl"/>
     </bean>
 
     <bean id="subjectServiceImpl" class="com.epam.brest.project.service.SubjectServiceImpl">
         <constructor-arg ref="subjectDaoJdbcImpl"/>
+    </bean>
+
+    <bean id="teacherServiceImpl" class="com.epam.brest.project.service.TeacherServiceImpl">
+        <constructor-arg ref="teacherJdbcDaoImpl"/>
     </bean>
 
 
