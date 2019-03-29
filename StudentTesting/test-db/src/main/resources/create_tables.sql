@@ -96,7 +96,7 @@ REFERENCES question (question_id)
 -- Table student
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS student (
-  student_id INT NOT NULL,
+  student_id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
   surname VARCHAR(45) NOT NULL,
 PRIMARY KEY (student_id)

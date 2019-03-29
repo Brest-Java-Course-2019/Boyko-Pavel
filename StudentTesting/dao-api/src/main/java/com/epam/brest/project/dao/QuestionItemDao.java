@@ -10,9 +10,9 @@ public interface QuestionItemDao {
 
     Stream<QuestionItem> findall();
 
-    List<QuestionItem> findAllQuestionItemByTestId(Integer id);
+    List<QuestionItem> findAllQuestionItemByTestId(Integer testId);
 
-    Optional<QuestionItem> findById(final Integer id);
+    Optional<QuestionItem> findById(final Integer uestionItemId);
 
     Optional<QuestionItem> add(final QuestionItem questionItem);
 

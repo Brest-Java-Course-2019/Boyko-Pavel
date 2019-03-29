@@ -32,7 +32,7 @@ INSERT INTO student (student_id, name, surname) VALUES (1, 'kolya', 'dude');
 INSERT INTO student (student_id, name, surname) VALUES (2, 'petr', 'gole');
 INSERT INTO student (student_id, name, surname) VALUES (3, 'ann', 'loud');
 
-INSERT INTO student_answer (student_id, question_item_id, student_answer) VALUES (1, 1, 0);
-INSERT INTO student_answer (student_id, question_item_id, student_answer) VALUES (1, 2, 0);
-INSERT INTO student_answer (student_id, question_item_id, student_answer) VALUES (1, 3, 1);
-INSERT INTO student_answer (student_id, question_item_id, student_answer) VALUES (1, 4, 1);
+INSERT INTO student_answer (student_answer_id, student_id, question_item_id, student_answer) VALUES (1, 1, 1, 0);
+INSERT INTO student_answer (student_answer_id, student_id, question_item_id, student_answer) VALUES (2, 1, 2, 0);
+INSERT INTO student_answer (student_answer_id, student_id, question_item_id, student_answer) VALUES (3, 1, 4, 1);
+INSERT INTO student_answer (student_answer_id, student_id, question_item_id, student_answer) VALUES (4, 1, 8, 1);

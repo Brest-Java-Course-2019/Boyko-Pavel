@@ -16,7 +16,7 @@ import java.util.List;
 @Component
 public class TestValidator implements Validator {
 
-    private static final String LISLT_TO_ADD = "add";
+    private static final String LIST_TO_ADD = "add";
     private static final String LIST_TO_UPDATE = "update";
 
     @Override
@@ -37,8 +37,8 @@ public class TestValidator implements Validator {
 
         validateQuestion(testDto.getQuestions(), errors, LIST_TO_UPDATE);
         validateQuestionItem(testDto.getQuestionItems(), errors, LIST_TO_UPDATE);
-        validateQuestion(testDto.getQuestionsToAdd(), errors, LISLT_TO_ADD);
-        validateQuestionItem(testDto.getQuestionItemsToAdd(), errors, LISLT_TO_ADD);
+        validateQuestion(testDto.getQuestionsToAdd(), errors, LIST_TO_ADD);
+        validateQuestionItem(testDto.getQuestionItemsToAdd(), errors, LIST_TO_ADD);
     }
 
     private void validateQuestion(List<Question> questionList, Errors errors, String version) {
@@ -50,7 +50,6 @@ public class TestValidator implements Validator {
                     errors.rejectValue("questionsToAdd[" + i + "].questionName", "testQuestion.empty");
                 }
             }
-
         }
     }
 
@@ -69,7 +68,6 @@ public class TestValidator implements Validator {
                                 "]" + ".description", "testQuestionItems.empty");
                     }
                 }
-
                 if (!questionItem.get(j).getAnswer()) {
                     countUncheckedAnswers++;
                     if (countUncheckedAnswers == 4) {

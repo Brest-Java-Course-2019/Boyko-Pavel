@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
     <link rel="stylesheet"
           href="../../resources/static/css/font-awesome.min.css"
           th:href="@{/resources/static/css/font-awesome.min.css}">
@@ -39,8 +37,7 @@
                th:href="@{/start}"
                title="Back to start page"
                data-toggle="tooltip"
-               data-placement="bottom"><i
-                    class="fa fa-arrow-left"></i> </a>
+               data-placement="bottom"><i class="fa fa-arrow-left"></i> </a>
             <a href="editTest.html" id="student" type="button" class="btn btn-outline-secondary"
                th:href="@{/editTest}" >Create test</a>
         </div>
@@ -210,6 +207,9 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+</script>
+
+<script>
     $('#deleteDialog').on('show.bs.modal', function (event) {
         var target = $(event.relatedTarget)
         $(this).find('.modal-body').text('Please confirm delete test: "' + target.data('name') + '"')
