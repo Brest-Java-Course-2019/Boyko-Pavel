@@ -55,7 +55,7 @@
                         </thead>
                         <tbody class="pb-1">
                         <tr class="text-center"
-                            th:each="dto : ${teacherTestsDto}">
+                            th:each="dto : ${allTestsDto}">
                             <td th:text="${dto.subjectName}">Physics</td>
                             <td th:text="${dto.testName}"> Optics</td>
                             <td th:text="${dto.countQuestion}">32</td>
@@ -63,7 +63,7 @@
                             <td>
                                 <a type="button"
                                    href="startTest.html"
-                                   th:href="@{|/startTest/${dto.idTests}|}"
+                                   th:href="@{|/startTest/training/${dto.idTests}|}"
                                    class="btn btn-primary">Start test
                                 </a>
                             </td>

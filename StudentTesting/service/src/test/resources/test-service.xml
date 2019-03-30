@@ -45,7 +45,6 @@
 
     <bean id="studentServiceImpl" class="com.epam.brest.project.service.StudentServiceImpl">
         <constructor-arg ref="studentTestJdbc"/>
-        <constructor-arg ref="studentAnswerJdbcDaoImpl"/>
     </bean>
 
     <bean id="subjectServiceImpl" class="com.epam.brest.project.service.SubjectServiceImpl">
@@ -60,5 +59,8 @@
         <constructor-arg ref="teacherJdbcDaoImpl"/>
     </bean>
 
+    <bean id="studentAnswerService" class="com.epam.brest.project.service.StudentAnswerServiceImpl">
+        <constructor-arg ref="studentAnswerJdbcDaoImpl"/>
+    </bean>
 
 </beans>

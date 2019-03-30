@@ -1,12 +1,10 @@
 package com.epam.brest.project.web_app;
 
 import com.epam.brest.project.DTO.TestDto;
+import com.epam.brest.project.model.QuestionItem;
 import com.epam.brest.project.service.StudentService;
-import com.epam.brest.project.service.SubjectService;
 import com.epam.brest.project.service.TestDtoService;
-import com.epam.brest.project.web_app.builder.TestDtoBuilder;
 import com.epam.brest.project.web_app.validators.StudentAnswerValidator;
-import com.epam.brest.project.web_app.validators.TestValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -38,10 +37,19 @@ public class StartTestController {
     @Autowired
     private StudentAnswerValidator answerValidator;
 
+
+    @GetMapping(value = {"/startTest/training"})
+    public final String goToTrainingTest(Model model) {
+        LOGGER.debug("findTestDtoById({})", model);
+        model.addAttribute("allTestsDto", studentService.findAllDto());
+        return "student";
+    }
+
     @GetMapping(value = {"/startTest/training/{id}"})
     public final String goToSolveTrainingTest(@PathVariable Integer id, Model model) {
         LOGGER.debug("findTestDtoById({}, {})", id, model);
-        model.addAttribute("testDto", testDtoService.findTestDtoById(id));
+        TestDto testDto = testDtoService.findTestDtoById(id);
+        model.addAttribute("testDto", setAnswerNull(testDto));
         return "startTest";
     }
 
@@ -49,9 +57,20 @@ public class StartTestController {
     public String endSolveTrainingTest(@PathVariable Integer id, @Valid TestDto testDto,
                                        Model model, BindingResult result) {
         LOGGER.debug("endSolveById({}, {})", testDto, result);
+        testDto.setIdTests(id);
         answerValidator.validate(testDto, result);
         model.addAttribute("countRightQuestion", answerValidator.getCountRightAnswer());
-        return "editTest";
+        model.addAttribute("testDto", testDto);
+        return "startTest";
     }
-
+    private TestDto setAnswerNull (TestDto testDto){
+        List<List<QuestionItem>> listWithoutAnswer = testDto.getQuestionItems();
+        for (List<QuestionItem> list: listWithoutAnswer) {
+            for (QuestionItem questionTtem: list ) {
+                questionTtem.setAnswer(null);
+            }
+        }
+        testDto.setQuestionItems(listWithoutAnswer);
+        return testDto;
+    }
 }

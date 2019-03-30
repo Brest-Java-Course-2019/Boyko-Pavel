@@ -1,5 +1,6 @@
 package com.epam.brest.project.web_app;
 
+import com.epam.brest.project.model.Student;
 import com.epam.brest.project.model.Teacher;
 import com.epam.brest.project.service.StudentService;
 import org.slf4j.Logger;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @ContextConfiguration(locations = {"classpath*:test-db.xml"})
-public class StudentTestController {
+public class HomeController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentTestController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
 
     @Autowired()
@@ -31,6 +32,7 @@ public class StudentTestController {
     public final String studentTests(Model model) {
 
         LOGGER.debug("findAllDTO({})", model);
+        model.addAttribute("student", new Student());
         model.addAttribute("teacher", new Teacher());
         model.addAttribute("studentTestsDTOs", studentService.findAllDto());
         return "start";

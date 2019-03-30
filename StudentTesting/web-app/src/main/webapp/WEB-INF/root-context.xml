@@ -55,15 +55,6 @@
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="studentServiceImpl" class="com.epam.brest.project.service.StudentServiceImpl">
-        <constructor-arg ref="studentTestJdbc"/>
-    </bean>
-
-
-    <bean id="teacherServiceImpl" class="com.epam.brest.project.service.TeacherServiceImpl">
-        <constructor-arg ref="teacherJdbcDaoImpl"/>
-    </bean>
-
     <bean id="testDaoJdbcImpl" class="com.epam.brest.project.dao.TestDaoJdbcImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
@@ -76,7 +67,7 @@
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="testDTOServiceImpl" class="com.epam.brest.project.service.TestDtoServiceImpl">
+    <bean id="testDtoServiceImpl" class="com.epam.brest.project.service.TestDtoServiceImpl">
         <constructor-arg ref="testDaoJdbcImpl"/>
         <constructor-arg ref="questionItemDaoJdbcImpl"/>
         <constructor-arg ref="questionDaoJdbcImpl"/>
@@ -88,7 +79,6 @@
 
     <bean id="studentServiceImpl" class="com.epam.brest.project.service.StudentServiceImpl">
         <constructor-arg ref="studentTestJdbc"/>
-        <constructor-arg ref="studentAnswerJdbcDaoImpl"/>
     </bean>
 
     <bean id="subjectServiceImpl" class="com.epam.brest.project.service.SubjectServiceImpl">
@@ -97,6 +87,14 @@
 
     <bean id="studentAnswerJdbcDaoImpl" class="com.epam.brest.project.dao.StudentAnswerJdbcDaoImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="teacherServiceImpl" class="com.epam.brest.project.service.TeacherServiceImpl">
+        <constructor-arg ref="teacherJdbcDaoImpl"/>
+    </bean>
+
+    <bean id="studentAnswerService" class="com.epam.brest.project.service.StudentAnswerServiceImpl">
+        <constructor-arg ref="studentAnswerJdbcDaoImpl"/>
     </bean>
 
     <context:property-placeholder location="classpath:application.properties"/>

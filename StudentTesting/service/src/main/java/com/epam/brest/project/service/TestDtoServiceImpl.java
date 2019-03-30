@@ -60,7 +60,7 @@ public class TestDtoServiceImpl implements TestDtoService {
     public void addTestDto(TestDto testDto) {
         Test test = new Test();
         Integer testId = testDto.getIdTests();
-        if (testDto.getIdTests() == null){
+        if (testDto.getIdTests() == null) {
             test.setSubjectId(testDto.getSubjectId());
             test.setName(testDto.getTestName());
             test.setTeacherId(testDto.getTeacherId());
@@ -106,7 +106,7 @@ public class TestDtoServiceImpl implements TestDtoService {
     @Override
     public void updateTestDto(TestDto testDto) {
         List<Question> getQuestionsToAdd = testDto.getQuestionsToAdd();
-        if (getQuestionsToAdd.size() != 0){
+        if (getQuestionsToAdd.size() != 0) {
             addTestDto(testDto);
         }
         Test test = new Test();

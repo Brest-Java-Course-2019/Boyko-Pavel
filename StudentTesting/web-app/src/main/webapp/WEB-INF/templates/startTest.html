@@ -52,7 +52,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <a class="btn btn-danger" href="student.html" role="button">End</a>
+                                <a class="btn btn-danger"
+                                   href="student.html"
+                                   th:href="@{/startTest/training}"
+                                   role="button">End</a>
                             </div>
                         </div>
                     </div>
@@ -168,10 +171,8 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-
                                                 </tbody>
                                             </table>
-
                                         </div>
                                     </div>
                                 </div>
@@ -179,9 +180,12 @@
                         </section>
 
                         <click>
-                            <button type="button"
-                                    class="btn btn-secondary btn-lg btn-block pb-2">End test
-                            </button>
+                            <a type="button"
+                               class="btn btn-secondary btn-lg btn-block pb-2"
+                               href="startTest.html"
+                               th:onclick="@{document.forms['testDTOForm'].submit(); return false;}"
+                            >End test
+                            </a>
                         </click>
 
                     </div>
@@ -208,6 +212,7 @@
     $(this).removeAttr('style');
   });
 
+
 </script>
 
 
@@ -222,6 +227,7 @@ $checkbox.prop('checked', false)
 $checkbox.prop('checked', true)
 }
 });
+
 
 </script>
 

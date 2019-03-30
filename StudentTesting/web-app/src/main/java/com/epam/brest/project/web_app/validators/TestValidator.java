@@ -30,7 +30,7 @@ public class TestValidator implements Validator {
         ValidationUtils.rejectIfEmpty(errors, "testName", "testName.empty");
 
         TestDto testDto = (TestDto) target;
-        if (StringUtils.hasLength(testDto.getTestName())
+        if (StringUtils.hasLength(testDto.getTestName().trim())
                 && testDto.getTestName().length() > 256) {
             errors.rejectValue("testName", "testName.maxSize255");
         }

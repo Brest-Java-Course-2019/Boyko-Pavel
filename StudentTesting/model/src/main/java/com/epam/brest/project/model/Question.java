@@ -6,6 +6,8 @@ public class Question {
     private String questionName;
     private Integer testId;
 
+
+
     public Integer getQuestionId() {
         return questionId;
     }
@@ -16,6 +18,10 @@ public class Question {
 
     public String getQuestionName() {
         return questionName;
+    }
+
+    public int getQuestionNameLenght() {
+        return getQuestionName().trim().length();
     }
 
     public void setQuestionName(String questionName) {

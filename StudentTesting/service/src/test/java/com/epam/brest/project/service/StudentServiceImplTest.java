@@ -38,31 +38,4 @@ class StudentServiceImplTest {
         List<StudentTestDto> studentTestDtos = studentService.findAllDto();
         assertEquals(3, studentTestDtos.size());
     }
-
-    @Test
-    void findAllStudentAnswer() {
-        List<StudentAnswer> studentAnswers = studentService.findStudentAnswerById(1);
-        assertEquals(false, studentAnswers.get(1).getStudentAnswer());
-    }
-
-    @Test
-    void addStudentAnswer() {
-        TestDto testDto = new TestDto();
-        List<QuestionItem> questionItemsToAdd = new ArrayList<>();
-        for (QuestionItem questionItem : questionItemDao.findAllQuestionItemByTestId(1) ) {
-            QuestionItem questionItemToAdd = new QuestionItem();
-            questionItemToAdd.setAnswer(false);
-            questionItemToAdd.setQuestionItemId(questionItem.getQuestionItemId());
-            questionItemsToAdd.add(questionItemToAdd);
-        }
-        List<List<QuestionItem>> listList = new ArrayList<>();
-        listList.add(questionItemsToAdd);
-        testDto.setQuestionItems(listList);
-        studentService.addStudentAnswer(testDto, STUDENT_ID);
-        List<StudentAnswer> a = studentService.findStudentAnswerById(STUDENT_ID);
-        assertEquals(false, studentService.findStudentAnswerById(STUDENT_ID)
-                .get(4).getStudentAnswer());
-    }
-
-
 }

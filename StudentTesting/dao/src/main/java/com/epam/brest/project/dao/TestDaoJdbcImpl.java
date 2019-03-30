@@ -95,14 +95,18 @@ public class TestDaoJdbcImpl implements TestDao {
 
     private Optional<Test> insertTest(Test test) {
         LOGGER.warn("start insertQuestionItem()");
+
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(TEST_NAME, test.getName());
         mapSqlParameterSource.addValue(TEACHER_ID, test.getTeacherId());
         mapSqlParameterSource.addValue(SUBJECT_ID, test.getSubjectId());
+
         KeyHolder generatorKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(insertTest, mapSqlParameterSource, generatorKeyHolder);
+
         Map<String, Object> keyMap = generatorKeyHolder.getKeys();
         test.setTestId((Integer) keyMap.get(TEST_ID));
+
         return Optional.of(test);
     }
 

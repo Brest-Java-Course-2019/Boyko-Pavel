@@ -4,8 +4,6 @@ package com.epam.brest.project.web_app.validators;
 import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.QuestionItem;
 import com.epam.brest.project.model.Teacher;
-import com.epam.brest.project.service.StudentService;
-
 import com.epam.brest.project.service.TestDtoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
