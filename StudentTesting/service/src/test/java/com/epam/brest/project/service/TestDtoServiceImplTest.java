@@ -30,60 +30,63 @@ class TestDtoServiceImplTest {
     List<Question> createNewQuestion() {
         List<Question> questionList = new ArrayList<>();
         Question question = new Question();
-        question.setQuestionName("square triangle");
+        question.setQuestionName("new Question");
+        question.setQuestionItems(createNewQuestionItems());
         questionList.add(question);
         return questionList;
     }
 
-    List<List<QuestionItem>> createNewQuestionitem() {
-        List<List<QuestionItem>> questionItemList = new ArrayList<>();
+    List<QuestionItem> createNewQuestionItems() {
         List<QuestionItem> questionItems = new ArrayList<>();
-        QuestionItem questionItem = new QuestionItem();
-        questionItem.setDescription("0.5*h*b");
-        questionItem.setAnswer(true);
-        questionItems.add(questionItem);
-        questionItemList.add(questionItems);
-        return questionItemList;
+        for (int i = 0; i <4 ; i++) {
+            QuestionItem questionItem = new QuestionItem();
+            questionItem.setAnswer(true);
+            questionItem.setDescription("new questionItem" + i);
+            questionItems.add(questionItem);
+        }
+        return questionItems;
     }
 
     TestDto createNewTestDto() {
         TestDto testDTO = new TestDto();
         testDTO.setSubjectId(2);
-        testDTO.setSubjectName("434g34g");
         testDTO.setTestName("New Test");
-        testDTO.setQuestionsToAdd(createNewQuestion());
-        testDTO.setQuestionItemsToAdd(createNewQuestionitem());
+        testDTO.setQuestions(createNewQuestion());
         testDTO.setTeacherId(1);
         return testDTO;
     }
 
     @Test
     void findTestDtoById() {
-        TestDto testDTO = testDtoService.findTestDtoById(1);
-        assertEquals("Algebra", testDTO.getTestName());
-        assertEquals("Math", testDTO.getSubjectName());
-        assertEquals("Count 2+2=", testDTO.getQuestions().get(0).getQuestionName());
-        assertEquals("ANSWER: 5", testDTO.getQuestionItems().get(0).get(3).getDescription());
+        TestDto testDto = testDtoService.findTestDtoById(1);
+        List<Question> questions = testDto.getQuestions();
+        assertEquals("Algebra", testDto.getTestName());
+        assertEquals("Math", testDto.getSubjectName());
+        assertEquals("Count 2+2=", questions.get(0).getQuestionName());
+        assertEquals("ANSWER: 1", questions.get(0).getQuestionItems().get(0).getDescription());
     }
 
     @Test
     void addTestDto() {
-        TestDto testDTO = createNewTestDto();
-        testDtoService.addTestDto(testDTO);
-        assertEquals("Math", testDtoService.findTestDtoById(5).getSubjectName());
-        assertEquals("0.5*h*b", testDtoService.findTestDtoById(5).getQuestionItems().get(0).get(0).getDescription());
+        TestDto testDto = createNewTestDto();
+        testDtoService.addTestDto(testDto);
+        TestDto testDtoAfterAdd = testDtoService.findTestDtoById(5);
+        assertEquals("Math", testDtoAfterAdd.getSubjectName());
+        assertEquals("new Question", testDtoAfterAdd.getQuestions().get(0).getQuestionName());
     }
 
     @Test
     void updateTestDto() {
-        TestDto testDTO = testDtoService.findTestDtoById(ID_TEST_DTO);
-        testDTO.setQuestionItemsToAdd(createNewQuestionitem());
-        testDTO.setQuestionsToAdd(createNewQuestion());
-        String testName = testDTO.getTestName();
-        testDTO.setTestName(testName + "_update");
-        testDtoService.updateTestDto(testDTO);
+        TestDto testDto = testDtoService.findTestDtoById(ID_TEST_DTO);
+        testDto.setTestName(testDto.getTestName() + "_update");
+        String questionName = testDto.getQuestions().get(0).getQuestionName();
+        List<Question> questions = testDto.getQuestions();
+        questions.get(0).setQuestionName(questionName + "_update");
+        questions.add(createNewQuestion().get(0));
+        testDtoService.updateTestDto(testDto);
         TestDto testDtoAfterUpdate = testDtoService.findTestDtoById(ID_TEST_DTO);
-        assertEquals(testName + "_update", testDtoAfterUpdate.getTestName());
+        assertEquals(questionName + "_update", testDtoAfterUpdate.getQuestions().get(0).getQuestionName());
+        assertEquals(2, testDto.getQuestions().size());
     }
 
     @Test

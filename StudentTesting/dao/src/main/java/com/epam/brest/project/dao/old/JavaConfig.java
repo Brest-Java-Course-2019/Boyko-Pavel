@@ -22,8 +22,8 @@
 //        return new SubjectDaoJdbcImpl(namedParameterJdbcTemplate());
 //    }
 //    @Bean
-//    protected StudentDaoJdbcImpl studetDao(){
-//        return new StudentDaoJdbcImpl(namedParameterJdbcTemplate());
+//    protected StudetDaoJdbcImpl studetDao(){
+//        return new StudetDaoJdbcImpl(namedParameterJdbcTemplate());
 //    }
 //    @Value("org.h2.Driver")
 //    private String driverClass;
@@ -68,7 +68,7 @@
 ////        <constructor-arg ref="namedParameterJdbcTemplate"/>
 ////    </bean>
 ////
-////    <bean id="studentDao" class="StudentDaoJdbcImpl">
+////    <bean id="studentDao" class="StudetDaoJdbcImpl">
 ////        <constructor-arg ref="namedParameterJdbcTemplate"/>
 ////    </bean>
 ////    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

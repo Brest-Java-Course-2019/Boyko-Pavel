@@ -2,6 +2,7 @@ package com.epam.brest.project.web_app.validators;
 
 
 import com.epam.brest.project.DTO.TestDto;
+import com.epam.brest.project.model.Question;
 import com.epam.brest.project.model.QuestionItem;
 import com.epam.brest.project.model.Teacher;
 import com.epam.brest.project.service.TestDtoService;
@@ -18,6 +19,8 @@ public class StudentAnswerValidator implements Validator {
 
     private int countRightAnswer;
 
+    private TestDto testDto;
+
     @Autowired
     private TestDtoService testDtoService;
 
@@ -33,27 +36,45 @@ public class StudentAnswerValidator implements Validator {
         TestDto studentTestDto = (TestDto) target;
 
         TestDto testDtoFromDb = testDtoService.findTestDtoById(studentTestDto.getIdTests());
-        int countRightAnswer = 0;
-        List<List<QuestionItem>> correctAnswers = testDtoFromDb.getQuestionItems();
+        this.testDto = testDtoFromDb;
+
+        int countRightAnswer = studentTestDto.getQuestions().size();
+        List<Question> correctAnswers = testDtoFromDb.getQuestions();
         for (int i = 0; i < correctAnswers.size(); i++) {
-            for (int j = 0; j < correctAnswers.get(i).size(); j++) {
-                String studentAnswer = studentTestDto.getQuestionItems()
-                        .get(i).get(j).getAnswer().toString();
-                String correctAnswer = correctAnswers.get(i).get(j).getAnswer().toString();
+            List<QuestionItem> questionItems = correctAnswers.get(i).getQuestionItems();
+            for (int j = 0; j < questionItems.size(); j++) {
+                String studentAnswer = studentTestDto.getQuestions()
+                        .get(i).getQuestionItems().get(j).getAnswer().toString();
+
+                String correctAnswer = questionItems.get(j).getAnswer().toString();
                 if (studentAnswer.equals("true") && correctAnswer.equals("false")) {
-                    errors.rejectValue("questionItems[" + i + "][" + j +
+                    errors.rejectValue("questions[" + i + "].questionItems[" + j +
                             "]" + ".description", "answerValidator.unMarked");
+
+                    countRightAnswer--;
                 }
                 if (studentAnswer.equals("false") && correctAnswer.equals("true")) {
-                    errors.rejectValue("questionItems[" + i + "][" + j +
+
+                    errors.rejectValue("questions[" + i + "].questionItems[" + j +
                             "]" + ".description", "answerValidator.marked");
-                } else {
-                    countRightAnswer++;
+
+                    countRightAnswer--;
                 }
             }
         }
-        this.countRightAnswer=countRightAnswer;
+        this.countRightAnswer = countRightAnswer;
+    }
 
+    public TestDto getTestDtoWithStudentAnswer(TestDto testDto) {
+        List<Question> questions = this.testDto.getQuestions();
+        for (int i = 0; i <questions.size() ; i++) {
+            List<QuestionItem> questionItems = questions.get(i).getQuestionItems();
+            for (int j = 0; j <questionItems.size() ; j++) {
+                questionItems.get(j).setAnswer(
+                        testDto.getQuestions().get(i).getQuestionItems().get(j).getAnswer());
+            }
+        }
+        return this.testDto;
     }
 
     public int getCountRightAnswer() {

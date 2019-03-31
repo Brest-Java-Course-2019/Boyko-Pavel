@@ -1,7 +1,6 @@
 package com.epam.brest.project.web_app;
 
 import com.epam.brest.project.DTO.TestDto;
-import com.epam.brest.project.model.QuestionItem;
 import com.epam.brest.project.service.StudentService;
 import com.epam.brest.project.service.TestDtoService;
 import com.epam.brest.project.web_app.validators.StudentAnswerValidator;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 @Controller
@@ -49,7 +47,7 @@ public class StartTestController {
     public final String goToSolveTrainingTest(@PathVariable Integer id, Model model) {
         LOGGER.debug("findTestDtoById({}, {})", id, model);
         TestDto testDto = testDtoService.findTestDtoById(id);
-        model.addAttribute("testDto", setAnswerNull(testDto));
+        model.addAttribute("testDto", testDto);
         return "startTest";
     }
 
@@ -59,18 +57,11 @@ public class StartTestController {
         LOGGER.debug("endSolveById({}, {})", testDto, result);
         testDto.setIdTests(id);
         answerValidator.validate(testDto, result);
-        model.addAttribute("countRightQuestion", answerValidator.getCountRightAnswer());
-        model.addAttribute("testDto", testDto);
-        return "startTest";
-    }
-    private TestDto setAnswerNull (TestDto testDto){
-        List<List<QuestionItem>> listWithoutAnswer = testDto.getQuestionItems();
-        for (List<QuestionItem> list: listWithoutAnswer) {
-            for (QuestionItem questionTtem: list ) {
-                questionTtem.setAnswer(null);
-            }
+        if (result.hasErrors()) {
+            model.addAttribute("countRightQuestion", answerValidator.getCountRightAnswer());
+            model.addAttribute("endTest", true);
+            return "startTest";
         }
-        testDto.setQuestionItems(listWithoutAnswer);
-        return testDto;
+        return "startTest";
     }
 }

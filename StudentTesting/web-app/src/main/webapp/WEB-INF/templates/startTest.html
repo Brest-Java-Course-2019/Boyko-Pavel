@@ -34,8 +34,14 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <div class="navbar-nav">
-                <!--<a class="nav-item nav-link" href="student">Student <span class="sr-only">(current)</span></a>-->
-                <button id="student" type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                <a href="student.html"
+                   type="button"
+                   class="btn btn-outline-secondary"
+                   th:href="@{/startTest/training}"
+                   th:hidden="!${endTest}">Out test
+                </a>
+                <button th:hidden="${endTest}" id="student" type="button" class="btn btn-outline-secondary"
+                        data-toggle="modal"
                         data-target="#exampleModal" data-whatever="@mdo">Out test
                 </button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -65,6 +71,7 @@
     </div>
 </nav>
 
+
 <section id="tests">
     <div class="container-fluid">
         <div class="row">
@@ -78,13 +85,19 @@
                         <table class="table table-str">
                             <tbody>
 
+                            <div th:hidden="!${endTest}" class="alert alert-success" role="alert">
+                                <h3>
+                                    count right question <span th:text="${countRightQuestion}"></span>
+                                </h3>
+
+                            </div>
+
                             <tr class="text-right">
                                 <td>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label text-center">Subject:</label>
                                         <div class="col-sm-4">
-                                            <div class="form-control" th:text="*{subjectName}">Math
-                                            </div>
+                                            <input readonly class="form-control bg-light" th:field="*{subjectName}"/>
                                         </div>
                                     </div>
                                 </td>
@@ -93,11 +106,10 @@
                                         <label class="col-sm-2 col-form-label text-center">Test
                                             name: </label>
                                         <div class="col-sm-4">
-                                            <span class="form-control"
-                                                  th:field="*{testName}">Algebra</span>
+                                            <input class="form-control bg-light" readonly
+                                                   th:field="*{testName}">
                                         </div>
-                                        <div type="text"
-                                             hidden
+                                        <div hidden
                                              th:field="*{idTests}"></div>
                                     </div>
                                 </td>
@@ -109,6 +121,7 @@
                                 <div class="row">
                                     <div class="col col align-self-center">
                                         <div class="card" th:each="question, questStat : *{questions}">
+
                                             <div>
                                                 <div class="question">
                                                     <h2>Question № <span th:text="${questStat.count}"> 1 </span>
@@ -118,26 +131,35 @@
                                                     <div class="col-sm-12">
                                                         <input hidden type="number"
                                                                th:field="*{questions[__${questStat.index}__].questionId}"/>
-                                                        <span th:text="*{questions[__${questStat.index}__].questionName}"
-                                                        >Count 2 + 2
-                                                        </span>
+                                                        <textarea readonly
+                                                                  class="form-control bg-light"
+                                                                  th:field="*{questions[__${questStat.index}__].questionName}"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <table class="table">
                                                 <tbody>
-                                                <tr th:each="questionItem, itemStat : *{questionItems[__${questStat.index}__]}">
+                                                <tr th:each="questionItem, itemStat : *{questions[__${questStat.index}__].questionItems}">
                                                     <td class="chose">
                                                         <div class="form-check row-conformity">
                                                             <input class="form-check-input" type="checkbox"
-                                                                   th:field="*{questionItems[__${questStat.index}__][__${itemStat.index}__].answer}"
-                                                                   th:value="${questionItem.answer}"/>
-                                                            <input type="number" hidden
-                                                                   th:field="*{questionItems[__${questStat.index}__][__${itemStat.index}__].questionItemId}"/>
+                                                                   th:hidden="${endTest}"
+                                                                   th:field="*{questions[__${questStat.index}__].questionItems[__${itemStat.index}__].answer}"/>
+
                                                             <div class="col-sm-7">
-                                                                <span th:text="*{questionItems[__${questStat.index}__][__${itemStat.index}__].description}">4 </span>
+                                                                <textarea class="form-control bg-light" readonly
+                                                                          th:field="*{questions[__${questStat.index}__].questionItems[__${itemStat.index}__].description}"
+                                                                          th:errorclass="is-invalid"></textarea>
+                                                                <div th:if="${#fields.hasErrors('questions[__${questStat.index}__].questionItems[__${itemStat.index}__].description')}"
+                                                                     class="invalid-feedback"
+                                                                     th:errors="*{questions[__${questStat.index}__].questionItems[__${itemStat.index}__].description}">
+                                                                    [errors]
+                                                                </div>
                                                             </div>
+
+                                                            <input type="number" hidden readonly
+                                                                   th:field="*{questions[__${questStat.index}__].questionItems[__${itemStat.index}__].questionItemId}"/>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -180,7 +202,7 @@
                         </section>
 
                         <click>
-                            <a type="button"
+                            <a type="button" th:hidden="${endTest}"
                                class="btn btn-secondary btn-lg btn-block pb-2"
                                href="startTest.html"
                                th:onclick="@{document.forms['testDTOForm'].submit(); return false;}"
@@ -213,8 +235,24 @@
   });
 
 
+
 </script>
 
+<script>
+
+$("input:checkbox").on('change', function() {
+	if ( $(this).is(':checked') ) {
+  	$(this).siblings('input').val('1');
+  } else {
+  	$(this).siblings('input').val('0');
+  }
+});
+
+
+
+
+
+</script>
 
 <script>
 
@@ -227,6 +265,7 @@ $checkbox.prop('checked', false)
 $checkbox.prop('checked', true)
 }
 });
+
 
 
 </script>

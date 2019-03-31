@@ -37,24 +37,24 @@ class StudentAnswerServiceImplTest {
         assertEquals(false, studentAnswers.get(1).getStudentAnswer());
     }
 
-    @Test
-    void addStudentAnswer() {
-        TestDto testDto = new TestDto();
-        List<QuestionItem> questionItemsToAdd = new ArrayList<>();
-        for (QuestionItem questionItem : questionItemDao.findAllQuestionItemByTestId(1) ) {
-            QuestionItem questionItemToAdd = new QuestionItem();
-            questionItemToAdd.setAnswer(false);
-            questionItemToAdd.setQuestionItemId(questionItem.getQuestionItemId());
-            questionItemsToAdd.add(questionItemToAdd);
-        }
-        List<List<QuestionItem>> listList = new ArrayList<>();
-        listList.add(questionItemsToAdd);
-        testDto.setQuestionItems(listList);
-        studentAnswerService.addStudentAnswer(testDto, STUDENT_ID);
-        List<StudentAnswer> a = studentAnswerService.findStudentAnswerById(STUDENT_ID);
-        assertEquals(false, studentAnswerService.findStudentAnswerById(STUDENT_ID)
-                .get(4).getStudentAnswer());
-    }
+//    @Test
+//    void addStudentAnswer() {
+//        TestDto testDto = new TestDto();
+//        List<QuestionItem> questionItemsToAdd = new ArrayList<>();
+//        for (QuestionItem questionItem : questionItemDao.findAllQuestionItemByTestId(1) ) {
+//            QuestionItem questionItemToAdd = new QuestionItem();
+//            questionItemToAdd.setAnswer(false);
+//            questionItemToAdd.setQuestionItemId(questionItem.getQuestionItemId());
+//            questionItemsToAdd.add(questionItemToAdd);
+//        }
+//        List<List<QuestionItem>> listList = new ArrayList<>();
+//        listList.add(questionItemsToAdd);
+//        testDto.setQuestionItems(listList);
+//        studentAnswerService.addStudentAnswer(testDto, STUDENT_ID);
+//        List<StudentAnswer> a = studentAnswerService.findStudentAnswerById(STUDENT_ID);
+//        assertEquals(false, studentAnswerService.findStudentAnswerById(STUDENT_ID)
+//                .get(4).getStudentAnswer());
+//    }
 
 
 }

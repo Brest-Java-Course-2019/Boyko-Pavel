@@ -82,7 +82,7 @@
                             <div class="col-sm-12">
                                 <textarea class="form-control"
                                           placeholder="enter questionName"
-                                          name="newQuestion" value=" "> </textarea>
+                                          name="newQuestion"> </textarea>
                             </div>
                         </div>
                         <table class="table">
@@ -92,13 +92,13 @@
                                     <div class="form-check form-check-inline">
 
                                         <input type="checkbox">
-                                        <input name="newAnswer" type="text" hidden value="0">
+                                        <input name="newAnswer" hidden type="text"  value="0">
 
                                         <label class="col-sm-5 col-form-label text-center">Possible
                                             answer <span>1</span></label>
                                         <div class="col-sm-12">
                                                     <textarea class="form-control" placeholder="enter answer"
-                                                              name="newDescription" value=" "> </textarea>
+                                                              name="newDescription"> </textarea>
                                         </div>
                                     </div>
                                 </td>
@@ -113,7 +113,7 @@
                                             answer <span>1</span></label>
                                         <div class="col-sm-12">
                                                     <textarea class="form-control" placeholder="enter answer"
-                                                              name="newDescription" value=" "> </textarea>
+                                                              name="newDescription" > </textarea>
                                         </div>
                                     </div>
                                 </td>
@@ -128,7 +128,7 @@
                                             answer <span>1</span></label>
                                         <div class="col-sm-12">
                                                     <textarea class="form-control" placeholder="enter answer"
-                                                              name="newDescription" value=" "> </textarea>
+                                                              name="newDescription" > </textarea>
                                         </div>
                                     </div>
                                 </td>
@@ -143,7 +143,7 @@
                                             answer <span>1</span></label>
                                         <div class="col-sm-12">
                                                     <textarea class="form-control" placeholder="enter answer"
-                                                              name="newDescription" value=" "> </textarea>
+                                                              name="newDescription" > </textarea>
                                         </div>
                                     </div>
                                 </td>
@@ -208,11 +208,9 @@
                                         </div>
                                         <input type="text"
                                                hidden
-                                               disabled
                                                th:field="*{idTests}"/>
                                         <input type="text" name="teacherId"
                                                th:value="${#session.getAttribute('teacher').teacherId}"
-                                               disabled
                                                hidden="">
                                     </div>
                                 </td>
@@ -233,7 +231,7 @@
                                                 </div>
                                                 <div class="form-group row-conformity">
                                                     <div class="col-sm-12">
-                                                        <input hidden type="number" disabled
+                                                        <input hidden type="number"
                                                                th:field="*{questions[__${questStat.index}__].questionId}"/>
                                                         <textarea class="form-control"
                                                                   placeholder="enter questionName"
@@ -256,23 +254,23 @@
                                                 </div>
                                             </div>
 
-                                            <div th:if="${#fields.hasErrors('questionItems[__${questStat.index}__][__${0}__].answer')}"
+                                            <div th:if="${#fields.hasErrors('questions[__${questStat.index}__].questionItems[__${0}__].answer')}"
                                                  class="alert alert-danger">
                                                 <p>Please select at least 1 answer option</p>
                                             </div>
 
                                             <table class="table">
                                                 <tbody>
-                                                <tr th:each="questionItem, itemStat : *{questionItems[__${questStat.index}__]}">
+                                                <tr th:each="questionItem, itemStat : *{questions[__${questStat.index}__].questionItems}">
                                                     <td>
                                                         <div class="form-check form-check-inline">
                                                             <div>
                                                                 <input class="form-check-input" type="checkbox"
-                                                                       th:field="*{questionItems[__${questStat.index}__][__${itemStat.index}__].answer}"
+                                                                       th:field="*{questions[__${questStat.index}__].questionItems[__${itemStat.index}__].answer}"
                                                                        th:value="${questionItem.answer}"/>
                                                             </div>
-                                                            <input type="number" hidden disabled
-                                                                   th:field="*{questionItems[__${questStat.index}__][__${itemStat.index}__].questionItemId}"
+                                                            <input type="number" hidden
+                                                                   th:field="*{questions[__${questStat.index}__].questionItems[__${itemStat.index}__].questionItemId}"
                                                             />
                                                             <label th:for="${#ids.next('answer')}"
                                                                    class="col-sm-5 col-form-label text-center">Possible
@@ -282,11 +280,11 @@
                                                             <div class="col-sm-12">
                                                                 <textarea class="form-control"
                                                                           placeholder="enter answer"
-                                                                          th:field="*{questionItems[__${questStat.index}__][__${itemStat.index}__].description}"
+                                                                          th:field="*{questions[__${questStat.index}__].questionItems[__${itemStat.index}__].description}"
                                                                           th:errorclass="is-invalid"></textarea>
-                                                                <div th:if="${#fields.hasErrors('questionItems[__${questStat.index}__][__${itemStat.index}__].description')}"
+                                                                <div th:if="${#fields.hasErrors('questions[__${questStat.index}__].questionItems[__${itemStat.index}__].description')}"
                                                                      class="invalid-feedback"
-                                                                     th:errors="*{questionItems[__${questStat.index}__][__${itemStat.index}__].description}">
+                                                                     th:errors="*{questions[__${questStat.index}__].questionItems[__${itemStat.index}__].description}">
                                                                     [errors]
                                                                 </div>
                                                             </div>
@@ -350,73 +348,73 @@
                                 </div>
                             </div>
                             <!--after validation-->
-                            <div class="container-fluid pb-2">
-                                <div class="row">
-                                    <div class="col col align-self-center">
-                                        <div class="card" th:each="add, addStat : *{questionsToAdd}">
-                                            <div>
-                                                <div class="question" th:id="${addStat.count}">
-                                                    <h2>Add question № <span
-                                                            th:text="${addStat.count}"> validation </span>
-                                                    </h2>
-                                                </div>
-                                                <div class="form-group row-conformity">
-                                                    <div class="col-sm-12">
-                                                        <textarea class="form-control"
-                                                                  placeholder="enter questionName"
-                                                                  th:field="*{questionsToAdd[__${addStat.index}__].questionName}"
-                                                                  th:value="${add.questionName}"
-                                                                  th:errorclass="is-invalid">
-                                                        </textarea>
-                                                        <div th:if="${#fields.hasErrors('questionsToAdd[__${addStat.index}__].questionName')}"
-                                                             class="invalid-feedback"
-                                                             th:errors="*{questionsToAdd[__${addStat.index}__].questionName}">
-                                                            [errors]
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+<!--                            <div class="container-fluid pb-2">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col col align-self-center">-->
+<!--                                        <div class="card" th:each="add, addStat : *{questionsToAdd}">-->
+<!--                                            <div>-->
+<!--                                                <div class="question" th:id="${addStat.count}">-->
+<!--                                                    <h2>Add question № <span-->
+<!--                                                            th:text="${addStat.count}"> validation </span>-->
+<!--                                                    </h2>-->
+<!--                                                </div>-->
+<!--                                                <div class="form-group row-conformity">-->
+<!--                                                    <div class="col-sm-12">-->
+<!--                                                        <textarea class="form-control"-->
+<!--                                                                  placeholder="enter questionName"-->
+<!--                                                                  th:field="*{questionsToAdd[__${addStat.index}__].questionName}"-->
+<!--                                                                  th:value="${add.questionName}"-->
+<!--                                                                  th:errorclass="is-invalid">-->
+<!--                                                        </textarea>-->
+<!--                                                        <div th:if="${#fields.hasErrors('questionsToAdd[__${addStat.index}__].questionName')}"-->
+<!--                                                             class="invalid-feedback"-->
+<!--                                                             th:errors="*{questionsToAdd[__${addStat.index}__].questionName}">-->
+<!--                                                            [errors]-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
 
-                                            <div th:if="${#fields.hasErrors('questionItemsToAdd[__${addStat.index}__][__${0}__].answer')}"
-                                                 class="alert alert-danger">
-                                                <p>Please select at least 1 answer option</p>
-                                            </div>
+<!--                                            <div th:if="${#fields.hasErrors('questionItemsToAdd[__${addStat.index}__][__${0}__].answer')}"-->
+<!--                                                 class="alert alert-danger">-->
+<!--                                                <p>Please select at least 1 answer option</p>-->
+<!--                                            </div>-->
 
-                                            <table class="table">
-                                                <tbody>
-                                                <tr th:each="addItem, addItemStat : *{questionItemsToAdd[__${addStat.index}__]}">
-                                                    <td>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                   id="inlineCheckbox1"
-                                                                   th:field="*{questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].answer}"
-                                                                   th:value="${addItem.answer}"/>
+<!--                                            <table class="table">-->
+<!--                                                <tbody>-->
+<!--                                                <tr th:each="addItem, addItemStat : *{questionItemsToAdd[__${addStat.index}__]}">-->
+<!--                                                    <td>-->
+<!--                                                        <div class="form-check form-check-inline">-->
+<!--                                                            <input class="form-check-input" type="checkbox"-->
+<!--                                                                   id="inlineCheckbox1"-->
+<!--                                                                   th:field="*{questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].answer}"-->
+<!--                                                                   th:value="${addItem.answer}"/>-->
 
-                                                            <label th:for="${#ids.next('answer')}"
-                                                                   class="col-sm-5 col-form-label text-center">Possible
-                                                                answer
-                                                                <span th:text="${addItemStat.count}"> 1 </span></label>
+<!--                                                            <label th:for="${#ids.next('answer')}"-->
+<!--                                                                   class="col-sm-5 col-form-label text-center">Possible-->
+<!--                                                                answer-->
+<!--                                                                <span th:text="${addItemStat.count}"> 1 </span></label>-->
 
-                                                            <div class="col-sm-12">
-                                                                <textarea class="form-control"
-                                                                          placeholder="enter answer"
-                                                                          th:field="*{questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].description}"
-                                                                          th:errorclass="is-invalid"></textarea>
-                                                                <div th:if="${#fields.hasErrors('questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].description')}"
-                                                                     class="invalid-feedback"
-                                                                     th:errors="*{questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].description}">
-                                                                    [errors]
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                                                            <div class="col-sm-12">-->
+<!--                                                                <textarea class="form-control"-->
+<!--                                                                          placeholder="enter answer"-->
+<!--                                                                          th:field="*{questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].description}"-->
+<!--                                                                          th:errorclass="is-invalid"></textarea>-->
+<!--                                                                <div th:if="${#fields.hasErrors('questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].description')}"-->
+<!--                                                                     class="invalid-feedback"-->
+<!--                                                                     th:errors="*{questionItemsToAdd[__${addStat.index}__][__${addItemStat.index}__].description}">-->
+<!--                                                                    [errors]-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </td>-->
+<!--                                                </tr>-->
+<!--                                                </tbody>-->
+<!--                                            </table>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <!--after validation-->
                         </section>
 
@@ -449,8 +447,8 @@ $(function(){
     var count = 0;
     $('click').bind('click', function(){
     count += 1;
-    $('#schemaNewQuestion').clone(true, false).removeAttr("hidden").appendTo('#listQuestion');
-    $('#schemaNewQuestion:first').attr('id', count);
+    $('#schemaNewQuestion').clone(true).removeAttr("hidden").appendTo('#listQuestion');
+<!--    $('#schemaNewQuestion:last').attr('id', count);-->
     var gg =$('h2:last').text("Add question №" + count);
     });
 });

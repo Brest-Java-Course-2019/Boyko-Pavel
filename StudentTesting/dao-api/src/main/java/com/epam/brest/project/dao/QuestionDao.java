@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 public interface QuestionDao {
 
-    Stream<Question> findall();
+    Stream<Question> findAll();
 
-    List<Question> findallQuestionByTestId(Integer id);
+    List<Question> findAllQuestionByTestId(Integer id);
 
     Optional<Question> findById(final Integer id);
 

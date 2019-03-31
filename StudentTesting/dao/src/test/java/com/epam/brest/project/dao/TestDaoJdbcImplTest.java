@@ -33,7 +33,7 @@ class TestDaoJdbcImplTest {
 
     @org.junit.jupiter.api.Test
     void findAllTests() {
-        Stream<Test> testStream = testDao.findall();
+        Stream<Test> testStream = testDao.findAll();
         assertNotNull(testStream);
         assertEquals(3, testStream.count());
     }
@@ -46,7 +46,7 @@ class TestDaoJdbcImplTest {
 
     @org.junit.jupiter.api.Test
     void findTestDTOByID(){
-        TestDto testDTO = testDao.findTestDTOById(TEST_ID).get();
+        TestDto testDTO = testDao.findTestDtoById(TEST_ID).get();
         assertEquals("Math", testDTO.getSubjectName());
     }
 
@@ -59,13 +59,13 @@ class TestDaoJdbcImplTest {
 
     @org.junit.jupiter.api.Test
     void addQuestion(){
-        Stream<Test> countIdBeforeInsert = testDao.findall();
+        Stream<Test> countIdBeforeInsert = testDao.findAll();
         Test test = new Test();
         test.setName("Trigonometry");
         test.setTeacherId(2);
         test.setSubjectId(2);
         testDao.add(test);
-        Stream<Test> countIdAfterInsert = testDao.findall();
+        Stream<Test> countIdAfterInsert = testDao.findAll();
 
         assertEquals(1 , countIdAfterInsert.count() - countIdBeforeInsert.count());
         assertEquals(new Integer(5) , test.getTestId());
@@ -73,7 +73,7 @@ class TestDaoJdbcImplTest {
 
     @org.junit.jupiter.api.Test
     void addWrongQuestion(){
-        Stream<Test> countIdBeforeInsert = testDao.findall();
+        Stream<Test> countIdBeforeInsert = testDao.findAll();
         Test test = new Test();
         test.setName("Trigonometry");
         test.setTeacherId(2);

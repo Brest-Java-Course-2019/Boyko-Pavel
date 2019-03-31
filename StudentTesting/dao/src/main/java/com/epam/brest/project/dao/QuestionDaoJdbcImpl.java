@@ -50,7 +50,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     }
 
     @Override
-    public Stream<Question> findall() {
+    public Stream<Question> findAll() {
         LOGGER.warn("start findall()");
         List<Question> questionItems = namedParameterJdbcTemplate.query(selectAllQuestion, new QuestionRowMapper());
         return questionItems.stream();
@@ -58,7 +58,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
 
 
     @Override
-    public List<Question> findallQuestionByTestId(Integer id) {
+    public List<Question> findAllQuestionByTestId(Integer id) {
         LOGGER.warn("start findallQuestionByTestId()");
         Map<String, Integer> map = new HashMap<>();
         map.put(TEST_ID, id);

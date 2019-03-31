@@ -70,7 +70,6 @@ public class EditTestController {
             return "editTest";
         } else {
             LOGGER.debug("updateTestDto({})", testDtoBuilder);
-
             testDtoService.addTestDto(testDtoBuilder);
             return "redirect:/teacher";
         }

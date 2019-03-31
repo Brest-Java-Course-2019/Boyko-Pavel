@@ -43,7 +43,7 @@ class QuestionDaoJdbcImplTest {
 
     @Test
     void findAllQuestion() {
-        Stream<Question> question = questionDao.findall();
+        Stream<Question> question = questionDao.findAll();
         assertNotNull(question);
         assertEquals(4, question.count());
     }
@@ -57,7 +57,7 @@ class QuestionDaoJdbcImplTest {
 
     @Test
     void findallQuestionByTestId() {
-        List<Question> questionList = questionDao.findallQuestionByTestId(TEST_ID);
+        List<Question> questionList = questionDao.findAllQuestionByTestId(TEST_ID);
         assertEquals("Count 3+2=", questionList.get(1).getQuestionName());
     }
 
@@ -70,18 +70,18 @@ class QuestionDaoJdbcImplTest {
 
     @Test
     void addQuestion() {
-        Stream<Question> countIdBeforeInsert = questionDao.findall();
+        Stream<Question> countIdBeforeInsert = questionDao.findAll();
         Question questionItem = new Question();
         questionItem.setQuestionName("Question №4");
         questionDao.add(questionItem, 2);
-        Stream<Question> countIdAfterInsert = questionDao.findall();
+        Stream<Question> countIdAfterInsert = questionDao.findAll();
 
         assertEquals(1, countIdAfterInsert.count() - countIdBeforeInsert.count());
     }
 
     @Test
     void addWrongQuestion() {
-        Stream<Question> countIdBeforeInsert = questionDao.findall();
+        Stream<Question> countIdBeforeInsert = questionDao.findAll();
         Question questionItem = new Question();
         questionItem.setTestId(25);
         questionItem.setQuestionName("Question №4");
@@ -104,18 +104,18 @@ class QuestionDaoJdbcImplTest {
 
     @Test
     void batchupdateQuestion() {
-        List<Question> questions = questionDao.findall().collect(Collectors.toList());;
+        List<Question> questions = questionDao.findAll().collect(Collectors.toList());;
         for (Question question: questions) {
             question.setQuestionName(question.getQuestionName()+ "_update");
         }
         questionDao.batchUpdate(questions);
-        List<Question> questionAfterUpdate = questionDao.findall().collect(Collectors.toList());
+        List<Question> questionAfterUpdate = questionDao.findAll().collect(Collectors.toList());
         assertEquals(questions.get(1).getQuestionName(), questionAfterUpdate.get(1).getQuestionName());
     }
 
     @Test
     void deleteQuestionByID() {
         questionDao.deleteByTestId(1);
-        assertEquals(0, questionDao.findallQuestionByTestId(1).size());
+        assertEquals(0, questionDao.findAllQuestionByTestId(1).size());
     }
 }

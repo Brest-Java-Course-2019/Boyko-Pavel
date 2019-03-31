@@ -22,18 +22,24 @@ public class TestDtoBuilder {
 
     private void buildQuestion() {
         String[] questions = testDto.getNewQuestion();
-        List<Question> questionToAdd = testDto.getQuestionsToAdd();
-        for (String questionName : questions) {
-            Question question = new Question();
-            question.setQuestionName(questionName);
-            question.setTestId(testDto.getTeacherId());
-            questionToAdd.add(question);
+        List<Question> newQuestions;
+        if (testDto.getQuestions() == null) {
+             newQuestions = new ArrayList<>();
         }
-        LOGGER.debug("buildQuestion()", testDto);
-
+        else{
+             newQuestions = testDto.getQuestions();
+        }
+        List<List<QuestionItem>> newQuestionItems = buildQuestionItem();
+        for (int i = 0; i <questions.length ; i++) {
+            Question question = new Question();
+            question.setQuestionName(questions[i]);
+            question.setQuestionItems(newQuestionItems.get(i));
+            newQuestions.add(question);
+        }
+        testDto.setQuestions(newQuestions);
     }
 
-    private void buildQuestionItem() {
+    private List<List<QuestionItem>> buildQuestionItem() {
         List<List<QuestionItem>> listsQuestionItem = new ArrayList<>();
         String[] newDescription = testDto.getNewDescription();
         Boolean[] newAnswer = testDto.getNewAnswer();
@@ -48,18 +54,16 @@ public class TestDtoBuilder {
             listsQuestionItem.add(questionItemList);
 
         }
-        testDto.setQuestionItemsToAdd(listsQuestionItem);
-        LOGGER.debug(" buildQuestionItem()", testDto);
+        return listsQuestionItem;
     }
 
     public TestDto getTestDto() {
         if (testDto.getNewQuestion() != null) {
             buildQuestion();
-            buildQuestionItem();
             testDto.setNewQuestion(null);
             testDto.setNewAnswer(null);
             testDto.setNewDescription(null);
-            LOGGER.debug("getTestDto()", testDto);
+            LOGGER.debug("getTestDto({})", testDto);
         }
         return testDto;
     }

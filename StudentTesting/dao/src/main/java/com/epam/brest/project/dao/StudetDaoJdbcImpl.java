@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class StudentDaoJdbcImpl implements StudentDao {
+public class StudetDaoJdbcImpl implements StudentDao {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -32,7 +32,7 @@ public class StudentDaoJdbcImpl implements StudentDao {
     private final static String STUDENT_NAME = "name";
     private final static String STUDENT_SURNAME = "surname";
 
-    public StudentDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public StudetDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 

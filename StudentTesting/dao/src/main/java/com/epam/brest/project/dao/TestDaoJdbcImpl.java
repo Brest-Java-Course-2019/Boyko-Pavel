@@ -55,7 +55,7 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     @Override
-    public Stream<Test> findall() {
+    public Stream<Test> findAll() {
         LOGGER.warn("start findall()");
         List<Test> tests = namedParameterJdbcTemplate.query(selectAllTest, new TestRowMapper());
         return tests.stream();
@@ -70,7 +70,7 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     @Override
-    public Optional<TestDto> findTestDTOById(Integer id) {
+    public Optional<TestDto> findTestDtoById(Integer id) {
         LOGGER.warn("start findTestDTOById()");
         TestDto testDTO = namedParameterJdbcTemplate.queryForObject(selectTestDTOByID,
                 new MapSqlParameterSource(TEST_ID, id),

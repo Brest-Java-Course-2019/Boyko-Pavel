@@ -8,11 +8,11 @@ import java.util.stream.Stream;
 
 public interface TestDao {
 
-    Stream<Test> findall();
+    Stream<Test> findAll();
 
     Optional<Test> findById(final Integer id);
 
-    Optional<TestDto> findTestDTOById(final Integer id);
+    Optional<TestDto> findTestDtoById(final Integer id);
 
     Optional<Test> add(final Test test);
 

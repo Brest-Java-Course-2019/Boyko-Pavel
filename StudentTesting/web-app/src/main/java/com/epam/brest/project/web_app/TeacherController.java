@@ -1,5 +1,6 @@
 package com.epam.brest.project.web_app;
 
+import com.epam.brest.project.model.Student;
 import com.epam.brest.project.model.Teacher;
 import com.epam.brest.project.service.StudentService;
 import com.epam.brest.project.service.TeacherService;
@@ -36,13 +37,14 @@ public class TeacherController {
     @Autowired
     private TeacherValidator teacherValidator;
 
-    @PostMapping(value = {"/start"})
+    @PostMapping(value = {"/teacher"})
     public String updateTestById(Model model, Teacher teacher,
                                  BindingResult result) {
 
         LOGGER.debug("findAllTeacherTest({}, {})", teacher, result);
         teacherValidator.validate(teacher, result);
         if (result.hasErrors()){
+            model.addAttribute("student", new Student());
             model.addAttribute("studentTestsDTOs", studentService.findAllDto());
             return "start";
         }

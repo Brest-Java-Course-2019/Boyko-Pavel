@@ -1,12 +1,22 @@
 package com.epam.brest.project.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Question {
 
     private Integer questionId;
     private String questionName;
     private Integer testId;
+    private List<QuestionItem> questionItems = new ArrayList<>();
 
+    public List<QuestionItem> getQuestionItems() {
+        return questionItems;
+    }
 
+    public void setQuestionItems(List<QuestionItem> questionItems) {
+        this.questionItems = questionItems;
+    }
 
     public Integer getQuestionId() {
         return questionId;
@@ -18,10 +28,6 @@ public class Question {
 
     public String getQuestionName() {
         return questionName;
-    }
-
-    public int getQuestionNameLenght() {
-        return getQuestionName().trim().length();
     }
 
     public void setQuestionName(String questionName) {

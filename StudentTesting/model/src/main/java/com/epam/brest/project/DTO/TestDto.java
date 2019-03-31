@@ -1,8 +1,6 @@
 package com.epam.brest.project.DTO;
 
 import com.epam.brest.project.model.Question;
-import com.epam.brest.project.model.QuestionItem;
-import javax.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,27 +12,17 @@ import java.util.List;
 public class TestDto {
 
     private Integer idTests;
-    @NotNull
     private String testName;
     private String subjectName;
     private Integer subjectId;
     private Integer teacherId;
     private List<Question> questions = new ArrayList<>();
-    private List<List<QuestionItem>> questionItems = new ArrayList<>();
+
+
     private Boolean[] newAnswer;
     private String[] newQuestion;
     private String[] newDescription;
 
-    private List<Question> questionsToAdd = new ArrayList<>();
-    private List<List<QuestionItem>> questionItemsToAdd = new ArrayList<>();
-
-    public String[] getNewQuestion() {
-        return newQuestion;
-    }
-
-    public void setNewQuestion(String[] newQuestion) {
-        this.newQuestion = newQuestion;
-    }
 
     public Boolean[] getNewAnswer() {
         return newAnswer;
@@ -42,6 +30,14 @@ public class TestDto {
 
     public void setNewAnswer(Boolean[] newAnswer) {
         this.newAnswer = newAnswer;
+    }
+
+    public String[] getNewQuestion() {
+        return newQuestion;
+    }
+
+    public void setNewQuestion(String[] newQuestion) {
+        this.newQuestion = newQuestion;
     }
 
     public String[] getNewDescription() {
@@ -68,20 +64,20 @@ public class TestDto {
         this.testName = testName;
     }
 
-    public Integer getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(Integer subjectId) {
-        this.subjectId = subjectId;
-    }
-
     public String getSubjectName() {
         return subjectName;
     }
 
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
+    }
+
+    public Integer getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
     }
 
     public Integer getTeacherId() {
@@ -98,38 +94,6 @@ public class TestDto {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
-    }
-
-    public List<List<QuestionItem>> getQuestionItems() {
-        return questionItems;
-    }
-
-    public void setQuestionItems(List<List<QuestionItem>> questionItems) {
-        this.questionItems = questionItems;
-    }
-
-    public List<Question> addQuestion() {
-        return this.questions;
-    }
-
-    public List<List<QuestionItem>> addQuestionItem() {
-        return this.questionItems;
-    }
-
-    public List<Question> getQuestionsToAdd() {
-        return questionsToAdd;
-    }
-
-    public void setQuestionsToAdd(List<Question> questionsToAdd) {
-        this.questionsToAdd = questionsToAdd;
-    }
-
-    public List<List<QuestionItem>> getQuestionItemsToAdd() {
-        return questionItemsToAdd;
-    }
-
-    public void setQuestionItemsToAdd(List<List<QuestionItem>> questionItemsToAdd) {
-        this.questionItemsToAdd = questionItemsToAdd;
     }
 
     public TestDto testName(String testName) {
@@ -166,7 +130,6 @@ public class TestDto {
                 ", subjectId=" + subjectId +
                 ", teacherId=" + teacherId +
                 ", questions=" + questions +
-                ", questionItems=" + questionItems +
                 '}';
     }
 }
