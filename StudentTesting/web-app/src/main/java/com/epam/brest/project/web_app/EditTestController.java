@@ -44,7 +44,7 @@ public class EditTestController {
     }
 
     @PostMapping(value = {"/editTest/{id}"})
-    public String updateTestById(@Valid TestDto testDTO, Model model,
+    public String updateTestById(@PathVariable Integer id, @Valid TestDto testDTO, Model model,
                                  BindingResult result) {
         LOGGER.debug("updateTestById({}, {})", testDTO, result);
         TestDto testDtoBuilder = new TestDtoBuilder(testDTO).getTestDto();
@@ -54,6 +54,7 @@ public class EditTestController {
             return "editTest";
         } else {
             LOGGER.debug("updateTestDto({})", testDtoBuilder);
+            testDTO.idTests(id);
             testDtoService.updateTestDto(testDTO);
             return "redirect:/teacher";
         }

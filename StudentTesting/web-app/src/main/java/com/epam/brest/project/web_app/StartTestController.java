@@ -1,8 +1,10 @@
 package com.epam.brest.project.web_app;
 
 import com.epam.brest.project.DTO.TestDto;
+import com.epam.brest.project.builder.DateBuilder;
 import com.epam.brest.project.service.StudentService;
 import com.epam.brest.project.service.TestDtoService;
+import com.epam.brest.project.web_app.validators.FilterValidator;
 import com.epam.brest.project.web_app.validators.StudentAnswerValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 
 @Controller
@@ -35,10 +38,13 @@ public class StartTestController {
     @Autowired
     private StudentAnswerValidator answerValidator;
 
+    @Autowired
+    private FilterValidator filterValidator;
 
     @GetMapping(value = {"/startTest/training"})
     public final String goToTrainingTest(Model model) {
         LOGGER.debug("findTestDtoById({})", model);
+        model.addAttribute("dateBuilder", new DateBuilder());
         model.addAttribute("allTestsDto", studentService.findAllDto());
         return "student";
     }
@@ -63,5 +69,20 @@ public class StartTestController {
             return "startTest";
         }
         return "startTest";
+    }
+
+
+    @PostMapping(value = {"/test/sort"})
+    public String sortTrainingTest(DateBuilder dateBuilder, Model model,
+                                   BindingResult result) throws ParseException {
+        LOGGER.debug("sortTrainingTest({})", result);
+        filterValidator.validate(dateBuilder, result);
+        if (result.hasErrors()) {
+            return "student";
+        } else {
+            LOGGER.debug("sortTrainingTest after validation({})", dateBuilder);
+            model.addAttribute("allTestsDto", studentService.filterByDate(dateBuilder));
+            return "student";
+        }
     }
 }

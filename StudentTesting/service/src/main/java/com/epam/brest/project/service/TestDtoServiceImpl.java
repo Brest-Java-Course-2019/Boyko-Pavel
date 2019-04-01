@@ -103,13 +103,15 @@ public class TestDtoServiceImpl implements TestDtoService {
 
     private List<Question> questionsToUpdate(TestDto testDto) {
         List<Question> questionToUpdate = new ArrayList<>();
+        List<Question> questionsToAdd = new ArrayList<>();
         for (Question question : testDto.getQuestions()) {
             if (question.getQuestionId() == null) {
-                questionDao.add(question, testDto.getIdTests());
+                questionsToAdd.add(question);
             } else {
                 questionToUpdate.add(question);
             }
         }
+        addQuestions(questionsToAdd, testDto.getIdTests());
         return questionToUpdate;
     }
 

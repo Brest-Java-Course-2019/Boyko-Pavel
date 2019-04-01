@@ -1,12 +1,14 @@
 package com.epam.brest.project.service;
 
 import com.epam.brest.project.DTO.StudentTestDto;
+import com.epam.brest.project.builder.DateBuilder;
 import com.epam.brest.project.dao.StudentTestDtoDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,5 +29,11 @@ public class StudentServiceImpl implements  StudentService {
     public List<StudentTestDto> findAllDto() {
         LOGGER.debug("Find all student test DTO");
         return studentTestDtoDao.findAllDto().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StudentTestDto> filterByDate(DateBuilder dateBuilder) throws ParseException {
+        LOGGER.debug("filterByDate({})", dateBuilder);
+        return studentTestDtoDao.filterByDate(dateBuilder).collect(Collectors.toList());
     }
 }
