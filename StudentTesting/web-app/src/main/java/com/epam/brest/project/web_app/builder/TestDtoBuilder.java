@@ -24,13 +24,12 @@ public class TestDtoBuilder {
         String[] questions = testDto.getNewQuestion();
         List<Question> newQuestions;
         if (testDto.getQuestions() == null) {
-             newQuestions = new ArrayList<>();
-        }
-        else{
-             newQuestions = testDto.getQuestions();
+            newQuestions = new ArrayList<>();
+        } else {
+            newQuestions = testDto.getQuestions();
         }
         List<List<QuestionItem>> newQuestionItems = buildQuestionItem();
-        for (int i = 0; i <questions.length ; i++) {
+        for (int i = 0; i < questions.length; i++) {
             Question question = new Question();
             question.setQuestionName(questions[i]);
             question.setQuestionItems(newQuestionItems.get(i));
@@ -64,6 +63,15 @@ public class TestDtoBuilder {
             testDto.setNewAnswer(null);
             testDto.setNewDescription(null);
             LOGGER.debug("getTestDto({})", testDto);
+        }
+        return testDto;
+    }
+
+    public static TestDto setAnswerFalse(TestDto testDto) {
+        for (Question question : testDto.getQuestions()) {
+            for (QuestionItem questionItem : question.getQuestionItems()) {
+                questionItem.setAnswer(false);
+            }
         }
         return testDto;
     }

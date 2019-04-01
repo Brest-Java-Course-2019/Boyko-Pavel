@@ -4,6 +4,7 @@ import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.builder.DateBuilder;
 import com.epam.brest.project.service.StudentService;
 import com.epam.brest.project.service.TestDtoService;
+import com.epam.brest.project.web_app.builder.TestDtoBuilder;
 import com.epam.brest.project.web_app.validators.FilterValidator;
 import com.epam.brest.project.web_app.validators.StudentAnswerValidator;
 import org.slf4j.Logger;
@@ -53,7 +54,7 @@ public class StartTestController {
     public final String goToSolveTrainingTest(@PathVariable Integer id, Model model) {
         LOGGER.debug("findTestDtoById({}, {})", id, model);
         TestDto testDto = testDtoService.findTestDtoById(id);
-        model.addAttribute("testDto", testDto);
+        model.addAttribute("testDto", TestDtoBuilder.setAnswerFalse(testDto));
         return "startTest";
     }
 
@@ -63,11 +64,8 @@ public class StartTestController {
         LOGGER.debug("endSolveById({}, {})", testDto, result);
         testDto.setIdTests(id);
         answerValidator.validate(testDto, result);
-        if (result.hasErrors()) {
-            model.addAttribute("countRightQuestion", answerValidator.getCountRightAnswer());
-            model.addAttribute("endTest", true);
-            return "startTest";
-        }
+        model.addAttribute("countRightQuestion", answerValidator.getCountRightAnswer());
+        model.addAttribute("endTest", true);
         return "startTest";
     }
 

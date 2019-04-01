@@ -38,10 +38,11 @@ public class StudentAnswerValidator implements Validator {
         TestDto testDtoFromDb = testDtoService.findTestDtoById(studentTestDto.getIdTests());
         this.testDto = testDtoFromDb;
 
-        int countRightAnswer = studentTestDto.getQuestions().size();
+        int countRightAnswer = 0;
         List<Question> correctAnswers = testDtoFromDb.getQuestions();
         for (int i = 0; i < correctAnswers.size(); i++) {
             List<QuestionItem> questionItems = correctAnswers.get(i).getQuestionItems();
+            int countErrorsBeforeValidation = errors.getErrorCount();
             for (int j = 0; j < questionItems.size(); j++) {
                 String studentAnswer = studentTestDto.getQuestions()
                         .get(i).getQuestionItems().get(j).getAnswer().toString();
@@ -50,16 +51,16 @@ public class StudentAnswerValidator implements Validator {
                 if (studentAnswer.equals("true") && correctAnswer.equals("false")) {
                     errors.rejectValue("questions[" + i + "].questionItems[" + j +
                             "]" + ".description", "answerValidator.unMarked");
-
-                    countRightAnswer--;
                 }
                 if (studentAnswer.equals("false") && correctAnswer.equals("true")) {
 
                     errors.rejectValue("questions[" + i + "].questionItems[" + j +
                             "]" + ".description", "answerValidator.marked");
-
-                    countRightAnswer--;
                 }
+            }
+            int countErrorsAfterValidation = errors.getErrorCount();
+            if (countErrorsAfterValidation == countErrorsBeforeValidation) {
+                countRightAnswer++;
             }
         }
         this.countRightAnswer = countRightAnswer;
@@ -67,9 +68,9 @@ public class StudentAnswerValidator implements Validator {
 
     public TestDto getTestDtoWithStudentAnswer(TestDto testDto) {
         List<Question> questions = this.testDto.getQuestions();
-        for (int i = 0; i <questions.size() ; i++) {
+        for (int i = 0; i < questions.size(); i++) {
             List<QuestionItem> questionItems = questions.get(i).getQuestionItems();
-            for (int j = 0; j <questionItems.size() ; j++) {
+            for (int j = 0; j < questionItems.size(); j++) {
                 questionItems.get(j).setAnswer(
                         testDto.getQuestions().get(i).getQuestionItems().get(j).getAnswer());
             }
