@@ -52,12 +52,12 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId=" + studentId +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "Student{"
+                + "studentId=" + studentId
+                + ", name='" + name + '\''
+                + ", surname='" + surname + '\''
+                + ", login='" + login + '\''
+                + ", password='" + password + '\''
+                + '}';
     }
 }

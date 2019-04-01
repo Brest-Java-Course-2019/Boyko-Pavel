@@ -36,16 +36,25 @@ public class StudentAnswerJdbcDaoImpl implements StudentAnswerDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    /**
+     * Find studentAnswer by student id.
+     *
+     * @param studentId student id.
+     */
     @Override
-    public List<StudentAnswer> findStudentAnswerById(Integer id) {
-        LOGGER.info("findStudentAnswerByIdStudent({})", id);
+    public List<StudentAnswer> findStudentAnswerById(Integer studentId) {
+        LOGGER.info("findStudentAnswerByIdStudent({})", studentId);
         Map<String, Integer> map = new HashMap<>();
-        map.put(STUDENT_ID, id);
+        map.put(STUDENT_ID, studentId);
         return namedParameterJdbcTemplate.query(studentAnswerByIdStudent,
                 map, new StudentAnswerRowMapper());
     }
 
-
+    /**
+     * Add studentAnswer.
+     *
+     * @param studentAnswers list studentAnswer to add.
+     */
     @Override
     public void addStudentAnswer(List<StudentAnswer> studentAnswers) {
         LOGGER.info("addStudentAnswer({})", studentAnswers);
@@ -61,6 +70,11 @@ public class StudentAnswerJdbcDaoImpl implements StudentAnswerDao {
     }
 
     private class StudentAnswerRowMapper implements RowMapper<StudentAnswer> {
+        /**
+         * @param resultSet the RowMapper which creates an object for each row
+         * @param i         the number of expected rows
+         * @return new question
+         */
         @Override
         public StudentAnswer mapRow(ResultSet resultSet, int i) throws SQLException {
             StudentAnswer studentAnswer = new StudentAnswer();

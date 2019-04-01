@@ -42,11 +42,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--<dependency>-->
-            <!--<groupId>org.thymeleaf.extras</groupId>-->
-            <!--<artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
-            <!--<version>3.0.3.RELEASE</version>-->
-            <!--</dependency>-->
 
             <dependency>
                 <groupId>com.epam.brest.project</groupId>
@@ -321,12 +316,12 @@
                         <id>validate</id>
                         <phase>validate</phase>
                         <configuration>
-                            <!--<configLocation>checkstyle.xml</configLocation>-->
+<!--                            <configLocation>checkstyle.xml</configLocation>-->
                             <encoding>UTF-8</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>false</failsOnError>
                             <failOnViolation>false</failOnViolation>
-                            <!--<linkXRef>false</linkXRef>-->
+<!--                            <linkXRef>false</linkXRef>-->
                         </configuration>
                         <goals>
                             <goal>check</goal>
@@ -505,18 +500,18 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>4.3.0</version>
 
-                <configuration>
-                    <coberturaReports>
-                        <coberturaReport>
-                            ${basedir}/target/coverage.xml
-                        </coberturaReport>
-                    </coberturaReports>
-                    <sourceEncoding>UTF-8</sourceEncoding>
-                    <serviceName>travis-ci</serviceName>
-                    <!--<serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>-->
-                </configuration>
+<!--                <configuration>-->
+<!--                    <coberturaReports>-->
+<!--                        <coberturaReport>-->
+<!--                            ${basedir}/target/coverage.xml-->
+<!--                        </coberturaReport>-->
+<!--                    </coberturaReports>-->
+<!--                    <sourceEncoding>UTF-8</sourceEncoding>-->
+<!--                    <serviceName>travis-ci</serviceName>-->
+<!--                    &lt;!&ndash;<serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>&ndash;&gt;-->
+<!--                </configuration>-->
             </plugin>
         </plugins>
     </reporting>

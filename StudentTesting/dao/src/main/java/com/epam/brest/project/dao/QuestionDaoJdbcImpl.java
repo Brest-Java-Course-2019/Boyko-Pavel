@@ -49,14 +49,25 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    /**
+     * Get all question.
+     *
+     * @return question stream.
+     */
     @Override
     public Stream<Question> findAll() {
         LOGGER.warn("start findall()");
-        List<Question> questionItems = namedParameterJdbcTemplate.query(selectAllQuestion, new QuestionRowMapper());
+        List<Question> questionItems = namedParameterJdbcTemplate.query(
+                selectAllQuestion, new QuestionRowMapper());
         return questionItems.stream();
     }
 
-
+    /**
+     * Get all question.
+     *
+     * @param id test id.
+     * @return question list.
+     */
     @Override
     public List<Question> findAllQuestionByTestId(Integer id) {
         LOGGER.warn("start findallQuestionByTestId()");
@@ -67,6 +78,12 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
                 map, new QuestionRowMapper());
     }
 
+    /**
+     * Get question.
+     *
+     * @param id question id.
+     * @return question.
+     */
     @Override
     public Optional<Question> findById(Integer id) {
         LOGGER.warn("start findById()");
@@ -75,6 +92,13 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
         return Optional.ofNullable(question);
     }
 
+    /**
+     * Add question.
+     *
+     * @param question object question.
+     * @param idTest   test id.
+     * @return question.
+     */
     @Override
     public Optional<Question> add(Question question, Integer idTest) {
         LOGGER.warn("start add()");
@@ -83,7 +107,13 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
                 .orElseThrow(() -> new IllegalArgumentException("Enter exist question"));
     }
 
-
+    /**
+     * Add question.
+     *
+     * @param question object question.
+     * @param idTest   test id.
+     * @return question with question id.
+     */
     private Optional<Question> insertQuestionItem(Question question, Integer idTest) {
         LOGGER.warn("start insertQuestionItem()");
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -97,7 +127,11 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     }
 
 
-
+    /**
+     * Update question.
+     *
+     * @param question object question.
+     */
     @Override
     public void update(Question question) {
         LOGGER.warn("start update()");
@@ -109,10 +143,15 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
                 .orElseThrow(() -> new IllegalArgumentException("Failed to update question"));
     }
 
-    private Boolean countAffectedRow(int numRowsUpdated){
+    private Boolean countAffectedRow(int numRowsUpdated) {
         return numRowsUpdated > 0;
     }
 
+    /**
+     * Delete question.
+     *
+     * @param id test id.
+     */
     @Override
     public void deleteByTestId(int id) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -122,10 +161,15 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
                 .orElseThrow(() -> new RuntimeException("Failed to delete question"));
     }
 
+    /**
+     * Butch update question.
+     *
+     * @param questions question list.
+     */
     @Override
     public void batchUpdate(List<Question> questions) {
         SqlParameterSource[] sqlParameterSources = new SqlParameterSource[questions.size()];
-        for (int x =0; x<questions.size(); x++) {
+        for (int x = 0; x < questions.size(); x++) {
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
             mapSqlParameterSource.addValue(QUESTION_NAME, questions.get(x).getQuestionName());
             mapSqlParameterSource.addValue(QUESTION_ID, questions.get(x).getQuestionId());
@@ -134,7 +178,13 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
         Optional.of(namedParameterJdbcTemplate.batchUpdate(updateQuestion, sqlParameterSources));
     }
 
+
     private class QuestionRowMapper implements RowMapper<Question> {
+        /**
+         * @param resultSet the RowMapper which creates an object for each row
+         * @param i         the number of expected rows
+         * @return new question
+         */
         @Override
         public Question mapRow(ResultSet resultSet, int i) throws SQLException {
             Question question = new Question();
@@ -144,7 +194,4 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
             return question;
         }
     }
-
-
-
 }

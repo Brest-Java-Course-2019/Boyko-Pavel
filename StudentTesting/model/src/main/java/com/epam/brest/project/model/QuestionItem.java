@@ -41,11 +41,11 @@ public class QuestionItem {
 
     @Override
     public String toString() {
-        return "QuestionItem{" +
-                "questionItemId=" + questionItemId +
-                ", description='" + description + '\'' +
-                ", questionId=" + questionId +
-                ", answer=" + answer +
-                '}';
+        return "QuestionItem{"
+                + "questionItemId=" + questionItemId
+                + ", description='" + description + '\''
+                + ", questionId=" + questionId
+                + ", answer=" + answer
+                + '}';
     }
 }

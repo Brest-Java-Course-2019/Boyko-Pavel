@@ -54,6 +54,11 @@ public class TestDaoJdbcImpl implements TestDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    /**
+     * Find all test.
+     *
+     * @return test stream.
+     */
     @Override
     public Stream<Test> findAll() {
         LOGGER.warn("start findall()");
@@ -61,6 +66,12 @@ public class TestDaoJdbcImpl implements TestDao {
         return tests.stream();
     }
 
+    /**
+     * Find all test by id.
+     *
+     * @param id test id.
+     * @return test.
+     */
     @Override
     public Optional<Test> findById(Integer id) {
         LOGGER.warn("start findById()");
@@ -69,6 +80,12 @@ public class TestDaoJdbcImpl implements TestDao {
         return Optional.ofNullable(test);
     }
 
+    /**
+     * Find all testDto by id.
+     *
+     * @param id testDto id.
+     * @return testDto.
+     */
     @Override
     public Optional<TestDto> findTestDtoById(Integer id) {
         LOGGER.warn("start findTestDTOById()");
@@ -84,6 +101,12 @@ public class TestDaoJdbcImpl implements TestDao {
         return Optional.ofNullable(testDTO);
     }
 
+    /**
+     * Add new test.
+     *
+     * @param test new test.
+     * @return new test
+     */
     @Override
     public Optional<Test> add(Test test) {
         LOGGER.warn("start add()");
@@ -92,7 +115,12 @@ public class TestDaoJdbcImpl implements TestDao {
                 .orElseThrow(() -> new IllegalArgumentException("Enter exist question"));
     }
 
-
+    /**
+     * Add new test.
+     *
+     * @param test new test.
+     * @return new test
+     */
     private Optional<Test> insertTest(Test test) {
         LOGGER.warn("start insertQuestionItem()");
 
@@ -110,6 +138,11 @@ public class TestDaoJdbcImpl implements TestDao {
         return Optional.of(test);
     }
 
+    /**
+     * Update test.
+     *
+     * @param test test to update.
+     */
     @Override
     public void update(Test test) {
         LOGGER.warn("start update()");
@@ -126,6 +159,11 @@ public class TestDaoJdbcImpl implements TestDao {
         return numRowsUpdated > 0;
     }
 
+    /**
+     * Delete test.
+     *
+     * @param id test id.
+     */
     @Override
     public void delete(int id) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -136,6 +174,11 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     private class TestRowMapper implements RowMapper<Test> {
+        /**
+         * @param resultSet the RowMapper which creates an object for each row
+         * @param i         the number of expected rows
+         * @return new question
+         */
         @Override
         public Test mapRow(ResultSet resultSet, int i) throws SQLException {
             Test test = new Test();

@@ -51,12 +51,12 @@ public class StudentAnswer {
 
     @Override
     public String toString() {
-        return "StudentAnswer{" +
-                "studentAnswerId=" + studentAnswerId +
-                ", testId=" + testId +
-                ", studentId=" + studentId +
-                ", questionItemId=" + questionItemId +
-                ", studentAnswer=" + studentAnswer +
-                '}';
+        return "StudentAnswer{"
+                + "studentAnswerId=" + studentAnswerId
+                + ", testId=" + testId
+                + ", studentId=" + studentId
+                + ", questionItemId=" + questionItemId
+                + ", studentAnswer=" + studentAnswer
+                + '}';
     }
 }

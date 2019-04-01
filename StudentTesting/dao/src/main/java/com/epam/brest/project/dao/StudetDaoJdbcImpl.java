@@ -36,12 +36,23 @@ public class StudetDaoJdbcImpl implements StudentDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    /**
+     * Find all student.
+     *
+     * @return student stream.
+     */
     @Override
     public Stream<Student> findAll() {
         List<Student> subjects = namedParameterJdbcTemplate.query(selectAllStudent, new StudentRowMapper());
         return subjects.stream();
     }
 
+    /**
+     * Find student by id.
+     *
+     * @param id student id.
+     * @return student.
+     */
     @Override
     public Optional<Student> findById(Integer id) {
         Student student = namedParameterJdbcTemplate.queryForObject(selectByStudentId, new MapSqlParameterSource(STUDENT_ID, id), (ResultSet rs, int rowNum) -> {
@@ -54,12 +65,24 @@ public class StudetDaoJdbcImpl implements StudentDao {
         return Optional.ofNullable(student);
     }
 
+    /**
+     * Add new student.
+     *
+     * @param student new student.
+     * @return new student.
+     */
     @Override
     public Optional<Student> add(Student student) {
         return Optional.of(student).map(this::insertStudent)
                 .orElseThrow(() -> new IllegalArgumentException("Student with the this name already exist in DB.subject"));
     }
 
+    /**
+     * Add new student.
+     *
+     * @param student new student.
+     * @return new student.
+     */
     private Optional<Student> insertStudent(Student student) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(STUDENT_NAME, student.getName());
@@ -72,7 +95,11 @@ public class StudetDaoJdbcImpl implements StudentDao {
     }
 
     private class StudentRowMapper implements RowMapper<Student> {
-
+        /**
+         * @param rs     the RowMapper which creates an object for each row
+         * @param rowNum the number of expected rows
+         * @return new question
+         */
         @Override
         public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
             Student student = new Student();

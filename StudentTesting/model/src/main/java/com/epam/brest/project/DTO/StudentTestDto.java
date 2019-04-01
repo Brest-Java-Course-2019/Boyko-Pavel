@@ -61,13 +61,13 @@ public class StudentTestDto {
 
     @Override
     public String toString() {
-        return "StudentTestDto{" +
-                "idTests=" + idTests +
-                ", testName='" + testName + '\'' +
-                ", subjectName='" + subjectName + '\'' +
-                ", teacherId=" + teacherId +
-                ", countQuestion=" + countQuestion +
-                ", dateOfCreating=" + dateOfCreating +
-                '}';
+        return "StudentTestDto{"
+                + "idTests=" + idTests
+                + ", testName='" + testName + '\''
+                + ", subjectName='" + subjectName + '\''
+                + ", teacherId=" + teacherId
+                + ", countQuestion=" + countQuestion
+                + ", dateOfCreating=" + dateOfCreating
+                + '}';
     }
 }

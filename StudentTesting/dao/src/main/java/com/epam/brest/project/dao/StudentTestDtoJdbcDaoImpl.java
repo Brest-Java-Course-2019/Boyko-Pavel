@@ -18,12 +18,6 @@ public class StudentTestDtoJdbcDaoImpl implements StudentTestDtoDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentTestDtoJdbcDaoImpl.class);
 
-//    private static final String COUNT_QUESTIONS = "countQuestions";
-//    private static final String ID_TESTS = "test_id";
-//    private static final String TEST_NAME = "name";
-//    private static final String SUBJECT_NAME = "subject_name";
-//    private static final String DATE_OF_CREATING = "created_at";
-
     private static final String START_DATE = "startDate";
     private static final String END_DATE = "endDate";
 
@@ -40,33 +34,29 @@ public class StudentTestDtoJdbcDaoImpl implements StudentTestDtoDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-
+    /**
+     * Find all StudentTestDto.
+     *
+     * @return stream StudentTestDto.
+     */
     @Override
     public Stream<StudentTestDto> findAllDto() {
+        LOGGER.warn("start findAllDto()");
         return namedParameterJdbcTemplate.query(findAllDTO, new TestRowMapper()).stream();
     }
 
+    /**
+     * Return all StudentTestDto filtering by date.
+     *
+     * @return stream StudentTestDto.
+     */
     @Override
     public Stream<StudentTestDto> filterByDate(DateBuilder dateBuilder) throws ParseException {
-        LOGGER.warn("start findallQuestionByTestId()");
+        LOGGER.warn("start filterByDate()");
         Map<String, Date> map = new HashMap<>();
         map.put(START_DATE, dateBuilder.getTimestampStartDate());
         map.put(END_DATE, dateBuilder.getTimestampEndDate());
         return namedParameterJdbcTemplate.query(filterByDate,
                 map, new TestRowMapper()).stream();
     }
-
-
-//    private class StudentTestDtoRowMapper implements RowMapper<StudentTestDto> {
-//        @Override
-//        public StudentTestDto mapRow(ResultSet resultSet, int i) throws SQLException {
-//            StudentTestDto studentTestDTO = new StudentTestDto();
-//            studentTestDTO.setCountQuestion(resultSet.getInt(COUNT_QUESTIONS));
-//            studentTestDTO.setIdTests(resultSet.getInt(ID_TESTS));
-//            studentTestDTO.setTestName(resultSet.getString(TEST_NAME));
-//            studentTestDTO.setSubjectName(resultSet.getString(SUBJECT_NAME));
-//            studentTestDTO.setDateOfCreating(resultSet.getDate(DATE_OF_CREATING));
-//            return studentTestDTO;
-//        }
-//    }
 }

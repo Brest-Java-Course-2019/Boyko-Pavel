@@ -50,12 +50,12 @@ public class Test {
 
     @Override
     public String toString() {
-        return "Test{" +
-                "testId=" + testId +
-                ", name='" + name + '\'' +
-                ", teacherId=" + teacherId +
-                ", subjectName='" + subjectName + '\'' +
-                ", subjectId=" + subjectId +
-                '}';
+        return "Test{"
+                + "testId=" + testId
+                + ", name='" + name + '\''
+                + ", teacherId=" + teacherId
+                + ", subjectName='" + subjectName + '\''
+                + ", subjectId=" + subjectId
+                + '}';
     }
 }

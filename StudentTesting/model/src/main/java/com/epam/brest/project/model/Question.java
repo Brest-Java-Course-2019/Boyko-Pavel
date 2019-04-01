@@ -44,10 +44,10 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
-                "questionId=" + questionId +
-                ", questionName='" + questionName + '\'' +
-                ", testId='" + testId + '\'' +
-                '}';
+        return "Question{"
+                + "questionId=" + questionId
+                + ", questionName='" + questionName + '\''
+                + ", testId='" + testId + '\''
+                + '}';
     }
 }

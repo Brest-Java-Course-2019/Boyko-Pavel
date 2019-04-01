@@ -35,15 +35,26 @@ public class TeacherJdbcDaoImpl implements TeacherDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-
+    /**
+     * Find all teacher by teacher login.
+     *
+     * @param login login teacher.
+     * @return teacher by login.
+     */
     @Override
-    public Optional<Teacher> findTeacherByLogin(String login){
+    public Optional<Teacher> findTeacherByLogin(String login) {
         Map<String, String> map = new HashMap<>();
         map.put(LOGIN, login);
         return Optional.of(namedParameterJdbcTemplate.queryForObject(
                 findAllTeacherByLogin, map, new TeacherRowMapper()));
     }
 
+    /**
+     * Find all StudentTestDto by teacher id.
+     *
+     * @param id id teacher
+     * @return StudentTestDto stream.
+     */
     @Override
     public Stream<StudentTestDto> findAllDtoTeacher(Integer id) {
         return namedParameterJdbcTemplate.query(
@@ -53,6 +64,11 @@ public class TeacherJdbcDaoImpl implements TeacherDao {
     }
 
     private class TeacherRowMapper implements RowMapper<Teacher> {
+        /**
+         * @param resultSet the RowMapper which creates an object for each row
+         * @param i         the number of expected rows
+         * @return new question
+         */
         @Override
         public Teacher mapRow(ResultSet resultSet, int i) throws SQLException {
             Teacher teacher = new Teacher();

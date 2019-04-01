@@ -23,10 +23,10 @@ public class Subject {
 
     @Override
     public String toString() {
-        return "Subject{" +
-                "subjectId=" + subjectId +
-                ", Name='" + name + '\'' +
-                '}';
+        return "Subject{"
+                + "subjectId=" + subjectId
+                + ", Name='" + name + '\''
+                + '}';
     }
 }
 

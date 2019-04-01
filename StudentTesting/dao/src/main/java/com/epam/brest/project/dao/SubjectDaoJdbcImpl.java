@@ -49,6 +49,11 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    /**
+     * Find all Subject.
+     *
+     * @return Subject stream.
+     */
     @Override
     public Stream<Subject> findall() {
         LOGGER.debug("findAll()");
@@ -56,6 +61,12 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
         return subject.stream();
     }
 
+    /**
+     * Find Subject by id.
+     *
+     * @param id subject.
+     * @return subject.
+     */
     @Override
     public Optional<Subject> findById(Integer id) {
         LOGGER.debug("findBuId({})", id);
@@ -64,6 +75,11 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
         return Optional.ofNullable(subject);
     }
 
+    /**
+     * Add new Subject.
+     *
+     * @param subject new Subject.
+     */
     @Override
     public Optional<Subject> add(Subject subject) {
         LOGGER.debug("add({})", subject);
@@ -73,6 +89,11 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
                 .orElseThrow(() -> new IllegalArgumentException("Subject with the this name already exist in DB.subject"));
     }
 
+    /**
+     * Check exist subject name in db.
+     *
+     * @param subject Subject.
+     */
     private boolean isNameUnique(Subject subject) {
         Integer getCountIdSubject = namedParameterJdbcTemplate.queryForObject(CHECK_COUNT_NAME,
                 new MapSqlParameterSource(SUBJECT_NAME, subject.getName()),
@@ -80,6 +101,11 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
         return getCountIdSubject == 0;
     }
 
+    /**
+     * Add new Subject.
+     *
+     * @param subject new Subject.
+     */
     private Optional<Subject> insertSubject(Subject subject) {
         LOGGER.info("add({})", subject);
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -92,6 +118,11 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
         return Optional.of(subject);
     }
 
+    /**
+     * Update Subject.
+     *
+     * @param subject Subject for updating.
+     */
     @Override
     public void update(Subject subject) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -106,6 +137,11 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
         return numRowsUpdated > 0;
     }
 
+    /**
+     * Delete subject.
+     *
+     * @param idSubject id Subject for deleting.
+     */
     @Override
     public void delete(int idSubject) {
         Optional.of(namedParameterJdbcTemplate.update(deleteSubject, new MapSqlParameterSource(SUBJECT_ID, idSubject)))
@@ -114,6 +150,11 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
     }
 
     private class SubjectRowMapper implements RowMapper<Subject> {
+        /**
+         * @param resultSet the RowMapper which creates an object for each row
+         * @param i         the number of expected rows
+         * @return new question
+         */
         @Override
         public Subject mapRow(ResultSet resultSet, int i) throws SQLException {
             Subject subject = new Subject();

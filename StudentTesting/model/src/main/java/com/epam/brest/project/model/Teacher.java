@@ -49,12 +49,12 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "Teacher{" +
-                "teacherId=" + teacherId +
-                ", teacherName='" + teacherName + '\'' +
-                ", surname='" + surname + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "Teacher{"
+                + "teacherId=" + teacherId
+                + ", teacherName='" + teacherName + '\''
+                + ", surname='" + surname + '\''
+                + ", login='" + login + '\''
+                + ", password='" + password + '\''
+                + '}';
     }
 }

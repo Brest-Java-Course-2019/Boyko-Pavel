@@ -52,6 +52,11 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    /**
+     * Get all question item.
+     *
+     * @return QuestionItem stream.
+     */
     @Override
     public Stream<QuestionItem> findall() {
         LOGGER.warn("start findall()");
@@ -59,6 +64,12 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         return questionItems.stream();
     }
 
+    /**
+     * Get all question item
+     *
+     * @param testId test id
+     * @return QuestionItem stream.
+     */
     @Override
     public Optional<QuestionItem> findById(Integer id) {
         LOGGER.warn("start findById()");
@@ -67,6 +78,12 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         return Optional.ofNullable(questionItem);
     }
 
+    /**
+     * Get  question item by id.
+     *
+     * @param id question item id.
+     * @return QuestionItem bu id.
+     */
     @Override
     public List<QuestionItem> findAllQuestionItemByTestId(Integer id) {
         LOGGER.warn("start findallQuestionByTestId()");
@@ -76,6 +93,12 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
                 map, new QuestionItemRowMapper());
     }
 
+    /**
+     * Add question item
+     *
+     * @param questionItem QuestionItem.
+     * @return new  QuestionItem.
+     */
     @Override
     public Optional<QuestionItem> add(QuestionItem questionItem) {
         LOGGER.warn("start add()");
@@ -84,7 +107,12 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
                 .orElseThrow(() -> new IllegalArgumentException("Enter exist question"));
     }
 
-
+    /**
+     * Add question item
+     *
+     * @param questionItem QuestionItem.
+     * @return new  QuestionItem.
+     */
     private Optional<QuestionItem> insertQuestionItem(QuestionItem questionItem) {
         LOGGER.warn("start insertQuestionItem()");
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -99,6 +127,11 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         return Optional.of(questionItem);
     }
 
+    /**
+     * Update questionItem.
+     *
+     * @param questionItem QuestionItem fo update.
+     */
     @Override
     public void update(QuestionItem questionItem) {
         LOGGER.warn("start update()");
@@ -116,6 +149,11 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         return numRowsUpdated > 0;
     }
 
+    /**
+     * Delete questionItem.
+     *
+     * @param id QuestionItem id.
+     */
     @Override
     public void deleteByTestId(int id) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -125,6 +163,11 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
                 .orElseThrow(() -> new RuntimeException("Failed to delete questionItem from DB"));
     }
 
+    /**
+     * Batch update questionItem.
+     *
+     * @param listList list QuestionItem list.
+     */
     @Override
     public void batchUpdate(List<List<QuestionItem>> listList) {
         SqlParameterSource[] sqlParameterSources = new SqlParameterSource[
@@ -145,6 +188,11 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
 
 
     private class QuestionItemRowMapper implements RowMapper<QuestionItem> {
+        /**
+         * @param resultSet the RowMapper which creates an object for each row
+         * @param i         the number of expected rows
+         * @return new question
+         */
         @Override
         public QuestionItem mapRow(ResultSet resultSet, int i) throws SQLException {
             QuestionItem questionItem = new QuestionItem();
