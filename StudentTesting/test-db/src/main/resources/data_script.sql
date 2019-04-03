@@ -28,11 +28,11 @@ INSERT INTO question_item (question_item_id, description, question_id, answer) V
 INSERT INTO question_item (question_item_id, description, question_id, answer) VALUES (7, 'ANSWER: 7', 3, 1);
 
 
-INSERT INTO student (student_id, name, surname) VALUES (1, 'kolya', 'dude');
-INSERT INTO student (student_id, name, surname) VALUES (2, 'petr', 'gole');
-INSERT INTO student (student_id, name, surname) VALUES (3, 'ann', 'loud');
+INSERT INTO student (student_id, name, surname, login, password) VALUES (1, 'kolya', 'dude', '1', '1');
+INSERT INTO student (student_id, name, surname, login, password) VALUES (2, 'petr', 'gole', '2', '2');
+INSERT INTO student (student_id, name, surname, login, password) VALUES (3, 'ann', 'loud', '3', '3');
 
-INSERT INTO student_answer (student_answer_id, student_id, question_item_id, student_answer) VALUES (1, 1, 1, 0);
-INSERT INTO student_answer (student_answer_id, student_id, question_item_id, student_answer) VALUES (2, 1, 2, 0);
-INSERT INTO student_answer (student_answer_id, student_id, question_item_id, student_answer) VALUES (3, 1, 4, 1);
-INSERT INTO student_answer (student_answer_id, student_id, question_item_id, student_answer) VALUES (4, 1, 8, 1);
+INSERT INTO student_answer (student_answer_id, student_id, test_id, question_item_id, student_answer) VALUES (1, 1, 1, 1, 0);
+INSERT INTO student_answer (student_answer_id, student_id, test_id, question_item_id, student_answer) VALUES (2, 1, 1, 2, 0);
+INSERT INTO student_answer (student_answer_id, student_id, test_id, question_item_id, student_answer) VALUES (3, 1, 1, 4, 1);
+INSERT INTO student_answer (student_answer_id, student_id, test_id, question_item_id, student_answer) VALUES (4, 1, 1, 8, 1);

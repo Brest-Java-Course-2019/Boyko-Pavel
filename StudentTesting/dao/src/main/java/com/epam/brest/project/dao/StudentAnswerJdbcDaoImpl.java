@@ -61,8 +61,10 @@ public class StudentAnswerJdbcDaoImpl implements StudentAnswerDao {
         SqlParameterSource[] sqlParameterSources = new SqlParameterSource[studentAnswers.size()];
         for (int x = 0; x < studentAnswers.size(); x++) {
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-            mapSqlParameterSource.addValue(STUDENT_ANSWER, studentAnswers.get(x).getStudentAnswer());
-            mapSqlParameterSource.addValue(QUESTION_ITEM_ID, studentAnswers.get(x).getQuestionItemId());
+            mapSqlParameterSource.addValue(
+                    STUDENT_ANSWER, studentAnswers.get(x).getStudentAnswer());
+            mapSqlParameterSource.addValue(
+                    QUESTION_ITEM_ID, studentAnswers.get(x).getQuestionItemId());
             mapSqlParameterSource.addValue(STUDENT_ID, studentAnswers.get(x).getStudentId());
             sqlParameterSources[x] = mapSqlParameterSource;
         }

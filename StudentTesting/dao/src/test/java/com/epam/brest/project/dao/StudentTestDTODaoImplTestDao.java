@@ -10,10 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,7 +40,19 @@ class StudentTestDTODaoImplTestDao {
     @Test
     void filterByDate() throws ParseException {
         DateBuilder dateBuilder = getdateBuilder();
-        Stream<StudentTestDto> studentTestDTOList = studentTestDTODao.filterByDate(dateBuilder);
-        assertEquals(1, studentTestDTOList.count());
+        Stream<StudentTestDto> studentTestDTOList1 = studentTestDTODao.filterByDate(dateBuilder, 1);
+        assertEquals(0, studentTestDTOList1.count());
+        Stream<StudentTestDto> studentTestDTOList2 = studentTestDTODao.filterByDate(dateBuilder, null);
+        assertEquals(1, studentTestDTOList2.count());
     }
+
+
+    @Test
+    void findNotDoneTestStudentById() throws ParseException {
+        DateBuilder dateBuilder = getdateBuilder();
+        Stream<StudentTestDto> studentTestDTOList1 = studentTestDTODao.findNotDoneTestStudentById(1);
+        assertEquals(2, studentTestDTOList1.count());
+    }
+
+
 }

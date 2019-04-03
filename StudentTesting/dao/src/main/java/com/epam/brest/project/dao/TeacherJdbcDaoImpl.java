@@ -3,6 +3,8 @@ package com.epam.brest.project.dao;
 import com.epam.brest.project.DTO.StudentTestDto;
 import com.epam.brest.project.dao.TestRowMapper.TestRowMapper;
 import com.epam.brest.project.model.Teacher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,6 +18,8 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public class TeacherJdbcDaoImpl implements TeacherDao {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TeacherJdbcDaoImpl.class);
 
     private static final String PASSWORD = "password";
     private static final String LOGIN = "login";
@@ -43,6 +47,9 @@ public class TeacherJdbcDaoImpl implements TeacherDao {
      */
     @Override
     public Optional<Teacher> findTeacherByLogin(String login) {
+
+        LOGGER.debug("findTeacherByLogin({})", login);
+
         Map<String, String> map = new HashMap<>();
         map.put(LOGIN, login);
         return Optional.of(namedParameterJdbcTemplate.queryForObject(
@@ -57,6 +64,9 @@ public class TeacherJdbcDaoImpl implements TeacherDao {
      */
     @Override
     public Stream<StudentTestDto> findAllDtoTeacher(Integer id) {
+
+        LOGGER.debug("findAllDtoTeacher({})", id);
+
         return namedParameterJdbcTemplate.query(
                 findAllTestDtoTeacher,
                 new MapSqlParameterSource(TEACHER_ID, id), new TestRowMapper())
@@ -68,7 +78,7 @@ public class TeacherJdbcDaoImpl implements TeacherDao {
          * @param resultSet the RowMapper which creates an object for each row
          * @param i         the number of expected rows
          * @return new question
-         */
+     */
         @Override
         public Teacher mapRow(ResultSet resultSet, int i) throws SQLException {
             Teacher teacher = new Teacher();

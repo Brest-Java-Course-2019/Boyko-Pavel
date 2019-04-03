@@ -5,10 +5,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="namedParameterJdbcTemplate"
-          class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-        <constructor-arg name="dataSource" ref="dataSource"/>
-    </bean>
+
 
     <bean id="studentTestDtoJdbcDaoImpl" class="com.epam.brest.project.dao.StudentTestDtoJdbcDaoImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
@@ -38,7 +35,7 @@
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="studetDaoJdbcImpl" class="com.epam.brest.project.dao.StudetDaoJdbcImpl">
+    <bean id="studentDaoJdbcImpl" class="com.epam.brest.project.dao.StudentDaoJdbcImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 

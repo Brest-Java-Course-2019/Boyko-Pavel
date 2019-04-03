@@ -23,5 +23,13 @@ public interface StudentTestDtoDao {
      *
      * @return stream StudentTestDto.
      */
-    Stream<StudentTestDto> filterByDate(DateBuilder dateBuilder) throws ParseException;
+    Stream<StudentTestDto> filterByDate(DateBuilder dateBuilder, Integer idStudent) throws ParseException;
+
+
+    /**
+     * Return all StudentTestDto filtering by date.
+     *
+     * @return stream StudentTestDto.
+     */
+    Stream<StudentTestDto> findNotDoneTestStudentById(Integer idStudent);
 }

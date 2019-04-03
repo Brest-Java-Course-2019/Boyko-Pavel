@@ -61,7 +61,9 @@ public class TestDaoJdbcImpl implements TestDao {
      */
     @Override
     public Stream<Test> findAll() {
-        LOGGER.warn("start findall()");
+
+        LOGGER.warn("start findAll()");
+
         List<Test> tests = namedParameterJdbcTemplate.query(selectAllTest, new TestRowMapper());
         return tests.stream();
     }
@@ -74,7 +76,9 @@ public class TestDaoJdbcImpl implements TestDao {
      */
     @Override
     public Optional<Test> findById(Integer id) {
-        LOGGER.warn("start findById()");
+
+        LOGGER.warn("start findById({})", id);
+
         Test test = namedParameterJdbcTemplate.queryForObject(selectTestByID,
                 new MapSqlParameterSource(TEST_ID, id), new TestRowMapper());
         return Optional.ofNullable(test);
@@ -88,7 +92,9 @@ public class TestDaoJdbcImpl implements TestDao {
      */
     @Override
     public Optional<TestDto> findTestDtoById(Integer id) {
-        LOGGER.warn("start findTestDTOById()");
+
+        LOGGER.debug("start findTestDtoById({})", id);
+
         TestDto testDTO = namedParameterJdbcTemplate.queryForObject(selectTestDTOByID,
                 new MapSqlParameterSource(TEST_ID, id),
                 (resultSet, i) -> new TestDto()
@@ -122,7 +128,8 @@ public class TestDaoJdbcImpl implements TestDao {
      * @return new test
      */
     private Optional<Test> insertTest(Test test) {
-        LOGGER.warn("start insertQuestionItem()");
+
+        LOGGER.warn("start insertTest({})", test);
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(TEST_NAME, test.getName());
@@ -134,7 +141,6 @@ public class TestDaoJdbcImpl implements TestDao {
 
         Map<String, Object> keyMap = generatorKeyHolder.getKeys();
         test.setTestId((Integer) keyMap.get(TEST_ID));
-
         return Optional.of(test);
     }
 
@@ -145,7 +151,9 @@ public class TestDaoJdbcImpl implements TestDao {
      */
     @Override
     public void update(Test test) {
-        LOGGER.warn("start update()");
+
+        LOGGER.warn("start update({})", test);
+
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(TEST_ID, test.getTestId());
         mapSqlParameterSource.addValue(TEST_NAME, test.getName());
@@ -166,6 +174,9 @@ public class TestDaoJdbcImpl implements TestDao {
      */
     @Override
     public void delete(int id) {
+
+        LOGGER.warn("start delete({})", id);
+
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(TEST_ID, id);
         Optional.of(namedParameterJdbcTemplate.update(deleteTest, mapSqlParameterSource))

@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.ui.Model;
-
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,17 +37,24 @@ public class TeacherController {
     private TeacherValidator teacherValidator;
 
     @PostMapping(value = {"/teacher"})
-    public String updateTestById(Model model, Teacher teacher,
+    public String getTestDtoAfterLogin(Model model, Teacher teacher,
                                  BindingResult result) {
 
-        LOGGER.debug("findAllTeacherTest({}, {})", teacher, result);
+        LOGGER.debug("getTestDtoAfterLogin({}, {}, {})", model, teacher, result);
+
         teacherValidator.validate(teacher, result);
         if (result.hasErrors()){
+
+            LOGGER.debug("after un correct validation getTestDtoAfterLogin({})", result);
+
             model.addAttribute("student", new Student());
             model.addAttribute("studentTestsDTOs", studentService.findAllDto());
             return "start";
         }
         else{
+
+            LOGGER.debug("after un correct validation getTestDtoAfterLogin({})", result);
+
             model.addAttribute("teacher", teacherValidator.getTeacherValidation());
             return "redirect:/teacher";
         }
@@ -58,7 +64,8 @@ public class TeacherController {
     @GetMapping(value = {"/teacher"})
     public final String createNewTest(@ModelAttribute Teacher teacher, Model model) {
 
-        LOGGER.debug("findAllSubject({})", model);
+        LOGGER.debug("createNewTest({})", model);
+
         teacherService.findAllDtoTestTeacher(teacher.getTeacherId());
         model.addAttribute("teacherTestsDto", teacherService.findAllDtoTestTeacher(teacher.getTeacherId()));
         return "teacher";
@@ -67,7 +74,9 @@ public class TeacherController {
 
     @GetMapping(value = {"/teacher/{id}/delete"})
     public final String deleteTestById(@PathVariable Integer id, Model model) {
+
         LOGGER.debug("deleteTestById({},{})", id, model);
+
         testDtoService.deleteTestDto(id);
         return "redirect:/teacher";
     }

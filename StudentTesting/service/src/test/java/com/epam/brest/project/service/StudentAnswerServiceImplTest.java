@@ -1,8 +1,6 @@
 package com.epam.brest.project.service;
 
-import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.dao.QuestionItemDao;
-import com.epam.brest.project.model.QuestionItem;
 import com.epam.brest.project.model.StudentAnswer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

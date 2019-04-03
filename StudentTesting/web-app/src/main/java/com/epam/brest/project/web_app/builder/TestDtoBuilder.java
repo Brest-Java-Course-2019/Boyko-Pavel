@@ -36,6 +36,8 @@ public class TestDtoBuilder {
             newQuestions.add(question);
         }
         testDto.setQuestions(newQuestions);
+
+        LOGGER.debug("end buildQuestion({})", testDto);
     }
 
     private List<List<QuestionItem>> buildQuestionItem() {
@@ -53,6 +55,9 @@ public class TestDtoBuilder {
             listsQuestionItem.add(questionItemList);
 
         }
+
+        LOGGER.debug("end buildQuestionItem({})", testDto);
+
         return listsQuestionItem;
     }
 
@@ -62,7 +67,7 @@ public class TestDtoBuilder {
             testDto.setNewQuestion(null);
             testDto.setNewAnswer(null);
             testDto.setNewDescription(null);
-            LOGGER.debug("getTestDto({})", testDto);
+            LOGGER.debug("end getTestDto({})", testDto);
         }
         return testDto;
     }
@@ -73,6 +78,9 @@ public class TestDtoBuilder {
                 questionItem.setAnswer(false);
             }
         }
+
+        LOGGER.debug("end setAnswerFalse({})", testDto);
+
         return testDto;
     }
 }

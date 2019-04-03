@@ -19,12 +19,12 @@ public interface StudentDao {
     Stream<Student> findAll();
 
     /**
-     * Find student by id.
+     * Find student by login.
      *
-     * @param id student id.
+     * @param login student login.
      * @return student.
      */
-    Optional<Student> findById(final Integer id);
+    Optional<Student> findByLogin(final String login);
 
     /**
      * Add new student.

@@ -11,7 +11,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -25,13 +24,13 @@ class TeacherServiceImplTest {
     private TeacherService teacherService;
 
     @Test
-    void findTeacherByLogin(){
-        Teacher teacher  = teacherService.findTeacherByLogin("admin1");
+    void findTeacherByLogin() {
+        Teacher teacher = teacherService.findTeacherByLogin("admin1");
         assertEquals(new Integer(1), teacher.getTeacherId());
     }
 
     @Test
-    void findByUnCorrectLogin(){
+    void findByUnCorrectLogin() {
         Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
             teacherService.findTeacherByLogin("adm4in");
         });

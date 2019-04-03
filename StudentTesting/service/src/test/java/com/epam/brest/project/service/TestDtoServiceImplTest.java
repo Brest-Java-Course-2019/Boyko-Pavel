@@ -4,7 +4,6 @@ import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.Question;
 import com.epam.brest.project.model.QuestionItem;
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,6 +23,7 @@ class TestDtoServiceImplTest {
     private static final int ID_TEST_DTO = 1;
     @Autowired
     private TestDtoService testDtoService;
+
 
     List<Question> createNewQuestion() {
         List<Question> questionList = new ArrayList<>();
@@ -38,7 +36,7 @@ class TestDtoServiceImplTest {
 
     List<QuestionItem> createNewQuestionItems() {
         List<QuestionItem> questionItems = new ArrayList<>();
-        for (int i = 0; i <4 ; i++) {
+        for (int i = 0; i < 4; i++) {
             QuestionItem questionItem = new QuestionItem();
             questionItem.setAnswer(true);
             questionItem.setDescription("new questionItem" + i);
@@ -93,6 +91,6 @@ class TestDtoServiceImplTest {
     void deleteTestDto() {
         testDtoService.deleteTestDto(2);
         Assertions.assertThrows(EmptyResultDataAccessException.class, () ->
-            testDtoService.findTestDtoById(2));
+                testDtoService.findTestDtoById(2));
     }
 }

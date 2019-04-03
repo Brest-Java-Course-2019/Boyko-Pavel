@@ -60,21 +60,24 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
     @Override
     public Stream<QuestionItem> findall() {
         LOGGER.warn("start findall()");
-        List<QuestionItem> questionItems = namedParameterJdbcTemplate.query(selectAllQuestionItem, new QuestionItemRowMapper());
+        List<QuestionItem> questionItems = namedParameterJdbcTemplate.query(
+                selectAllQuestionItem, new QuestionItemRowMapper());
         return questionItems.stream();
     }
 
     /**
-     * Get all question item
+     * Get all question item by id
      *
-     * @param testId test id
-     * @return QuestionItem stream.
+     * @param id test id
+     * @return QuestionItem.
      */
     @Override
     public Optional<QuestionItem> findById(Integer id) {
         LOGGER.warn("start findById()");
-        QuestionItem questionItem = namedParameterJdbcTemplate.queryForObject(selectByQuestionItem,
-                new MapSqlParameterSource(QUESTION_ITEM_ID, id), new QuestionItemRowMapper());
+        QuestionItem questionItem = namedParameterJdbcTemplate.queryForObject(
+                selectByQuestionItem,
+                new MapSqlParameterSource(QUESTION_ITEM_ID, id),
+                new QuestionItemRowMapper());
         return Optional.ofNullable(questionItem);
     }
 
@@ -104,7 +107,8 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         LOGGER.warn("start add()");
         return Optional.of(questionItem)
                 .map(this::insertQuestionItem)
-                .orElseThrow(() -> new IllegalArgumentException("Enter exist question"));
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Enter exist question"));
     }
 
     /**
@@ -117,11 +121,14 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         LOGGER.warn("start insertQuestionItem()");
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(ANSWER, questionItem.getAnswer());
-        mapSqlParameterSource.addValue(QUESTION_ID, questionItem.getQuestionId());
-        mapSqlParameterSource.addValue(DESCRIPTION, questionItem.getDescription());
+        mapSqlParameterSource.addValue(
+                QUESTION_ID, questionItem.getQuestionId());
+        mapSqlParameterSource.addValue(
+                DESCRIPTION, questionItem.getDescription());
 
         KeyHolder generatorKeyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(insertQuestionItem, mapSqlParameterSource, generatorKeyHolder);
+        namedParameterJdbcTemplate.update(insertQuestionItem,
+                mapSqlParameterSource, generatorKeyHolder);
         Map<String, Object> keyMap = generatorKeyHolder.getKeys();
         questionItem.setQuestionItemId((Integer) keyMap.get(QUESTION_ITEM_ID));
         return Optional.of(questionItem);
@@ -137,11 +144,15 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
         LOGGER.warn("start update()");
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(ANSWER, questionItem.getAnswer());
-        mapSqlParameterSource.addValue(DESCRIPTION, questionItem.getDescription());
-        mapSqlParameterSource.addValue(QUESTION_ITEM_ID, questionItem.getQuestionItemId());
-        Optional.of(namedParameterJdbcTemplate.update(updateQuestionItem, mapSqlParameterSource))
+        mapSqlParameterSource.addValue(
+                DESCRIPTION, questionItem.getDescription());
+        mapSqlParameterSource.addValue(
+                QUESTION_ITEM_ID, questionItem.getQuestionItemId());
+        Optional.of(namedParameterJdbcTemplate.update(
+                updateQuestionItem, mapSqlParameterSource))
                 .filter(this::countAffectedRow)
-                .orElseThrow(() -> new IllegalArgumentException("Failed to update questionItem"));
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Failed to update questionItem"));
     }
 
 
@@ -176,10 +187,15 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
             List<QuestionItem> questionItemList = listList.get(i);
             for (int j = 0; j < questionItemList.size(); j++) {
                 MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-                mapSqlParameterSource.addValue(QUESTION_ITEM_ID, questionItemList.get(j).getQuestionItemId());
-                mapSqlParameterSource.addValue(DESCRIPTION, questionItemList.get(j).getDescription());
-                mapSqlParameterSource.addValue(ANSWER, questionItemList.get(j).getAnswer());
-                sqlParameterSources[j + COUNT_QUESTION_ITEM_IN_QUESTION * i] = mapSqlParameterSource;
+                mapSqlParameterSource.addValue(
+                        QUESTION_ITEM_ID, questionItemList.get(j).getQuestionItemId());
+                mapSqlParameterSource.addValue(
+                        DESCRIPTION, questionItemList.get(j).getDescription());
+                mapSqlParameterSource.addValue(
+                        ANSWER, questionItemList.get(j).getAnswer());
+                sqlParameterSources[
+                     j + COUNT_QUESTION_ITEM_IN_QUESTION * i]
+                        = mapSqlParameterSource;
             }
         }
         Optional.of(namedParameterJdbcTemplate.batchUpdate(updateQuestionItem,

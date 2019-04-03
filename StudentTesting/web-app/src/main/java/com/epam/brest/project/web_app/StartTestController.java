@@ -2,6 +2,7 @@ package com.epam.brest.project.web_app;
 
 import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.builder.DateBuilder;
+import com.epam.brest.project.model.Student;
 import com.epam.brest.project.service.StudentService;
 import com.epam.brest.project.service.TestDtoService;
 import com.epam.brest.project.web_app.builder.TestDtoBuilder;
@@ -14,15 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.text.ParseException;
 
 
 @Controller
+@SessionAttributes({"student"})
 @ContextConfiguration(locations = {"classpath*:test-db.xml"})
 
 public class StartTestController {
@@ -43,16 +43,22 @@ public class StartTestController {
     private FilterValidator filterValidator;
 
     @GetMapping(value = {"/startTest/training"})
+
     public final String goToTrainingTest(Model model) {
-        LOGGER.debug("findTestDtoById({})", model);
+
+        LOGGER.debug("goToTrainingTest({})", model);
+
         model.addAttribute("dateBuilder", new DateBuilder());
         model.addAttribute("allTestsDto", studentService.findAllDto());
         return "student";
     }
 
     @GetMapping(value = {"/startTest/training/{id}"})
+
     public final String goToSolveTrainingTest(@PathVariable Integer id, Model model) {
-        LOGGER.debug("findTestDtoById({}, {})", id, model);
+
+        LOGGER.debug("goToSolveTrainingTest({}, {})", id, model);
+
         TestDto testDto = testDtoService.findTestDtoById(id);
         model.addAttribute("testDto", TestDtoBuilder.setAnswerFalse(testDto));
         return "startTest";
@@ -61,7 +67,9 @@ public class StartTestController {
     @PostMapping(value = {"/startTest/training/{id}"})
     public String endSolveTrainingTest(@PathVariable Integer id, @Valid TestDto testDto,
                                        Model model, BindingResult result) {
-        LOGGER.debug("endSolveById({}, {})", testDto, result);
+
+        LOGGER.debug("endSolveTrainingTest({}, {}, {}, {})", id, testDto, model, result);
+
         testDto.setIdTests(id);
         answerValidator.validate(testDto, result);
         model.addAttribute("countRightQuestion", answerValidator.getCountRightAnswer());
@@ -71,15 +79,23 @@ public class StartTestController {
 
 
     @PostMapping(value = {"/test/sort"})
-    public String sortTrainingTest(DateBuilder dateBuilder, Model model,
+    public String sortTrainingTest(@ModelAttribute Student student, @Valid DateBuilder dateBuilder, Model model,
                                    BindingResult result) throws ParseException {
-        LOGGER.debug("sortTrainingTest({})", result);
+
+        LOGGER.debug("endSolveTrainingTest({}, {}, {})", dateBuilder, model, result);
+
         filterValidator.validate(dateBuilder, result);
         if (result.hasErrors()) {
+
+            LOGGER.debug("after un correct validation endSolveTrainingTest({})", result);
+
             return "student";
+
         } else {
-            LOGGER.debug("sortTrainingTest after validation({})", dateBuilder);
-            model.addAttribute("allTestsDto", studentService.filterByDate(dateBuilder));
+
+            LOGGER.debug("sortTrainingTest after correct validation({})", dateBuilder);
+
+            model.addAttribute("allTestsDto", studentService.filterByDate(dateBuilder, student.getStudentId()));
             return "student";
         }
     }

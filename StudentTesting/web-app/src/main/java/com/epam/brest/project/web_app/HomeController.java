@@ -25,13 +25,15 @@ public class HomeController {
     public final String redirectStudentTests() {
 
         LOGGER.debug("redirect");
+
         return "redirect:/start";
     }
 
     @GetMapping(value = {"/start"})
     public final String studentTests(Model model) {
 
-        LOGGER.debug("findAllDTO({})", model);
+        LOGGER.debug("studentTests({})", model);
+
         model.addAttribute("student", new Student());
         model.addAttribute("teacher", new Teacher());
         model.addAttribute("studentTestsDTOs", studentService.findAllDto());

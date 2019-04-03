@@ -26,15 +26,20 @@ public class TeacherServiceImpl implements  TeacherService {
 
     @Override
     public Teacher findTeacherByLogin (String login) {
-        LOGGER.debug("findTeacherByLogin()");
+
+        LOGGER.debug("findTeacherByLogin({})", login);
+
         return teacherDao.findTeacherByLogin(login).get();
     }
 
 
 
     @Override
-    public List<StudentTestDto> findAllDtoTestTeacher (Integer id) throws EmptyResultDataAccessException {
-        LOGGER.debug("findTeacherByLogin()");
+    public List<StudentTestDto> findAllDtoTestTeacher (Integer id)
+            throws EmptyResultDataAccessException {
+
+        LOGGER.debug("findAllDtoTestTeacher({})", id);
+
         return teacherDao.findAllDtoTeacher(id).collect(Collectors.toList());
     }
 }

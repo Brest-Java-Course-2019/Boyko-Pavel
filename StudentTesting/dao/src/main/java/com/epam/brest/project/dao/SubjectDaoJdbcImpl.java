@@ -22,8 +22,6 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubjectDaoJdbcImpl.class);
 
-    private static final String CHECK_COUNT_NAME = "SELECT count(subject_id) FROM subject WHERE lower(subject_name) = lower(:subject_name)";
-
     private static final String SUBJECT_ID = "subject_id";
     private static final String SUBJECT_NAME = "subject_name";
 
@@ -42,6 +40,9 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
     @Value("${subject.deleteSubject}")
     private String deleteSubject;
 
+    @Value("${subject.checkSubjectName}")
+    private String checkSubjectName;
+
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -56,8 +57,11 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
      */
     @Override
     public Stream<Subject> findall() {
-        LOGGER.debug("findAll()");
-        List<Subject> subject = namedParameterJdbcTemplate.query(selectAllSubject, new SubjectRowMapper());
+
+        LOGGER.debug("start findAll()");
+
+        List<Subject> subject = namedParameterJdbcTemplate.query(
+                selectAllSubject, new SubjectRowMapper());
         return subject.stream();
     }
 
@@ -69,9 +73,12 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
      */
     @Override
     public Optional<Subject> findById(Integer id) {
-        LOGGER.debug("findBuId({})", id);
+
+        LOGGER.debug("findById({})", id);
+
         SqlParameterSource namedParameter = new MapSqlParameterSource(SUBJECT_ID, id);
-        Subject subject = namedParameterJdbcTemplate.queryForObject(selectBySubjectId, namedParameter, new SubjectRowMapper());
+        Subject subject = namedParameterJdbcTemplate.queryForObject(
+                selectBySubjectId, namedParameter, new SubjectRowMapper());
         return Optional.ofNullable(subject);
     }
 
@@ -82,11 +89,15 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
      */
     @Override
     public Optional<Subject> add(Subject subject) {
-        LOGGER.debug("add({})", subject);
+
+        LOGGER.debug("start add({})", subject);
+
         return Optional.of(subject)
                 .filter(this::isNameUnique)
                 .map(this::insertSubject)
-                .orElseThrow(() -> new IllegalArgumentException("Subject with the this name already exist in DB.subject"));
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Subject with the " +
+                                "this name already exist in DB.subject"));
     }
 
     /**
@@ -95,7 +106,7 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
      * @param subject Subject.
      */
     private boolean isNameUnique(Subject subject) {
-        Integer getCountIdSubject = namedParameterJdbcTemplate.queryForObject(CHECK_COUNT_NAME,
+        Integer getCountIdSubject = namedParameterJdbcTemplate.queryForObject(checkSubjectName,
                 new MapSqlParameterSource(SUBJECT_NAME, subject.getName()),
                 Integer.class);
         return getCountIdSubject == 0;
@@ -107,7 +118,9 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
      * @param subject new Subject.
      */
     private Optional<Subject> insertSubject(Subject subject) {
-        LOGGER.info("add({})", subject);
+
+        LOGGER.info("insertSubject({})", subject);
+
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(SUBJECT_NAME.toLowerCase(), subject.getName().toLowerCase());
 
@@ -144,6 +157,9 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
      */
     @Override
     public void delete(int idSubject) {
+
+        LOGGER.info("delete({})", idSubject);
+
         Optional.of(namedParameterJdbcTemplate.update(deleteSubject, new MapSqlParameterSource(SUBJECT_ID, idSubject)))
                 .filter(this::successfullyUpdated)
                 .orElseThrow(() -> new RuntimeException("Failed to delete subject from DB"));

@@ -34,13 +34,18 @@ public class TestDtoServiceImpl implements TestDtoService {
 
     @Override
     public TestDto findTestDtoById(Integer id) {
-        LOGGER.debug("Find findTestDtoById()");
+
+        LOGGER.debug("start findTestDtoById({})", id);
+
         TestDto testDto = testDao.findTestDtoById(id).get();
         testDto.setQuestions(getQuestionsList(testDto.getIdTests()));
         return testDto;
     }
 
     private List<QuestionItem> getQuestion(Integer idTest, Integer idQuestion) {
+
+        LOGGER.debug("start getQuestion({}, {})", idTest, idQuestion);
+
         List<QuestionItem> questionItemList = new ArrayList<>();
         for (QuestionItem questionItem : questionItemDao.findAllQuestionItemByTestId(idTest)) {
             if (idQuestion.equals(questionItem.getQuestionId())) {
@@ -51,6 +56,9 @@ public class TestDtoServiceImpl implements TestDtoService {
     }
 
     private List<Question> getQuestionsList(Integer idTest) {
+
+        LOGGER.debug("start getQuestionsList({})", idTest);
+
         List<Question> questions = questionDao.findAllQuestionByTestId(idTest);
         for (Question question : questions) {
             question.setQuestionItems(
@@ -62,11 +70,17 @@ public class TestDtoServiceImpl implements TestDtoService {
 
     @Override
     public void addTestDto(TestDto testDto) {
+
+        LOGGER.debug("addTestDto({})", testDto);
+
         Integer idTest = addTest(testDto);
         addQuestions(testDto.getQuestions(), idTest);
     }
 
     private Integer addTest(TestDto testDto) {
+
+        LOGGER.debug("start addTest({})", testDto);
+
         Test test = new Test();
         test.setName(testDto.getTestName());
         test.setSubjectId(testDto.getSubjectId());
@@ -76,6 +90,9 @@ public class TestDtoServiceImpl implements TestDtoService {
     }
 
     private void addQuestions(List<Question> questions, Integer idTest) {
+
+        LOGGER.debug("start addQuestions({}, {})", questions, idTest);
+
         for (Question question : questions) {
             questionDao.add(question, idTest);
             addQuestionItems(question.getQuestionItems(), question.getQuestionId());
@@ -83,6 +100,9 @@ public class TestDtoServiceImpl implements TestDtoService {
     }
 
     private void addQuestionItems(List<QuestionItem> questionItems, Integer idQuestion) {
+
+        LOGGER.debug("start getQuestion({}, {})", questionItems, idQuestion);
+
         for (QuestionItem questionItem : questionItems) {
             questionItem.setQuestionId(idQuestion);
             questionItemDao.add(questionItem);
@@ -91,6 +111,9 @@ public class TestDtoServiceImpl implements TestDtoService {
 
     @Override
     public void updateTestDto(TestDto testDto) {
+
+        LOGGER.debug("start updateTestDto({})", testDto);
+
         List<Question> questionsToUpdate = questionsToUpdate(testDto);
         Test test = new Test();
         test.setTestId(testDto.getIdTests());
@@ -102,6 +125,9 @@ public class TestDtoServiceImpl implements TestDtoService {
     }
 
     private List<Question> questionsToUpdate(TestDto testDto) {
+
+        LOGGER.debug("start questionsToUpdate({})", testDto);
+
         List<Question> questionToUpdate = new ArrayList<>();
         List<Question> questionsToAdd = new ArrayList<>();
         for (Question question : testDto.getQuestions()) {
@@ -117,6 +143,9 @@ public class TestDtoServiceImpl implements TestDtoService {
 
 
     private List<List<QuestionItem>> updateQuestionItems(List<Question> questions) {
+
+        LOGGER.debug("start updateQuestionItems({})", questions);
+
         List<List<QuestionItem>> questionItems = new ArrayList<>();
         for (Question question : questions) {
             questionItems.add(question.getQuestionItems());
@@ -126,6 +155,9 @@ public class TestDtoServiceImpl implements TestDtoService {
 
     @Override
     public void deleteTestDto(Integer id) {
+
+        LOGGER.debug("start deleteTestDto({})", id);
+
         testDao.delete(id);
         questionDao.deleteByTestId(id);
         questionItemDao.deleteByTestId(id);

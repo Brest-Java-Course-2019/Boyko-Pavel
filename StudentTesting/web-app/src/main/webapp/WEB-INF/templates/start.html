@@ -214,17 +214,23 @@
 
 <script>
 
-        $(document).ready(function() {
-        if ($('.form-control.is-invalid').length>0){
-                $(this).addClass('hover');
-            $("#teacherModal").modal('show');
-              }
-        });
-
-
-
+$(document).ready(function() {
+if ($('#teacherModal .form-control.is-invalid').length>0){
+        $(this).addClass('hover');
+    $("#teacherModal").modal('show');
+      }
+});
 
 </script>
+<script>
 
+$(document).ready(function() {
+if ($('#studentModal .form-control.is-invalid').length>0){
+        $(this).addClass('hover');
+    $("#studentModal").modal('show');
+      }
+});
+
+</script>
 </body>
 </html>

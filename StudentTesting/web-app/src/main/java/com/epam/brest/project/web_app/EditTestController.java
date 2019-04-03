@@ -37,7 +37,8 @@ public class EditTestController {
     @GetMapping(value = {"/editTest/{id}"})
     public final String gotoEditTest(@PathVariable Integer id, Model model) {
 
-        LOGGER.debug("findTestDtoById({}, {})", id, model);
+        LOGGER.debug("gotoEditTest({}, {})", id, model);
+
         model.addAttribute("testDto", testDtoService.findTestDtoById(id));
         model.addAttribute("subjects", subjectService.findAll());
         return "editTest";
@@ -46,14 +47,17 @@ public class EditTestController {
     @PostMapping(value = {"/editTest/{id}"})
     public String updateTestById(@PathVariable Integer id, @Valid TestDto testDTO, Model model,
                                  BindingResult result) {
-        LOGGER.debug("updateTestById({}, {})", testDTO, result);
+        LOGGER.debug("updateTestById({}, {}, {}, {})", id, testDTO, model, result);
+
         TestDto testDtoBuilder = new TestDtoBuilder(testDTO).getTestDto();
         validator.validate(testDtoBuilder, result);
         if (result.hasErrors()) {
             model.addAttribute("subjects", subjectService.findAll());
             return "editTest";
         } else {
+
             LOGGER.debug("updateTestDto({})", testDtoBuilder);
+
             testDTO.idTests(id);
             testDtoService.updateTestDto(testDTO);
             return "redirect:/teacher";
@@ -63,7 +67,9 @@ public class EditTestController {
     @PostMapping(value = {"/editTest"})
     public String addNewTest(TestDto testDto, Model model,
                              BindingResult result) {
-        LOGGER.debug("addTestDto({},{})", testDto, result);
+
+        LOGGER.debug("addNewTest({},{}, {})", testDto, model, result);
+
         TestDto testDtoBuilder = new TestDtoBuilder(testDto).getTestDto();
         validator.validate(testDtoBuilder, result);
         if (result.hasErrors()) {
@@ -78,7 +84,9 @@ public class EditTestController {
 
     @GetMapping(value = {"/editTest"})
     public final String createNewTest(Model model) {
-        LOGGER.debug("findAllSubject({})", model);
+
+        LOGGER.debug("createNewTest({})", model);
+
         model.addAttribute("testDto", new TestDto());
         model.addAttribute("subjects", subjectService.findAll());
         return "editTest";
