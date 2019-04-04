@@ -37,7 +37,7 @@
                 <a href="student.html"
                    type="button"
                    class="btn btn-outline-secondary"
-                   th:href="@{/startTest/training}"
+                   th:href="@{/student}"
                    th:hidden="!${endTest}">Out test
                 </a>
                 <button th:hidden="${endTest}" id="student" type="button" class="btn btn-outline-secondary"
@@ -60,7 +60,7 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <a class="btn btn-danger"
                                    href="student.html"
-                                   th:href="@{/startTest/training}"
+                                   th:href="@{/student}"
                                    role="button">End</a>
                             </div>
                         </div>
@@ -85,6 +85,10 @@
                         <table class="table table-str">
                             <tbody>
 
+<!--                            <input type="text" name="studentId"-->
+<!--                                    value="loool"-->
+<!--                                   hidden="">-->
+<!--                            th:value="${#session.getAttribute('teacher').teacherId}"-->
                             <div th:hidden="!${endTest}" class="alert alert-success" role="alert">
                                 <h3>
                                     count right question <span th:text="${countRightQuestion}"></span>

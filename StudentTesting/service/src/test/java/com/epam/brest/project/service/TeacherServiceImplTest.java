@@ -1,5 +1,7 @@
 package com.epam.brest.project.service;
 
+import com.epam.brest.project.DTO.StudentTestDto;
+import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.Teacher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -34,5 +38,11 @@ class TeacherServiceImplTest {
         Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
             teacherService.findTeacherByLogin("adm4in");
         });
+    }
+
+    @Test
+    void findAllTestDto() {
+        List<StudentTestDto> teacher = teacherService.findAllDtoTestTeacher(1);
+        assertEquals(2, teacher.size());
     }
 }

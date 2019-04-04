@@ -19,7 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/root-context.xml"})
-class StudentTestControllerTest {
+class StartTestControllerTest {
 
     @Autowired
     private WebApplicationContext wac;

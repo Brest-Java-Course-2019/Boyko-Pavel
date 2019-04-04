@@ -22,6 +22,7 @@ public class StudentAnswerJdbcDaoImpl implements StudentAnswerDao {
     private static final String QUESTION_ITEM_ID = "question_item_id";
     private static final String STUDENT_ANSWER = "student_answer";
     private static final String STUDENT_ID = "student_id";
+    private static final String TEST_ID = "test_id";
 
 
     @Value("${studentAnswer.studentAnswerByIdStudent}")
@@ -61,10 +62,9 @@ public class StudentAnswerJdbcDaoImpl implements StudentAnswerDao {
         SqlParameterSource[] sqlParameterSources = new SqlParameterSource[studentAnswers.size()];
         for (int x = 0; x < studentAnswers.size(); x++) {
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-            mapSqlParameterSource.addValue(
-                    STUDENT_ANSWER, studentAnswers.get(x).getStudentAnswer());
-            mapSqlParameterSource.addValue(
-                    QUESTION_ITEM_ID, studentAnswers.get(x).getQuestionItemId());
+            mapSqlParameterSource.addValue(STUDENT_ANSWER, studentAnswers.get(x).getStudentAnswer());
+            mapSqlParameterSource.addValue(QUESTION_ITEM_ID, studentAnswers.get(x).getQuestionItemId());
+            mapSqlParameterSource.addValue(TEST_ID, studentAnswers.get(x).getTestId());
             mapSqlParameterSource.addValue(STUDENT_ID, studentAnswers.get(x).getStudentId());
             sqlParameterSources[x] = mapSqlParameterSource;
         }
@@ -82,6 +82,7 @@ public class StudentAnswerJdbcDaoImpl implements StudentAnswerDao {
             StudentAnswer studentAnswer = new StudentAnswer();
             studentAnswer.setQuestionItemId(resultSet.getInt(QUESTION_ITEM_ID));
             studentAnswer.setStudentAnswer(resultSet.getBoolean(STUDENT_ANSWER));
+            studentAnswer.setTestId(resultSet.getInt(TEST_ID));
             return studentAnswer;
         }
     }

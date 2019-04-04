@@ -10,8 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes({"student"})
 @ContextConfiguration(locations = {"classpath*:test-db.xml"})
 public class HomeController {
 
@@ -20,6 +23,11 @@ public class HomeController {
 
     @Autowired()
     private StudentService studentService;
+
+    @ModelAttribute
+    public void addAttributes(Model model) {
+        model.addAttribute("student", new Student());
+    }
 
     @GetMapping(value = {"/"})
     public final String redirectStudentTests() {

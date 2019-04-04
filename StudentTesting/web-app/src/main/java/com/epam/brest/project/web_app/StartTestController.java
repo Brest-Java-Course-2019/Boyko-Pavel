@@ -3,6 +3,7 @@ package com.epam.brest.project.web_app;
 import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.builder.DateBuilder;
 import com.epam.brest.project.model.Student;
+import com.epam.brest.project.service.StudentAnswerService;
 import com.epam.brest.project.service.StudentService;
 import com.epam.brest.project.service.TestDtoService;
 import com.epam.brest.project.web_app.builder.TestDtoBuilder;
@@ -37,23 +38,43 @@ public class StartTestController {
     private StudentService studentService;
 
     @Autowired
+    private StudentAnswerService answerService;
+
+    @Autowired
     private StudentAnswerValidator answerValidator;
 
     @Autowired
     private FilterValidator filterValidator;
 
-    @GetMapping(value = {"/startTest/training"})
 
-    public final String goToTrainingTest(Model model) {
+//    @GetMapping(value = {"/startTest/training"})
+//
+//    public final String goToTrainingTest(Model model) {
+//
+//        LOGGER.debug("goToTrainingTest({})", model);
+//
+//        model.addAttribute("dateBuilder", new DateBuilder());
+//        model.addAttribute("allTestsDto", studentService.findAllDto());
+//        return "student";
+//    }
 
-        LOGGER.debug("goToTrainingTest({})", model);
+
+    @GetMapping(value = {"/student"})
+    public final String findStudentTest(@ModelAttribute Student student, Model model) {
+
+        LOGGER.debug("createNewTest({})", model);
 
         model.addAttribute("dateBuilder", new DateBuilder());
-        model.addAttribute("allTestsDto", studentService.findAllDto());
+        Integer studentId = null;
+        if (student != null) {
+            studentId = student.getStudentId();
+        }
+        model.addAttribute("allTestsDto", studentService.findAllDtoTestStudent(studentId));
         return "student";
     }
 
-    @GetMapping(value = {"/startTest/training/{id}"})
+
+    @GetMapping(value = {"/student/startTest/{id}"})
 
     public final String goToSolveTrainingTest(@PathVariable Integer id, Model model) {
 
@@ -64,13 +85,16 @@ public class StartTestController {
         return "startTest";
     }
 
-    @PostMapping(value = {"/startTest/training/{id}"})
-    public String endSolveTrainingTest(@PathVariable Integer id, @Valid TestDto testDto,
+    @PostMapping(value = {"/student/startTest/{id}"})
+    public String endSolveTrainingTest(@ModelAttribute Student student, @PathVariable Integer id, @Valid TestDto testDto,
                                        Model model, BindingResult result) {
 
         LOGGER.debug("endSolveTrainingTest({}, {}, {}, {})", id, testDto, model, result);
 
         testDto.setIdTests(id);
+        if (student.getStudentId() != null) {
+            answerService.addStudentAnswer(testDto, student.getStudentId());
+        }
         answerValidator.validate(testDto, result);
         model.addAttribute("countRightQuestion", answerValidator.getCountRightAnswer());
         model.addAttribute("endTest", true);

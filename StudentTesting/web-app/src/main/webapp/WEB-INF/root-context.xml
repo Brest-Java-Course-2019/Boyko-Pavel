@@ -67,40 +67,40 @@
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="testDtoServiceImpl" class="com.epam.brest.project.service.TestDtoServiceImpl">
-        <constructor-arg ref="testDaoJdbcImpl"/>
-        <constructor-arg ref="questionItemDaoJdbcImpl"/>
-        <constructor-arg ref="questionDaoJdbcImpl"/>
-    </bean>
+<!--    <bean id="testDtoServiceImpl" class="com.epam.brest.project.service.TestDtoServiceImpl">-->
+<!--        <constructor-arg ref="testDaoJdbcImpl"/>-->
+<!--        <constructor-arg ref="questionItemDaoJdbcImpl"/>-->
+<!--        <constructor-arg ref="questionDaoJdbcImpl"/>-->
+<!--    </bean>-->
 
     <bean id="teacherJdbcDaoImpl" class="com.epam.brest.project.dao.TeacherJdbcDaoImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="studentServiceImpl" class="com.epam.brest.project.service.StudentServiceImpl">
-        <constructor-arg ref="studentTestJdbc"/>
-        <constructor-arg ref="studentDaoJdbcImpl"/>
-    </bean>
+<!--    <bean id="studentServiceImpl" class="com.epam.brest.project.service.StudentServiceImpl">-->
+<!--        <constructor-arg ref="studentTestJdbc"/>-->
+<!--        <constructor-arg ref="studentDaoJdbcImpl"/>-->
+<!--    </bean>-->
 
-    <bean id="subjectServiceImpl" class="com.epam.brest.project.service.SubjectServiceImpl">
-        <constructor-arg ref="subjectDaoJdbcImpl"/>
-    </bean>
+<!--    <bean id="subjectServiceImpl" class="com.epam.brest.project.service.SubjectServiceImpl">-->
+<!--        <constructor-arg ref="subjectDaoJdbcImpl"/>-->
+<!--    </bean>-->
 
     <bean id="studentAnswerJdbcDaoImpl" class="com.epam.brest.project.dao.StudentAnswerJdbcDaoImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="teacherServiceImpl" class="com.epam.brest.project.service.TeacherServiceImpl">
-        <constructor-arg ref="teacherJdbcDaoImpl"/>
-    </bean>
+<!--    <bean id="teacherServiceImpl" class="com.epam.brest.project.service.TeacherServiceImpl">-->
+<!--        <constructor-arg ref="teacherJdbcDaoImpl"/>-->
+<!--    </bean>-->
 
     <bean id="studentDaoJdbcImpl" class="com.epam.brest.project.dao.StudentDaoJdbcImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="studentAnswerService" class="com.epam.brest.project.service.StudentAnswerServiceImpl">
-        <constructor-arg ref="studentAnswerJdbcDaoImpl"/>
-    </bean>
+<!--    <bean id="StudentAnswerServiceImpl" class="com.epam.brest.project.service.StudentAnswerServiceImpl">-->
+<!--        <constructor-arg ref="studentAnswerJdbcDaoImpl"/>-->
+<!--    </bean>-->
 
     <context:property-placeholder location="classpath:application.properties"/>
 

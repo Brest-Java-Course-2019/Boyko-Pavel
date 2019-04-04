@@ -50,12 +50,12 @@ public class StudentAnswerValidator implements Validator {
                 String correctAnswer = questionItems.get(j).getAnswer().toString();
                 if (studentAnswer.equals("true") && correctAnswer.equals("false")) {
                     errors.rejectValue("questions[" + i + "].questionItems[" + j +
-                            "]" + ".description", "answerValidator.unMarked");
+                            "]" + ".description", "answerValidator.marked");
                 }
                 if (studentAnswer.equals("false") && correctAnswer.equals("true")) {
 
                     errors.rejectValue("questions[" + i + "].questionItems[" + j +
-                            "]" + ".description", "answerValidator.marked");
+                            "]" + ".description", "answerValidator.unMarked");
                 }
             }
             int countErrorsAfterValidation = errors.getErrorCount();

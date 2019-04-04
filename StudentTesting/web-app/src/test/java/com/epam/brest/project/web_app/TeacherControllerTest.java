@@ -1,6 +1,8 @@
 package com.epam.brest.project.web_app;
 
 
+import com.epam.brest.project.DTO.TestDto;
+import com.epam.brest.project.model.Teacher;
 import org.hamcrest.Matchers;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,22 +30,41 @@ class TeacherControllerTest {
 
     private MockMvc mockMvc;
 
+    Teacher createTeacher(){
+        Teacher teacher = new Teacher();
+        teacher.setLogin("admin1");
+        teacher.setPassword("1");
+        teacher.setTeacherId(1);
+        return teacher;
+    }
+
     @BeforeEach
     void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
-    @Ignore
-    void editTest() throws Exception {
+    @Test
+    void getTestDtoAfterUnCorrectLogin() throws Exception {
 
         mockMvc.perform(
-                    MockMvcRequestBuilders.post("/start")
-                            .param("login","admin1")
-                            .param("password", "1")
+                MockMvcRequestBuilders.post("/teacher")
+                        .param("login", "admin41")
+                        .param("password", "1")
         ).andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
-                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("Math")))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>Physics</td>")))
+        ;
+    }
+
+    @Test
+    void getTestDtoAfterCorrectLogin() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/teacher")
+                        .param("login", "admin1")
+                        .param("password", "1")
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/teacher"))
         ;
     }
 
@@ -52,11 +73,23 @@ class TeacherControllerTest {
     void gotToTestTeacher() throws Exception {
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/start")
+                MockMvcRequestBuilders.get("/teacher").sessionAttr("teacher", createTeacher())
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
-                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("Math")))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>2019-04-05</td>")))
+        ;
+    }
+
+
+    @Test
+    void deleteTestById() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/teacher/1/delete")
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/teacher"))
         ;
     }
 

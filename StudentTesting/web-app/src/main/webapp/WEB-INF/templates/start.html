@@ -22,10 +22,13 @@
 </head>
 <body>
 
-<nav class="pr-2 navbar-light bg-light pt-0 pb-1 mb-3">
+
+<nav class="navbar-light bg-light pt-1 pb-1 mb-4">
+
     <a class="navbar-brand"><img src="../../resources/static/img/logo.svg"
                                  th:src="@{/resources/static/img/logo.svg}"
                                  height="32" width="32"></a>
+
     <div class="btn-group" role="group">
         <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle"
                 data-toggle="dropdown"
@@ -36,7 +39,7 @@
                data-target="#studentModal" data-whatever="@mdo">Verification test</a>
             <a class="dropdown-item"
                href="student.html"
-               th:href="@{/startTest/training}"
+               th:href="@{/student}"
             >Training test</a>
 
         </div>
@@ -44,119 +47,144 @@
                 data-target="#teacherModal">Teacher
         </button>
     </div>
+</nav>
 
-    <div class="navbar-nav">
-        <div class="modal fade" data-show="true" id="studentModal" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="studentModalLabel">Enter your information</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="studentForm"
-                              th:object="${student}"
-                              action="teacher.html"
-                              th:action="@{student}"
-                              th:method="post">
 
-                            <div class="form-group">
-                                <label class="col-form-label">Login:</label>
-                                <input type="text" class="form-control"
-                                           th:field="*{login}"
-                                       th:errorclass="is-invalid">
-                                <div th:if="${#fields.hasErrors('login')}"
-                                     class="invalid-feedback"
-                                     th:errors="*{login}">
-                                    [errors]
-                                </div>
-                            </div>
+<!--<nav class="pr-2 navbar-light bg-light pt-1 pb-1 mb-3">-->
+<!--    <a class="navbar-brand"><img src="../../resources/static/img/logo.svg"-->
+<!--                                 th:src="@{/resources/static/img/logo.svg}"-->
+<!--                                 height="32" width="32"></a>-->
+<!--    <div class="btn-group" role="group">-->
+<!--        <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle"-->
+<!--                data-toggle="dropdown"-->
+<!--                aria-haspopup="true" aria-expanded="false"> Student-->
+<!--        </button>-->
+<!--        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">-->
+<!--            <a class="dropdown-item" data-toggle="modal"-->
+<!--               data-target="#studentModal" data-whatever="@mdo">Verification test</a>-->
+<!--            <a class="dropdown-item"-->
+<!--               href="student.html"-->
+<!--               th:href="@{/startTest/training}"-->
+<!--            >Training test</a>-->
 
-                            <div class="form-group">
-                                <label class="col-form-label">Password:</label>
-                                <input type="password" class="form-control"
-                                       th:field="*{password}"
-                                       th:errorclass="is-invalid">
-                                <div th:if="${#fields.hasErrors('password')}"
-                                     class="invalid-feedback"
-                                     th:errors="*{password}">
-                                    [errors]
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a class="btn btn-primary"
-                           type="button"
-                           href="student.html"
-                           th:onclick="@{document.forms['studentForm'].submit(); return false;}"
-                        >Login</a>
-
-                    </div>
+<!--        </div>-->
+<!--        <button id="teacher" type="button" class="btn btn-outline-secondary" data-toggle="modal"-->
+<!--                data-target="#teacherModal">Teacher-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</nav>-->
+<div class="navbar-nav">
+    <div class="modal fade" data-show="true" id="studentModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="studentModalLabel">Enter your information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-        </div>
+                <div class="modal-body">
+                    <form id="studentForm"
+                          th:object="${student}"
+                          action="teacher.html"
+                          th:action="@{student}"
+                          th:method="post">
 
-        <div class="modal fade" data-show="true" id="teacherModal" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="teacherModalModalLabel">Enter your information</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="teacherForm"
-                              th:object="${teacher}"
-                              action="teacher.html"
-                              th:action="@{teacher}"
-                              th:method="post">
-
-                            <div class="form-group">
-                                <label class="col-form-label">Login:</label>
-                                <input type="text" class="form-control"
-                                       th:field="*{login}"
-                                       th:errorclass="is-invalid">
-                                <div th:if="${#fields.hasErrors('login')}"
-                                     class="invalid-feedback"
-                                     th:errors="*{login}">
-                                    [errors]
-                                </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Login:</label>
+                            <input type="text" class="form-control"
+                                   th:field="*{login}"
+                                   th:errorclass="is-invalid">
+                            <div th:if="${#fields.hasErrors('login')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{login}">
+                                [errors]
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-form-label">Password:</label>
-                                <input type="password" class="form-control"
-                                       th:field="*{password}"
-                                       th:errorclass="is-invalid">
-                                <div th:if="${#fields.hasErrors('password')}"
-                                     class="invalid-feedback"
-                                     th:errors="*{password}">
-                                    [errors]
-                                </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Password:</label>
+                            <input type="password" class="form-control"
+                                   th:field="*{password}"
+                                   th:errorclass="is-invalid">
+                            <div th:if="${#fields.hasErrors('password')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{password}">
+                                [errors]
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a class="btn btn-primary"
-                           type="button"
-                           href="teacher.html"
-                           th:onclick="@{document.forms['teacherForm'].submit(); return false;}"
-                        >Login</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-primary"
+                       type="button"
+                       href="student.html"
+                       th:onclick="@{document.forms['studentForm'].submit(); return false;}"
+                    >Login</a>
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</nav>
+
+    <div class="modal fade" data-show="true" id="teacherModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="teacherModalModalLabel">Enter your information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="teacherForm"
+                          th:object="${teacher}"
+                          action="teacher.html"
+                          th:action="@{teacher}"
+                          th:method="post">
+
+                        <div class="form-group">
+                            <label class="col-form-label">Login:</label>
+                            <input type="text" class="form-control"
+                                   th:field="*{login}"
+                                   th:errorclass="is-invalid">
+                            <div th:if="${#fields.hasErrors('login')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{login}">
+                                [errors]
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label">Password:</label>
+                            <input type="password" class="form-control"
+                                   th:field="*{password}"
+                                   th:errorclass="is-invalid">
+                            <div th:if="${#fields.hasErrors('password')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{password}">
+                                [errors]
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-primary"
+                       type="button"
+                       href="teacher.html"
+                       th:onclick="@{document.forms['teacherForm'].submit(); return false;}"
+                    >Login</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section id="tests">
     <div class="container-fluid">
         <div class="row">
@@ -221,6 +249,7 @@ if ($('#teacherModal .form-control.is-invalid').length>0){
       }
 });
 
+
 </script>
 <script>
 
@@ -230,6 +259,7 @@ if ($('#studentModal .form-control.is-invalid').length>0){
     $("#studentModal").modal('show');
       }
 });
+
 
 </script>
 </body>

@@ -21,7 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/root-context.xml"})
-class EditTestControllerTest {
+class HomeControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
@@ -33,41 +33,26 @@ class EditTestControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
-
-    private Teacher createTeacher(){
-        Teacher teacher = new Teacher();
-        teacher.setPassword("1");
-        teacher.setLogin("admin1");
-        return teacher;
-    }
-
     @Test
-    void addNewTest() throws Exception {
+    void redirectStudentTests() throws Exception {
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/editTest").sessionAttr("teacher", createTeacher())
-                        .sessionAttr("teacher", createTeacher())
-                        .param("subjectId", "1")
-                        .param("testName", "newTest")
-                        .param("teacherId", "1")
-                        .param("newQuestion", "newQuestion")
-                        .param("newAnswer", "1","0","0","0")
-                        .param("newDescription", "newDesc1", "newDesc2","newDesc3","newDesc4")
+                MockMvcRequestBuilders.get("/")
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("/teacher"))
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/start"))
         ;
     }
 
     @Test
-    void createNewTest() throws Exception {
+    void studentTests() throws Exception {
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/editTest").sessionAttr("teacher", createTeacher())
+                MockMvcRequestBuilders.get("/start")
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
-                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("id=\"testName\" name=\"testName\" value=\"\"/>")))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>2019-04-05</td>")))
         ;
     }
+
 }
