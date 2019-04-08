@@ -2,11 +2,11 @@ package com.epam.brest.project.web_app;
 
 import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.builder.DateBuilder;
+import com.epam.brest.project.dao.builder.TestDtoBuilder;
 import com.epam.brest.project.model.Student;
 import com.epam.brest.project.service.StudentAnswerService;
 import com.epam.brest.project.service.StudentService;
 import com.epam.brest.project.service.TestDtoService;
-import com.epam.brest.project.web_app.builder.TestDtoBuilder;
 import com.epam.brest.project.web_app.validators.FilterValidator;
 import com.epam.brest.project.web_app.validators.StudentAnswerValidator;
 import org.slf4j.Logger;
@@ -47,29 +47,17 @@ public class StartTestController {
     private FilterValidator filterValidator;
 
 
-//    @GetMapping(value = {"/startTest/training"})
-//
-//    public final String goToTrainingTest(Model model) {
-//
-//        LOGGER.debug("goToTrainingTest({})", model);
-//
-//        model.addAttribute("dateBuilder", new DateBuilder());
-//        model.addAttribute("allTestsDto", studentService.findAllDto());
-//        return "student";
-//    }
-
-
     @GetMapping(value = {"/student"})
     public final String findStudentTest(@ModelAttribute Student student, Model model) {
 
         LOGGER.debug("createNewTest({})", model);
 
         model.addAttribute("dateBuilder", new DateBuilder());
-        Integer studentId = null;
-        if (student != null) {
-            studentId = student.getStudentId();
+        if (student.getStudentId() == null) {
+            model.addAttribute("allTestsDto", studentService.findAllDto());
+        } else {
+            model.addAttribute("allTestsDto", studentService.findAllDtoTestStudent(student.getStudentId()));
         }
-        model.addAttribute("allTestsDto", studentService.findAllDtoTestStudent(studentId));
         return "student";
     }
 

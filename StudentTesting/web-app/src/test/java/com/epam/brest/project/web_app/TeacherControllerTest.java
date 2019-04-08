@@ -1,10 +1,8 @@
 package com.epam.brest.project.web_app;
 
 
-import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.Teacher;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/root-context.xml"})
+@ContextConfiguration(locations = {"classpath:web_app_test.xml"})
 class TeacherControllerTest {
 
     @Autowired
@@ -30,7 +28,7 @@ class TeacherControllerTest {
 
     private MockMvc mockMvc;
 
-    Teacher createTeacher(){
+    Teacher createTeacher() {
         Teacher teacher = new Teacher();
         teacher.setLogin("admin1");
         teacher.setPassword("1");
@@ -77,7 +75,7 @@ class TeacherControllerTest {
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
-                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>2019-04-05</td>")))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>Probability theory</td>")))
         ;
     }
 

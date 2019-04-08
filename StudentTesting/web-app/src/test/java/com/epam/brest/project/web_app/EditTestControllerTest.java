@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/root-context.xml"})
+@ContextConfiguration(locations = {"classpath:web_app_test.xml"})
 class EditTestControllerTest {
 
     @Autowired
@@ -34,7 +34,7 @@ class EditTestControllerTest {
     }
 
 
-    private Teacher createTeacher(){
+    private Teacher createTeacher() {
         Teacher teacher = new Teacher();
         teacher.setPassword("1");
         teacher.setLogin("admin1");
@@ -51,8 +51,8 @@ class EditTestControllerTest {
                         .param("testName", "newTest")
                         .param("teacherId", "1")
                         .param("newQuestion", "newQuestion")
-                        .param("newAnswer", "1","0","0","0")
-                        .param("newDescription", "newDesc1", "newDesc2","newDesc3","newDesc4")
+                        .param("newAnswer", "1", "0", "0", "0")
+                        .param("newDescription", "newDesc1", "newDesc2", "newDesc3", "newDesc4")
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/teacher"))

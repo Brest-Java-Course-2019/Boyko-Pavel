@@ -1,7 +1,6 @@
 package com.epam.brest.project.web_app;
 
 
-import com.epam.brest.project.model.Teacher;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/root-context.xml"})
+@ContextConfiguration(locations = {"classpath:web_app_test.xml"})
 class HomeControllerTest {
 
     @Autowired
@@ -51,7 +50,7 @@ class HomeControllerTest {
                 MockMvcRequestBuilders.get("/start")
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>2019-04-05</td>")))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>Probability theory</td>")))
         ;
     }
 

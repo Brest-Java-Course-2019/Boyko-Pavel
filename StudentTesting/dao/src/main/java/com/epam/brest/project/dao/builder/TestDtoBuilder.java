@@ -1,4 +1,4 @@
-package com.epam.brest.project.web_app.builder;
+package com.epam.brest.project.dao.builder;
 
 import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.Question;

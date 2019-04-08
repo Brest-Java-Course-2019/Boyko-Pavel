@@ -18,7 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/root-context.xml"})
+@ContextConfiguration(locations = {"classpath:web_app_test.xml"})
 class StudentTestControllerTest {
 
     @Autowired

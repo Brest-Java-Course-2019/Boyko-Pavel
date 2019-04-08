@@ -1,9 +1,9 @@
 package com.epam.brest.project.web_app;
 
 import com.epam.brest.project.DTO.TestDto;
+import com.epam.brest.project.dao.builder.TestDtoBuilder;
 import com.epam.brest.project.service.SubjectService;
 import com.epam.brest.project.service.TestDtoService;
-import com.epam.brest.project.web_app.builder.TestDtoBuilder;
 import com.epam.brest.project.web_app.validators.TestValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
