@@ -126,15 +126,40 @@
             <artifactId>h2</artifactId>
         </dependency>
 
+
     </dependencies>
 
     <build>
+        <finalName>web-student-testing</finalName>
 
         <plugins>
-            <!-- Embedded Jetty HTTP Server for testing web_app application -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8090</port>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <!-- Embedded Jetty HTTP Server for testing web application -->
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <httpConnector>
+                        <port>8090</port>
+                    </httpConnector>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -8,12 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
+@Component
 public class StudentTestDtoJdbcDaoImpl implements StudentTestDtoDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentTestDtoJdbcDaoImpl.class);

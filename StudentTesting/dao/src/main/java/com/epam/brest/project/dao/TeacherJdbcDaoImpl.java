@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+@Component
 public class TeacherJdbcDaoImpl implements TeacherDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TeacherJdbcDaoImpl.class);
@@ -79,7 +81,7 @@ public class TeacherJdbcDaoImpl implements TeacherDao {
          * @param resultSet the RowMapper which creates an object for each row
          * @param i         the number of expected rows
          * @return new question
-     */
+         */
         @Override
         public Teacher mapRow(ResultSet resultSet, int i) throws SQLException {
             Teacher teacher = new Teacher();

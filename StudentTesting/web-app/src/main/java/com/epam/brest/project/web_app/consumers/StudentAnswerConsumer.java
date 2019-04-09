@@ -48,7 +48,7 @@ public class StudentAnswerConsumer implements StudentAnswerService {
     @Override
     public void addStudentAnswer(TestDto testDto, Integer studentId) {
         LOGGER.debug("addStudentAnswer({}, {})", testDto, studentId);
-        restTemplate.postForEntity(url + "/startTest/" + studentId, testDto, TestDto.class);
+        restTemplate.postForEntity(url + "/"+ studentId, testDto, TestDto.class);
     }
 
     /**
@@ -58,7 +58,7 @@ public class StudentAnswerConsumer implements StudentAnswerService {
      */
     @Override
     public List<StudentAnswer> findStudentAnswerById(Integer studentId) {
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/startTest/" + studentId, List.class);
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/"+ studentId, List.class);
         return (List<StudentAnswer>) responseEntity.getBody();
     }
 }

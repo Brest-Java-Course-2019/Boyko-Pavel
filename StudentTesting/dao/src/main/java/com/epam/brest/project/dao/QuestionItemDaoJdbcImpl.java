@@ -10,13 +10,17 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
-
+@Component
 public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QuestionItemDaoJdbcImpl.class);
@@ -194,7 +198,7 @@ public class QuestionItemDaoJdbcImpl implements QuestionItemDao {
                 mapSqlParameterSource.addValue(
                         ANSWER, questionItemList.get(j).getAnswer());
                 sqlParameterSources[
-                     j + COUNT_QUESTION_ITEM_IN_QUESTION * i]
+                        j + COUNT_QUESTION_ITEM_IN_QUESTION * i]
                         = mapSqlParameterSource;
             }
         }

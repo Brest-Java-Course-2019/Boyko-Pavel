@@ -50,7 +50,7 @@ public class StudentConsumer implements StudentService {
     @Override
     public List<StudentTestDto> findAllDto() {
         LOGGER.debug("consumer findAllDto()");
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/student", List.class);
+        ResponseEntity responseEntity = restTemplate.getForEntity(url, List.class);
         return (List<StudentTestDto>) responseEntity.getBody();
     }
 
@@ -65,10 +65,10 @@ public class StudentConsumer implements StudentService {
     public List<StudentTestDto> filterByDate(DateBuilder dateBuilder, @PathVariable Integer studentId) {
         LOGGER.debug("consumer filterByDate({}, {})", dateBuilder, studentId);
         Integer id = studentId;
-        if (studentId== null){
+        if (studentId == null) {
             id = 0;
         }
-        ResponseEntity responseEntity = restTemplate.postForEntity(url + "/student/filter/"+ id,
+        ResponseEntity responseEntity = restTemplate.postForEntity(url + "/filter/" + id,
                 dateBuilder, List.class);
         return (List<StudentTestDto>) responseEntity.getBody();
     }
@@ -83,7 +83,7 @@ public class StudentConsumer implements StudentService {
     @Override
     public Student findStudentByLogin(@RequestBody Student student) {
         LOGGER.debug("consumer findStudentByLogin({})", student);
-        ResponseEntity responseEntity = restTemplate.postForEntity(url + "/student", student, Student.class);
+        ResponseEntity responseEntity = restTemplate.postForEntity(url, student, Student.class);
         return (Student) responseEntity.getBody();
     }
 
@@ -96,7 +96,7 @@ public class StudentConsumer implements StudentService {
     @Override
     public List<StudentTestDto> findAllDtoTestStudent(Integer id) {
         LOGGER.debug("consumer findAllDtoTestStudent({})", id);
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/student/" + id, List.class);
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/" + id, List.class);
         return (List<StudentTestDto>) responseEntity.getBody();
     }
 }

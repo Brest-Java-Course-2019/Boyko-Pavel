@@ -31,13 +31,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Rollback
 class QuestionDaoJdbcImplTest {
 
-    private static final int DELETE_TEST_BY_ID = 4;
     private static final int ID_QUESTION = 3;
     private static final int DELETED_QUESTION_ID = 2;
     private static final int TEST_ID = 2;
 
     @Autowired
-    @Qualifier("questionDaoJdbcImpl")
     private QuestionDao questionDao;
 
 

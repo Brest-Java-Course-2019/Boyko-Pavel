@@ -46,7 +46,7 @@ public class TestDtoConsumer implements TestDtoService {
     @Override
     public TestDto findTestDtoById(Integer id) {
         ResponseEntity responseEntity = restTemplate
-                .getForEntity(url + "/teacher/editTest/" + id, TestDto.class);
+                .getForEntity(url + "/editTest/" + id, TestDto.class);
         return (TestDto) responseEntity.getBody();
     }
 
@@ -58,7 +58,7 @@ public class TestDtoConsumer implements TestDtoService {
     @Override
     public void addTestDto(TestDto testDto) {
         LOGGER.debug("addTestDto({})", testDto);
-        restTemplate.postForEntity(url + "/teacher/editTest", testDto, TestDto.class);
+        restTemplate.postForEntity(url + "/editTest", testDto, TestDto.class);
     }
 
     /**
@@ -69,11 +69,13 @@ public class TestDtoConsumer implements TestDtoService {
     @Override
     public void deleteTestDto(Integer id) {
         LOGGER.debug("deleteTestDto({})", id);
-        restTemplate.delete(url + "/teacher/" + id);
+        restTemplate.delete(url + "/" + id);
     }
 
     @Override
     public void updateTestDto(TestDto testDto) {
-        restTemplate.put(url + "/teacher/editTest", testDto, TestDto.class);
+        restTemplate.put(url + "/editTest", testDto, TestDto.class);
     }
 }
+
+

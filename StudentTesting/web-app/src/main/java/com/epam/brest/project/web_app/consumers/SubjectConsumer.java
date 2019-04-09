@@ -48,7 +48,7 @@ public class SubjectConsumer implements SubjectService {
     @Override
     public List<Subject> findAll() {
         LOGGER.debug("consumer findAll()");
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/subject", List.class);
+        ResponseEntity responseEntity = restTemplate.getForEntity(url, List.class);
         return (List<Subject>) responseEntity.getBody();
     }
 }

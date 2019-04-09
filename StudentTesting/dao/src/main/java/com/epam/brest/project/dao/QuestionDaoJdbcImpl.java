@@ -10,13 +10,17 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
-
+@Component
 public class QuestionDaoJdbcImpl implements QuestionDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QuestionDaoJdbcImpl.class);
@@ -152,7 +156,7 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
                 updateQuestion, mapSqlParameterSource))
                 .filter(this::countAffectedRow)
                 .orElseThrow(() ->
-                    new IllegalArgumentException("Failed to update question"));
+                        new IllegalArgumentException("Failed to update question"));
     }
 
     private Boolean countAffectedRow(int numRowsUpdated) {

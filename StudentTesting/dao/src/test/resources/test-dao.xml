@@ -1,44 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd ">
 
 
-
-
-    <bean id="studentTestDtoJdbcDaoImpl" class="com.epam.brest.project.dao.StudentTestDtoJdbcDaoImpl">
-        <constructor-arg ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean id="subjectDao" class="com.epam.brest.project.dao.SubjectDaoJdbcImpl">
-        <constructor-arg ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean id="testDaoJdbcImpl" class="com.epam.brest.project.dao.TestDaoJdbcImpl">
-        <constructor-arg ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean id="questionDaoJdbcImpl" class="com.epam.brest.project.dao.QuestionDaoJdbcImpl">
-        <constructor-arg ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean id="questionItemDao" class="com.epam.brest.project.dao.QuestionItemDaoJdbcImpl">
-        <constructor-arg ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean id="teacherJdbcDaoImpl" class="com.epam.brest.project.dao.TeacherJdbcDaoImpl">
-        <constructor-arg ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean id="studentAnswerDao" class="com.epam.brest.project.dao.StudentAnswerJdbcDaoImpl">
-        <constructor-arg ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean id="studentDaoJdbcImpl" class="com.epam.brest.project.dao.StudentDaoJdbcImpl">
-        <constructor-arg ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-
+    <context:component-scan base-package="com.epam.brest.project.dao"/>
 
 </beans>
