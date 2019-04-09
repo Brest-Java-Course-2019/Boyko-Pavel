@@ -1,23 +1,17 @@
 package com.epam.brest.project.dao;
 
 import com.epam.brest.project.model.Question;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -102,9 +96,9 @@ class QuestionDaoJdbcImplTest {
 
     @Test
     void batchupdateQuestion() {
-        List<Question> questions = questionDao.findAll().collect(Collectors.toList());;
-        for (Question question: questions) {
-            question.setQuestionName(question.getQuestionName()+ "_update");
+        List<Question> questions = questionDao.findAll().collect(Collectors.toList());
+        for (Question question : questions) {
+            question.setQuestionName(question.getQuestionName() + "_update");
         }
         questionDao.batchUpdate(questions);
         List<Question> questionAfterUpdate = questionDao.findAll().collect(Collectors.toList());

@@ -39,26 +39,26 @@ class TestDaoJdbcImplTest {
     }
 
     @org.junit.jupiter.api.Test
-    void findTestByID(){
+    void findTestByID() {
         Test test = testDao.findById(TEST_ID).get();
         assertEquals("Algebra", test.getName());
     }
 
     @org.junit.jupiter.api.Test
-    void findTestDTOByID(){
+    void findTestDTOByID() {
         TestDto testDTO = testDao.findTestDtoById(TEST_ID).get();
         assertEquals("Math", testDTO.getSubjectName());
     }
 
     @org.junit.jupiter.api.Test
-    void findTestByDeletedID(){
+    void findTestByDeletedID() {
         Assertions.assertThrows(DataAccessException.class, () -> {
             testDao.findById(DELETED_TEST_ID);
         });
     }
 
     @org.junit.jupiter.api.Test
-    void addQuestion(){
+    void addQuestion() {
         Stream<Test> countIdBeforeInsert = testDao.findAll();
         Test test = new Test();
         test.setName("Trigonometry");
@@ -67,12 +67,12 @@ class TestDaoJdbcImplTest {
         testDao.add(test);
         Stream<Test> countIdAfterInsert = testDao.findAll();
 
-        assertEquals(1 , countIdAfterInsert.count() - countIdBeforeInsert.count());
-        assertEquals(new Integer(5) , test.getTestId());
+        assertEquals(1, countIdAfterInsert.count() - countIdBeforeInsert.count());
+        assertEquals(new Integer(5), test.getTestId());
     }
 
     @org.junit.jupiter.api.Test
-    void addWrongQuestion(){
+    void addWrongQuestion() {
         Stream<Test> countIdBeforeInsert = testDao.findAll();
         Test test = new Test();
         test.setName("Trigonometry");
@@ -85,10 +85,10 @@ class TestDaoJdbcImplTest {
 
 
     @org.junit.jupiter.api.Test
-    void updateQuestion(){
+    void updateQuestion() {
         Test test = testDao.findById(TEST_ID).get();
         String testBeforeUpdate = test.getName();
-        test.setName(testBeforeUpdate +"_update");
+        test.setName(testBeforeUpdate + "_update");
         testDao.update(test);
         Test testAfterUpdate = testDao.findById(TEST_ID).get();
         assertEquals(test.getName(), testAfterUpdate.getName());
@@ -96,7 +96,7 @@ class TestDaoJdbcImplTest {
 
 
     @org.junit.jupiter.api.Test
-    void deleteQuestionByID(){
+    void deleteQuestionByID() {
         testDao.delete(TEST_ID);
         Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
             testDao.findById(TEST_ID);
@@ -104,7 +104,7 @@ class TestDaoJdbcImplTest {
     }
 
     @org.junit.jupiter.api.Test
-    void deleteQuestionNotExistID(){
+    void deleteQuestionNotExistID() {
         Assertions.assertThrows(RuntimeException.class, () -> {
             testDao.delete(34343434);
         });

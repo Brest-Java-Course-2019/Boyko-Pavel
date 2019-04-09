@@ -5,7 +5,6 @@ import com.epam.brest.project.builder.DateBuilder;
 import com.epam.brest.project.dao.QuestionItemDao;
 import com.epam.brest.project.dao.StudentAnswerDao;
 import com.epam.brest.project.model.Student;
-import com.epam.brest.project.model.StudentAnswer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -15,7 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -58,21 +56,12 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void findTestDtoById(){
-        List<StudentAnswer> studentAnswers = new ArrayList<>();
-        StudentAnswer studentAnswer = new StudentAnswer();
-        studentAnswer.setStudentId(1);
-        studentAnswer.setStudentAnswer(true);
-        studentAnswer.setTestId(2);
-        studentAnswer.setQuestionItemId(1);
-        studentAnswers.add(studentAnswer);
-        studentAnswerDao.addStudentAnswer(studentAnswers);
-        List<StudentTestDto> studentTestDtos = studentService.findAllDtoTestStudent(1);
-        assertEquals(1, studentTestDtos.size());
+    void findTestDtoById() {
+        assertEquals(2, studentService.findAllDtoTestStudent(1).size());
     }
 
     @Test
-    void findStudentById(){
+    void findStudentById() {
         Student studentForm = new Student();
         studentForm.setLogin("1");
         Student student = studentService.findStudentByLogin(studentForm);

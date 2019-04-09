@@ -13,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.Stream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:test-dao.xml", "classpath*:dao-context.xml"})
@@ -34,7 +35,7 @@ class SubjectDaoJdbcImplTest {
     void findAll() {
         Stream<Subject> subjects = subjectDao.findall();
         assertNotNull(subjects);
-        assertEquals(3,subjects.count());
+        assertEquals(3, subjects.count());
     }
 
     @Test

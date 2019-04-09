@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -47,7 +46,7 @@ class QuestionItemDaoJdbcImplTest {
     }
 
     @Test
-    void findallQuestionByTestId(){
+    void findallQuestionByTestId() {
         List<QuestionItem> questionList = questionItemDao.findAllQuestionItemByTestId(1);
         assertEquals("ANSWER: 1", questionList.get(0).getDescription());
     }
@@ -90,15 +89,14 @@ class QuestionItemDaoJdbcImplTest {
         int sizeBeforeDelete = questionItemDao.findall().collect(Collectors.toList()).size();
         questionItemDao.deleteByTestId(1);
         int sizeAfterDelete = questionItemDao.findall().collect(Collectors.toList()).size();
-        assertEquals((sizeAfterDelete +4), sizeBeforeDelete);
+        assertEquals((sizeAfterDelete + 4), sizeBeforeDelete);
     }
-
 
 
     @Test
     void bathUpdateQuestionItem() {
-        List<QuestionItem>  list = questionItemDao.findAllQuestionItemByTestId(1);
-        for (QuestionItem i: list) {
+        List<QuestionItem> list = questionItemDao.findAllQuestionItemByTestId(1);
+        for (QuestionItem i : list) {
             i.setDescription(i.getDescription() + "_update");
             i.setAnswer(true);
         }

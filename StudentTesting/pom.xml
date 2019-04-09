@@ -257,13 +257,6 @@
                     <version>3.0.0</version>
                 </plugin>
 
-
-                <!--<plugin>-->
-                <!--<groupId>org.flywaydb</groupId>-->
-                <!--<artifactId>flyway-maven-plugin</artifactId>-->
-                <!--<version>5.2.4</version>-->
-                <!--</plugin>-->
-
                 <!-- Embedded Jetty HTTP Server for testing war application -->
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
@@ -349,22 +342,6 @@
                 </executions>
             </plugin>
 
-            <!--<plugin>-->
-            <!--<groupId>com.github.spotbugs</groupId>-->
-            <!--<artifactId>spotbugs-maven-plugin</artifactId>-->
-            <!--<configuration>-->
-            <!--<effort>Min</effort>-->
-            <!--<threshold>Low</threshold>-->
-            <!--<xmlOutput>true</xmlOutput>-->
-            <!--</configuration>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<goals>-->
-            <!--<goal>check</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--</plugin>-->
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -507,17 +484,6 @@
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.3.0</version>
-
-<!--                <configuration>-->
-<!--                    <coberturaReports>-->
-<!--                        <coberturaReport>-->
-<!--                            ${basedir}/target/coverage.xml-->
-<!--                        </coberturaReport>-->
-<!--                    </coberturaReports>-->
-<!--                    <sourceEncoding>UTF-8</sourceEncoding>-->
-<!--                    <serviceName>travis-ci</serviceName>-->
-<!--                    &lt;!&ndash;<serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>&ndash;&gt;-->
-<!--                </configuration>-->
             </plugin>
         </plugins>
     </reporting>

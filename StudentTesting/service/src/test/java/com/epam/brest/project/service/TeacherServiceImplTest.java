@@ -1,15 +1,12 @@
 package com.epam.brest.project.service;
 
 import com.epam.brest.project.DTO.StudentTestDto;
-import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.Teacher;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 

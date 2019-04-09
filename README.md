@@ -10,34 +10,51 @@ Test Java project to study technologies such as git, maven, continuous integrati
 
 ### Prerequisites
 
-install jdk8+  
-install git  
+install jdk8+ 
+install git 
 install maven3+
 
+### Check environment configuration
+```
+ sudo update-java-alternatives --list
+
+ export JAVA_HOME = ...
+```
 ### Installing
 
-download project from github  
+Choose directory for project, download project from github:
 
 ```
 git clone https://github.com/Brest-Java-Course-2019/DeliveryCost.git  
+
+```
+
+## Build project
+Run terminal command in project directory:
+
+```
 mvn clean install
 ```
-
-## Running the tests
-
+### Preparing reports
 ```
-mvn test
+  mvn site
+  mvn site:site
 ```
-
-## Deployment
-
-```
-mvn site  
+  check reports: 
   
-mvn site:stage  
+  ../<project>/target/site/index.html
+
+## Run WEB RESTful application  
+Run terminal command in project directory:
+
+```
+mvn -pl web-app/ tomcat7:run
   
-check: <project>/target/stage/index.html  
-```  
+mvn -pl rest-app/ tomcat7:run
+``` 
+the web application should be available at:
+        
+http://localhost:8080/
 
 ## Built With
 
@@ -45,6 +62,6 @@ check: <project>/target/stage/index.html
 
 ## License
 
-This project is licensed under the MIT License  
+This project developed by Boyko Pavel <br> Brest Java Courses  2019
 
 
