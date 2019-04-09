@@ -49,7 +49,6 @@ class StudentTestDTODaoImplTestDao {
 
     @Test
     void findNotDoneTestStudentById() throws ParseException {
-        DateBuilder dateBuilder = getdateBuilder();
         Stream<StudentTestDto> studentTestDTOList1 = studentTestDTODao.findNotDoneTestStudentById(1);
         assertEquals(2, studentTestDTOList1.count());
     }

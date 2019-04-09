@@ -16,6 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 @ExtendWith(SpringExtension.class)
@@ -29,15 +30,17 @@ class TeacherServiceImplTest {
 
     @Test
     void findTeacherByLogin() {
-        Teacher teacher = teacherService.findTeacherByLogin("admin1");
+        Teacher teacherFromForm = new Teacher();
+        teacherFromForm.setLogin("admin1");
+        Teacher teacher = teacherService.findTeacherByLogin(teacherFromForm);
         assertEquals(new Integer(1), teacher.getTeacherId());
     }
 
     @Test
     void findByUnCorrectLogin() {
-        Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
-            teacherService.findTeacherByLogin("adm4in");
-        });
+        Teacher teacherFromForm = new Teacher();
+        teacherFromForm.setLogin("admin11");
+        assertNull(teacherService.findTeacherByLogin(teacherFromForm));
     }
 
     @Test
@@ -45,4 +48,5 @@ class TeacherServiceImplTest {
         List<StudentTestDto> teacher = teacherService.findAllDtoTestTeacher(1);
         assertEquals(2, teacher.size());
     }
+
 }

@@ -76,18 +76,21 @@ class TeacherRestControllerTest {
 
     @Test
     void findTeacherByLogin() throws Exception {
-        String login = "admin1";
-        Mockito.when(teacherService.findTeacherByLogin(Mockito.anyString()))
+        Mockito.when(teacherService.findTeacherByLogin(Mockito.any(Teacher.class)))
                 .thenReturn(teacherCreator());
+
+        Teacher teacher = new Teacher();
+        teacher.setLogin("admin1");
+
         mockMvc.perform(MockMvcRequestBuilders.post("/teacher")
-                .content(mapper.writeValueAsString(login))
+                .content(mapper.writeValueAsString(teacher))
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.password", Matchers.is("1")))
         ;
         Mockito.verify(teacherService, Mockito.times(1))
-                .findTeacherByLogin(Mockito.anyString());
+                .findTeacherByLogin(Mockito.any(Teacher.class));
     }
 
     private StudentTestDto createStudentTestDto(int index) {

@@ -73,7 +73,9 @@ class StudentServiceImplTest {
 
     @Test
     void findStudentById(){
-        Student student = studentService.findStudentByLogin("1");
+        Student studentForm = new Student();
+        studentForm.setLogin("1");
+        Student student = studentService.findStudentByLogin(studentForm);
         assertEquals("kolya", student.getName());
     }
 }

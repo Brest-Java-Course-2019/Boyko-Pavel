@@ -95,12 +95,14 @@ class StudentRestControllerTest {
 
     @Test
     void findStudentByLogin() throws Exception {
-        Mockito.when(studentService.findStudentByLogin(Mockito.anyString())).thenReturn(createStudent());
+        Mockito.when(studentService.findStudentByLogin(Mockito.any(Student.class))).thenReturn(createStudent());
 
-        String login = "1";
+        Student student = new Student();
+        student.setLogin("1");
+
         mockMvc.perform(MockMvcRequestBuilders.post("/student")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(mapper.writeValueAsString(login))
+                .content(mapper.writeValueAsString(student))
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
@@ -108,7 +110,7 @@ class StudentRestControllerTest {
         ;
 
         Mockito.verify(studentService, Mockito.times(1))
-                .findStudentByLogin(Mockito.any(String.class));
+                .findStudentByLogin(Mockito.any(Student.class));
     }
 
     @Test

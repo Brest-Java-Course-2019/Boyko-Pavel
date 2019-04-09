@@ -24,31 +24,31 @@
     <context:property-placeholder location="classpath*:sql.properties"/>
 
     <bean id="studentAnswerConsumer" class="com.epam.brest.project.web_app.consumers.StudentAnswerConsumer">
-        <constructor-arg index="0" value="http://localhost:8091/"/>
+        <constructor-arg index="0" value="http://localhost:8091"/>
         <constructor-arg index="1" ref="restTemplate"/>
     </bean>
 
 
     <bean id="studentConsumer" class="com.epam.brest.project.web_app.consumers.StudentConsumer">
-        <constructor-arg index="0" value="http://localhost:8091/"/>
+        <constructor-arg index="0" value="http://localhost:8091"/>
         <constructor-arg index="1" ref="restTemplate"/>
     </bean>
 
 
     <bean id="subjectConsumer" class="com.epam.brest.project.web_app.consumers.SubjectConsumer">
-        <constructor-arg index="0" value="http://localhost:8091/"/>
+        <constructor-arg index="0" value="http://localhost:8091"/>
         <constructor-arg index="1" ref="restTemplate"/>
     </bean>
 
 
     <bean id="teacherConsumer" class="com.epam.brest.project.web_app.consumers.TeacherConsumer">
-        <constructor-arg index="0" value="http://localhost:8091/"/>
+        <constructor-arg index="0" value="http://localhost:8091"/>
         <constructor-arg index="1" ref="restTemplate"/>
     </bean>
 
 
     <bean id="testDtoConsumer" class="com.epam.brest.project.web_app.consumers.TestDtoConsumer">
-        <constructor-arg index="0" value="http://localhost:8091/"/>
+        <constructor-arg index="0" value="http://localhost:8091"/>
         <constructor-arg index="1" ref="restTemplate"/>
     </bean>
 

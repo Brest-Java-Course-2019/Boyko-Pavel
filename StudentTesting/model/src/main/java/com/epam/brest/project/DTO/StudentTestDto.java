@@ -1,5 +1,7 @@
 package com.epam.brest.project.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class StudentTestDto {
@@ -9,6 +11,7 @@ public class StudentTestDto {
     private String subjectName;
     private Integer teacherId;
     private Integer countQuestion;
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="MM-dd-yyyy")
     private Date dateOfCreating;
 
     public Integer getIdTests() {

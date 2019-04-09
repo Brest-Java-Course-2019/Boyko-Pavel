@@ -69,7 +69,7 @@ public class TestDtoConsumer implements TestDtoService {
     @Override
     public void deleteTestDto(Integer id) {
         LOGGER.debug("deleteTestDto({})", id);
-        restTemplate.delete(url + "/teacher" + id);
+        restTemplate.delete(url + "/teacher/" + id);
     }
 
     @Override

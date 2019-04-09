@@ -53,7 +53,7 @@ public class TeacherController {
         }
         else{
 
-            LOGGER.debug("after un correct validation getTestDtoAfterLogin({})", result);
+            LOGGER.debug("after correct validation getTestDtoAfterLogin({})", result);
 
             model.addAttribute("teacher", teacherValidator.getTeacherValidation());
             return "redirect:/teacher";

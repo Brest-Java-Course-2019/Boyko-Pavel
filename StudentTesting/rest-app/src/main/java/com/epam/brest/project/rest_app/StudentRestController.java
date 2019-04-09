@@ -30,18 +30,22 @@ public class StudentRestController implements StudentService {
     }
 
     @Override
-    @PostMapping(value = "/filter/{studentId}")
+    @PostMapping(value = "/filter/{id}")
     public List<StudentTestDto> filterByDate(@RequestBody DateBuilder dateBuilder,
-                                             @PathVariable Integer studentId) throws ParseException {
-        LOGGER.debug("start rest controller filterByDate({}, {})", dateBuilder, studentId);
+                                             @PathVariable Integer id) throws ParseException {
+        LOGGER.debug("start rest controller filterByDate({}, {})", dateBuilder, id);
+        Integer studentId = id;
+        if (id == 0){
+            studentId=null;
+        }
         return studentService.filterByDate(dateBuilder, studentId);
     }
 
     @Override
     @PostMapping
-    public Student findStudentByLogin(@RequestBody String login) {
-        LOGGER.debug("start rest controller findStudentByLogin({})", login);
-        return studentService.findStudentByLogin(login);
+    public Student findStudentByLogin(@RequestBody Student student) {
+        LOGGER.debug("start rest controller findStudentByLogin({})", student);
+        return studentService.findStudentByLogin(student);
     }
 
     @Override

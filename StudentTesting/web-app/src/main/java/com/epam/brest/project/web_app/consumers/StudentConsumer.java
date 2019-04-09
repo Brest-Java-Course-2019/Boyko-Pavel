@@ -8,9 +8,10 @@ import com.epam.brest.project.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
-import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -61,10 +62,14 @@ public class StudentConsumer implements StudentService {
      * @return body of response entity list student testDto
      */
     @Override
-    public List<StudentTestDto> filterByDate(DateBuilder dateBuilder, Integer studentId) {
+    public List<StudentTestDto> filterByDate(DateBuilder dateBuilder, @PathVariable Integer studentId) {
         LOGGER.debug("consumer filterByDate({}, {})", dateBuilder, studentId);
-        ResponseEntity responseEntity = restTemplate.postForEntity(url + "/student/filter/" + studentId,
-                dateBuilder, StudentTestDto.class);
+        Integer id = studentId;
+        if (studentId== null){
+            id = 0;
+        }
+        ResponseEntity responseEntity = restTemplate.postForEntity(url + "/student/filter/"+ id,
+                dateBuilder, List.class);
         return (List<StudentTestDto>) responseEntity.getBody();
     }
 
@@ -72,13 +77,13 @@ public class StudentConsumer implements StudentService {
     /**
      * method findStudentByLogin() gets student through rest service.
      *
-     * @param login login student
+     * @param student object stored login
      * @return body of response entity student
      */
     @Override
-    public Student findStudentByLogin(String login) {
-        LOGGER.debug("consumer findStudentByLogin({})", login);
-        ResponseEntity responseEntity = restTemplate.postForEntity(url + "/student", login, Student.class);
+    public Student findStudentByLogin(@RequestBody Student student) {
+        LOGGER.debug("consumer findStudentByLogin({})", student);
+        ResponseEntity responseEntity = restTemplate.postForEntity(url + "/student", student, Student.class);
         return (Student) responseEntity.getBody();
     }
 
@@ -91,7 +96,7 @@ public class StudentConsumer implements StudentService {
     @Override
     public List<StudentTestDto> findAllDtoTestStudent(Integer id) {
         LOGGER.debug("consumer findAllDtoTestStudent({})", id);
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/student/" + id, StudentTestDto.class);
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/student/" + id, List.class);
         return (List<StudentTestDto>) responseEntity.getBody();
     }
 }

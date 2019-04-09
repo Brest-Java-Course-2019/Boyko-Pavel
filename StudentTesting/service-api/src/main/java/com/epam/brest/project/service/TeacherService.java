@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TeacherService {
 
-    Teacher findTeacherByLogin(String login);
+    Teacher findTeacherByLogin(Teacher teacher);
 
     List<StudentTestDto> findAllDtoTestTeacher(Integer id);
 }

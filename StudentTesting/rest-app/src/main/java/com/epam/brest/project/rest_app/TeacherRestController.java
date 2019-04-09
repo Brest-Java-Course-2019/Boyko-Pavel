@@ -6,6 +6,7 @@ import com.epam.brest.project.service.TeacherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public class TeacherRestController implements TeacherService {
 
     @Override
     @PostMapping
-    public Teacher findTeacherByLogin(@RequestBody String login) {
-        LOGGER.debug("start rest controller findTeacherByLogin({})", login);
-        return teacherService.findTeacherByLogin(login);
+    public Teacher findTeacherByLogin(@RequestBody Teacher teacher) throws EmptyResultDataAccessException {
+        LOGGER.debug("start rest controller findTeacherByLogin({})", teacher);
+        return teacherService.findTeacherByLogin(teacher);
     }
 
     @Override

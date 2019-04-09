@@ -13,7 +13,7 @@ public interface StudentService {
 
     List<StudentTestDto> filterByDate(DateBuilder dateBuilder, Integer studentId) throws ParseException;
 
-    Student findStudentByLogin(String login);
+    Student findStudentByLogin(Student student);
 
     List<StudentTestDto> findAllDtoTestStudent(Integer id);
 }

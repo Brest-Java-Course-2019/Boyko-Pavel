@@ -6,6 +6,7 @@ import com.epam.brest.project.model.Teacher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -46,7 +47,7 @@ public class TeacherJdbcDaoImpl implements TeacherDao {
      * @return teacher by login.
      */
     @Override
-    public Optional<Teacher> findTeacherByLogin(String login) {
+    public Optional<Teacher> findTeacherByLogin(String login) throws EmptyResultDataAccessException {
 
         LOGGER.debug("findTeacherByLogin({})", login);
 

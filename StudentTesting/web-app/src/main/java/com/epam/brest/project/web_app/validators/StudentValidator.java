@@ -2,10 +2,8 @@ package com.epam.brest.project.web_app.validators;
 
 
 import com.epam.brest.project.model.Student;
-
 import com.epam.brest.project.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -29,16 +27,14 @@ public class StudentValidator implements Validator {
     public void validate(Object target, Errors errors) {
 
         Student studentFromForm = (Student) target;
-        try {
-            Student teacher = studentService.findStudentByLogin(studentFromForm.getLogin());
-            if (!teacher.getPassword().equals(studentFromForm.getPassword())) {
+        Student student = studentService.findStudentByLogin(studentFromForm);
+        if (student != null) {
+            if (!student.getPassword().equals(studentFromForm.getPassword())) {
 
                 errors.rejectValue("password", "password.unCorrect");
-            }else {
-                this.studentValidation = teacher;
-            }
+            } else this.studentValidation = student;
 
-        } catch (EmptyResultDataAccessException ex) {
+        } else {
             errors.rejectValue("login", "login.unCorrect");
         }
     }

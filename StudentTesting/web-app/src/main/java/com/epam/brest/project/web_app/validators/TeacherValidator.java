@@ -4,7 +4,6 @@ package com.epam.brest.project.web_app.validators;
 import com.epam.brest.project.model.Teacher;
 import com.epam.brest.project.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -18,7 +17,6 @@ public class TeacherValidator implements Validator {
     @Autowired
     private TeacherService teacherService;
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return Teacher.class.equals(clazz);
@@ -28,16 +26,14 @@ public class TeacherValidator implements Validator {
     public void validate(Object target, Errors errors) {
 
         Teacher teacherFromForm = (Teacher) target;
-        try {
-            Teacher teacher = teacherService.findTeacherByLogin(teacherFromForm.getLogin());
+        Teacher teacher = teacherService.findTeacherByLogin(teacherFromForm);
+        if (teacher != null) {
             if (!teacher.getPassword().equals(teacherFromForm.getPassword())) {
 
                 errors.rejectValue("password", "password.unCorrect");
-            }else {
-                this.teacherValidation = teacher;
-            }
+            } else this.teacherValidation = teacher;
 
-        } catch (EmptyResultDataAccessException ex) {
+        } else {
             errors.rejectValue("login", "login.unCorrect");
         }
     }

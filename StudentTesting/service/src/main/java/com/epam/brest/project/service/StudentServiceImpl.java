@@ -7,6 +7,7 @@ import com.epam.brest.project.dao.StudentTestDtoDao;
 import com.epam.brest.project.model.Student;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,8 +49,15 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public Student findStudentByLogin(String login) {
-        return studentDao.findByLogin(login).get();
+    public Student findStudentByLogin(Student student) {
+        Student studentRespond;
+        try{
+            studentRespond = studentDao.findByLogin(student.getLogin()).get();
+        }
+        catch (EmptyResultDataAccessException e){
+            studentRespond = null;
+        }
+        return studentRespond;
     }
 
     @Override

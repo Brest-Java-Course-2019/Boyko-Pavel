@@ -25,11 +25,18 @@ public class TeacherServiceImpl implements  TeacherService {
     }
 
     @Override
-    public Teacher findTeacherByLogin (String login) {
+    public Teacher findTeacherByLogin (Teacher teacher) throws EmptyResultDataAccessException {
 
-        LOGGER.debug("findTeacherByLogin({})", login);
+        LOGGER.debug("findTeacherByLogin({})", teacher);
 
-        return teacherDao.findTeacherByLogin(login).get();
+        Teacher teacherRespond;
+        try{
+            teacherRespond = teacherDao.findTeacherByLogin(teacher.getLogin()).get();
+        }
+        catch (EmptyResultDataAccessException e){
+            teacherRespond = null;
+        }
+        return teacherRespond;
     }
 
 

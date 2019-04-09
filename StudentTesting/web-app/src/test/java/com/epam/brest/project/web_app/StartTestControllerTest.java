@@ -1,6 +1,7 @@
 package com.epam.brest.project.web_app;
 
 import org.hamcrest.Matchers;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,18 +32,6 @@ class StartTestControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
-    @Test
-    void getTestDtoAfterUnCorrectLogin() throws Exception {
-
-        mockMvc.perform(
-                MockMvcRequestBuilders.post("/student")
-                        .param("login", "11")
-                        .param("password", "1")
-        ).andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>Physics</td>")))
-        ;
-    }
 
     @Test
     void getTestDtoAfterCorrectLoginStudent() throws Exception {

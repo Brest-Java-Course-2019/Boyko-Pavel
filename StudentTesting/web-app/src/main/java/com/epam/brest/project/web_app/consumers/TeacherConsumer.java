@@ -47,9 +47,9 @@ public class TeacherConsumer implements TeacherService {
      * @return body of response entity teacher
      */
     @Override
-    public Teacher findTeacherByLogin(String login) {
+    public Teacher findTeacherByLogin(Teacher teacher) {
         LOGGER.debug("consumer findAll()");
-        ResponseEntity responseEntity = restTemplate.postForEntity(url + "/teacher", login, Teacher.class);
+        ResponseEntity responseEntity = restTemplate.postForEntity(url + "/teacher", teacher, Teacher.class);
         return (Teacher) responseEntity.getBody();
     }
 
@@ -60,7 +60,7 @@ public class TeacherConsumer implements TeacherService {
      */
     @Override
     public List<StudentTestDto> findAllDtoTestTeacher(Integer id) {
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + id, List.class);
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/teacher/" + id, List.class);
         return (List<StudentTestDto>) responseEntity.getBody();
     }
 }
