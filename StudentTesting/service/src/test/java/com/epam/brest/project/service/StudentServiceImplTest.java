@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 @ExtendWith(SpringExtension.class)
@@ -61,10 +62,17 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void findStudentById() {
+    void findStudentByCorrectLogin() {
         Student studentForm = new Student();
         studentForm.setLogin("1");
         Student student = studentService.findStudentByLogin(studentForm);
         assertEquals("kolya", student.getName());
+    }
+
+    @Test
+    void findStudentByUnCorrectLogin() {
+        Student studentForm = new Student();
+        studentForm.setLogin("123");
+        assertNull(studentService.findStudentByLogin(studentForm));
     }
 }

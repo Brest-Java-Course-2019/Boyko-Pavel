@@ -8,31 +8,44 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-
+/**
+ * EditTest web controller.
+ */
 @Controller
 @SessionAttributes({"student"})
-@ContextConfiguration(locations = {"classpath*:test-db.xml"})
 public class StudentController {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
-
+    /**
+     * studentService.
+     */
     @Autowired
     private StudentService studentService;
-
+    /**
+     * studentValidator.
+     */
     @Autowired
     private StudentValidator studentValidator;
 
-
+    /**
+     * get testDto student by login.
+     *
+     * @param student object stored student login.
+     * @param model   model add attributes used for rendering view.
+     * @param result  binding result.
+     * @return view redirect back to student page.
+     */
     @PostMapping(value = {"/student"})
-    public String loginStudent(Model model, Student student,
-                               BindingResult result) {
+    public String getTestDtoAfterLogin(Model model, Student student,
+                                       BindingResult result) {
 
         LOGGER.debug("loginStudent({}, {}, {})", model, student, result);
 

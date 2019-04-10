@@ -10,17 +10,30 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+/**
+ * Rest Controller for StudentAnswer.
+ */
 @RestController
 @RequestMapping(value = "/startTest/{id}")
 public class StudentAnswerRestController implements StudentAnswerService {
 
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentAnswerRestController.class);
 
-
+    /**
+     * Service.
+     */
     @Autowired
     private StudentAnswerService studentAnswerService;
 
+    /**
+     * Method add StudentAnswer.
+     *
+     * @param testDto stored student answer.
+     * @param id      student id
+     */
     @Override
     @PostMapping
     public void addStudentAnswer(@RequestBody TestDto testDto, @PathVariable Integer id) {
@@ -28,7 +41,12 @@ public class StudentAnswerRestController implements StudentAnswerService {
         studentAnswerService.addStudentAnswer(testDto, id);
     }
 
-
+    /**
+     * Method get all StudentAnswer by student id.
+     *
+     * @param id student id
+     * @return List<StudentAnswer>.
+     */
     @Override
     @GetMapping
     public List<StudentAnswer> findStudentAnswerById(@PathVariable Integer id) {

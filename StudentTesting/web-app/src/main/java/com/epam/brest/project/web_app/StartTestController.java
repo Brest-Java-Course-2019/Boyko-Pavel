@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -21,32 +20,50 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 
-
+/**
+ * EditTest web controller.
+ */
 @Controller
 @SessionAttributes({"student"})
-@ContextConfiguration(locations = {"classpath*:test-db.xml"})
-
 public class StartTestController {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(StartTestController.class);
 
-
+    /**
+     * TestDtoService.
+     */
     @Autowired
     private TestDtoService testDtoService;
-
+    /**
+     * StudentService.
+     */
     @Autowired
     private StudentService studentService;
-
+    /**
+     * StudentAnswerService.
+     */
     @Autowired
     private StudentAnswerService answerService;
-
+    /**
+     * StudentAnswerValidator.
+     */
     @Autowired
     private StudentAnswerValidator answerValidator;
-
+    /**
+     * FilterValidator.
+     */
     @Autowired
     private FilterValidator filterValidator;
 
-
+    /**
+     * Goto student page.
+     *
+     * @param student session attributes
+     * @param model   model add attributes used for rendering view.
+     * @return view student page.
+     */
     @GetMapping(value = {"/student"})
     public final String findStudentTest(@ModelAttribute Student student, Model model) {
 
@@ -61,7 +78,13 @@ public class StartTestController {
         return "student";
     }
 
-
+    /**
+     * Goto startTest page.
+     *
+     * @param id    test id
+     * @param model model add attributes used for rendering view.
+     * @return view startTest page.
+     */
     @GetMapping(value = {"/student/startTest/{id}"})
 
     public final String goToSolveTrainingTest(@PathVariable Integer id, Model model) {
@@ -73,9 +96,19 @@ public class StartTestController {
         return "startTest";
     }
 
+    /**
+     * end solve test.
+     *
+     * @param student session attributes.
+     * @param id      test id.
+     * @param testDto TestDto object stored student answer.
+     * @param model   model add attributes used for rendering view.
+     * @param result  binding result.
+     * @return view startTest page.
+     */
     @PostMapping(value = {"/student/startTest/{id}"})
-    public String endSolveTrainingTest(@ModelAttribute Student student, @PathVariable Integer id, @Valid TestDto testDto,
-                                       Model model, BindingResult result) {
+    public String endSolveTest(@ModelAttribute Student student, @PathVariable Integer id, @Valid TestDto testDto,
+                               Model model, BindingResult result) {
 
         LOGGER.debug("endSolveTrainingTest({}, {}, {}, {})", id, testDto, model, result);
 
@@ -89,9 +122,17 @@ public class StartTestController {
         return "startTest";
     }
 
-
+    /**
+     * filter by date test.
+     *
+     * @param student     session attributes.
+     * @param dateBuilder DateBuilder object stored startDate and endDate.
+     * @param model       model add attributes used for rendering view.
+     * @param result      binding result.
+     * @return view student page.
+     */
     @PostMapping(value = {"/test/sort"})
-    public String sortTrainingTest(@ModelAttribute Student student, @Valid DateBuilder dateBuilder, Model model,
+    public String filterByDateTest(@ModelAttribute Student student, @Valid DateBuilder dateBuilder, Model model,
                                    BindingResult result) throws ParseException {
 
         LOGGER.debug("endSolveTrainingTest({}, {}, {})", dateBuilder, model, result);

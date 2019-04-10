@@ -1,7 +1,11 @@
 package com.epam.brest.project.web_app;
 
+import com.epam.brest.project.builder.DateBuilder;
+import com.epam.brest.project.model.Student;
 import org.hamcrest.Matchers;
+import org.junit.After;
 import org.junit.Ignore;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,18 +36,42 @@ class StartTestControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
+    @AfterEach
+    void clear(){
+        mockMvc = null;
+    }
+    private Student createStudent() {
+        Student teacher = new Student();
+        teacher.setStudentId(1);
+        teacher.setPassword("1");
+        teacher.setLogin("1");
+        return teacher;
+    }
+
 
     @Test
-    void getTestDtoAfterCorrectLoginStudent() throws Exception {
+    void findStudentTestByStudentId() throws Exception {
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/student")
-                        .param("login", "1")
-                        .param("password", "1")
+                MockMvcRequestBuilders.get("/student").sessionAttr("student", createStudent())
         ).andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("/student"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>Optics</td>")))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>Probability theory</td>")))
         ;
     }
 
+
+    @Ignore
+    void goToSolveTrainingTest() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/student/startTest/1")
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("id=\"questions0.questionItems3.description\" name=\"questions[0].questionItems[3].description\">ANSWER: 5</textarea>")))
+        ;
+    }
 }

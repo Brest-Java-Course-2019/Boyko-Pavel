@@ -20,57 +20,90 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * QuestionDaoJdbcImpl implement QuestionDao.
+ */
 @Component
 public class QuestionDaoJdbcImpl implements QuestionDao {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(QuestionDaoJdbcImpl.class);
-
+    /**
+     * Constant fields.
+     */
     private static final String QUESTION_ID = "question_id";
     private static final String QUESTION_NAME = "question";
     private static final String TEST_ID = "test_id";
 
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
+    /**
+     * SQL select all Question.
+     * type String
+     */
     @Value("${question.selectAllQuestion}")
     private String selectAllQuestion;
-
+    /**
+     * SQL select Question by id.
+     * type String
+     */
     @Value("${question.selectQuestionById}")
     private String selectQuestionById;
-
+    /**
+     * SQL insert Question.
+     * type String.
+     */
     @Value("${question.insertQuestion}")
     private String insertQuestion;
-
+    /**
+     * SQL select all Question by Test id.
+     * type String.
+     */
     @Value("${question.selectAllQuestionByTestId}")
     private String selectAllQuestionByTestId;
-
+    /**
+     * SQL update question.
+     * type String.
+     */
     @Value("${question.updateQuestion}")
     private String updateQuestion;
-
+    /**
+     * SQL delete Question by Test id.
+     * type String.
+     */
     @Value("${question.deleteQuestionByTestId}")
     private String deleteQuestions;
+    /**
+     * From property namedParameterJdbcTemplate.
+     */
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    /**
+     * Create new  QuestionDaoJdbcImpl for the given namedParameterJdbcTemplate.
+     *
+     * @param namedParameterJdbcTemplate input value.
+     */
     public QuestionDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     /**
-     * Get all question.
+     * Get all Question.
      *
-     * @return question stream.
+     * @return Question stream.
      */
     @Override
     public Stream<Question> findAll() {
-        LOGGER.warn("start findall()");
+        LOGGER.warn("start findAll()");
         List<Question> questionItems = namedParameterJdbcTemplate.query(
                 selectAllQuestion, new QuestionRowMapper());
         return questionItems.stream();
     }
 
     /**
-     * Get all question.
+     * Get all Question.
      *
-     * @param id test id.
-     * @return question list.
+     * @param id Test id.
+     * @return Question list.
      */
     @Override
     public List<Question> findAllQuestionByTestId(Integer id) {
@@ -83,10 +116,10 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     }
 
     /**
-     * Get question.
+     * Get Question.
      *
-     * @param id question id.
-     * @return question.
+     * @param id Question id.
+     * @return Question.
      */
     @Override
     public Optional<Question> findById(Integer id) {
@@ -99,11 +132,11 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     }
 
     /**
-     * Add question.
+     * Add Question.
      *
-     * @param question object question.
+     * @param question object Question.
      * @param idTest   test id.
-     * @return question.
+     * @return Question.
      */
     @Override
     public Optional<Question> add(Question question, Integer idTest) {
@@ -116,11 +149,11 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     }
 
     /**
-     * Add question.
+     * Add Question.
      *
-     * @param question object question.
+     * @param question object Question.
      * @param idTest   test id.
-     * @return question with question id.
+     * @return Question with Question id.
      */
     private Optional<Question> insertQuestionItem(Question question, Integer idTest) {
         LOGGER.warn("start insertQuestionItem()");
@@ -139,9 +172,9 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
 
 
     /**
-     * Update question.
+     * Update Question.
      *
-     * @param question object question.
+     * @param question object Question.
      */
     @Override
     public void update(Question question) {
@@ -164,9 +197,9 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     }
 
     /**
-     * Delete question.
+     * Delete Question.
      *
-     * @param id test id.
+     * @param id Test id.
      */
     @Override
     public void deleteByTestId(int id) {
@@ -181,9 +214,9 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
     }
 
     /**
-     * Butch update question.
+     * Butch update Question.
      *
-     * @param questions question list.
+     * @param questions Question list.
      */
     @Override
     public void batchUpdate(List<Question> questions) {
@@ -202,7 +235,9 @@ public class QuestionDaoJdbcImpl implements QuestionDao {
                 sqlParameterSources));
     }
 
-
+    /**
+     * inner QuestionRowMapper implement RowMapper<Question>.
+     */
     private class QuestionRowMapper implements RowMapper<Question> {
         /**
          * @param resultSet the RowMapper which creates an object for each row

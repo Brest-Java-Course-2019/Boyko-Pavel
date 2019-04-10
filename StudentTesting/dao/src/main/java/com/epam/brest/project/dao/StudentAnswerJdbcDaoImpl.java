@@ -16,33 +16,53 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * StudentAnswerJdbcDaoImpl implement StudentAnswerDao.
+ */
 @Component
 public class StudentAnswerJdbcDaoImpl implements StudentAnswerDao {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentAnswerJdbcDaoImpl.class);
-
+    /**
+     * Constant fields.
+     */
     private static final String QUESTION_ITEM_ID = "question_item_id";
     private static final String STUDENT_ANSWER = "student_answer";
     private static final String STUDENT_ID = "student_id";
     private static final String TEST_ID = "test_id";
 
-
+    /**
+     * SQL select StudentAnswer by id Student.
+     * type String
+     */
     @Value("${studentAnswer.studentAnswerByIdStudent}")
     private String studentAnswerByIdStudent;
-
+    /**
+     * SQL add StudentAnswer.
+     * type String
+     */
     @Value("${studentAnswer.addStudentAnswer}")
     private String addStudentAnswer;
-
+    /**
+     * From property namedParameterJdbcTemplate.
+     */
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    /**
+     * Create new  QuestionDaoJdbcImpl for the given namedParameterJdbcTemplate.
+     *
+     * @param namedParameterJdbcTemplate input value.
+     */
     public StudentAnswerJdbcDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     /**
-     * Find studentAnswer by student id.
+     * Find StudentAnswer by Student id.
      *
-     * @param studentId student id.
+     * @param studentId Student id.
      */
     @Override
     public List<StudentAnswer> findStudentAnswerById(Integer studentId) {
@@ -54,9 +74,9 @@ public class StudentAnswerJdbcDaoImpl implements StudentAnswerDao {
     }
 
     /**
-     * Add studentAnswer.
+     * Add StudentAnswer.
      *
-     * @param studentAnswers list studentAnswer to add.
+     * @param studentAnswers list StudentAnswer to add.
      */
     @Override
     public void addStudentAnswer(List<StudentAnswer> studentAnswers) {
@@ -73,11 +93,14 @@ public class StudentAnswerJdbcDaoImpl implements StudentAnswerDao {
         namedParameterJdbcTemplate.batchUpdate(addStudentAnswer, sqlParameterSources);
     }
 
+    /**
+     * inner StudentAnswerRowMapper implement RowMapper<StudentAnswer>.
+     */
     private class StudentAnswerRowMapper implements RowMapper<StudentAnswer> {
         /**
          * @param resultSet the RowMapper which creates an object for each row
          * @param i         the number of expected rows
-         * @return new question
+         * @return new Question
          */
         @Override
         public StudentAnswer mapRow(ResultSet resultSet, int i) throws SQLException {

@@ -19,35 +19,67 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * SubjectDaoJdbcImpl implement SubjectDao.
+ */
 @Component
 public class SubjectDaoJdbcImpl implements SubjectDao {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(SubjectDaoJdbcImpl.class);
-
+    /**
+     * Constant fields.
+     */
     private static final String SUBJECT_ID = "subject_id";
     private static final String SUBJECT_NAME = "subject_name";
-
+    /**
+     * SQL select all Subject.
+     * type String
+     */
     @Value("${subject.selectAllSubject}")
     private String selectAllSubject;
-
+    /**
+     * SQL select Subject by id.
+     * type String
+     */
     @Value("${subject.selectBySubjectId}")
     private String selectBySubjectId;
-
+    /**
+     * SQL insert Subject.
+     * type String
+     */
     @Value("${subject.insertSubject}")
     private String insertSubject;
-
+    /**
+     * SQL update Subject.
+     * type String
+     */
     @Value("${subject.updateSubject}")
     private String updateSubject;
-
+    /**
+     * SQL delete Subject.
+     * type String
+     */
     @Value("${subject.deleteSubject}")
     private String deleteSubject;
-
+    /**
+     * SQL check Subject name.
+     * type String
+     */
     @Value("${subject.checkSubjectName}")
     private String checkSubjectName;
 
-
+    /**
+     * From property namedParameterJdbcTemplate.
+     */
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    /**
+     * Create new  QuestionDaoJdbcImpl for the given namedParameterJdbcTemplate.
+     *
+     * @param namedParameterJdbcTemplate input value.
+     */
     public SubjectDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
@@ -58,7 +90,7 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
      * @return Subject stream.
      */
     @Override
-    public Stream<Subject> findall() {
+    public Stream<Subject> findAll() {
 
         LOGGER.debug("start findAll()");
 
@@ -70,8 +102,8 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
     /**
      * Find Subject by id.
      *
-     * @param id subject.
-     * @return subject.
+     * @param id Subject.
+     * @return Subject.
      */
     @Override
     public Optional<Subject> findById(Integer id) {
@@ -153,7 +185,7 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
     }
 
     /**
-     * Delete subject.
+     * Delete Subject.
      *
      * @param idSubject id Subject for deleting.
      */
@@ -167,6 +199,9 @@ public class SubjectDaoJdbcImpl implements SubjectDao {
                 .orElseThrow(() -> new RuntimeException("Failed to delete subject from DB"));
     }
 
+    /**
+     * inner SubjectRowMapper implement RowMapper<Subject>.
+     */
     private class SubjectRowMapper implements RowMapper<Subject> {
         /**
          * @param resultSet the RowMapper which creates an object for each row

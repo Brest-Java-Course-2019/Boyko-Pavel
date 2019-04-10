@@ -7,53 +7,53 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * TestDao Interface.
+ * TestDao interface.
  */
 public interface TestDao {
 
 
     /**
-     * Find all test.
+     * Find all Test.
      *
-     * @return test stream.
+     * @return Test stream.
      */
     Stream<Test> findAll();
 
     /**
-     * Find all test by id.
+     * Find all Test by id.
      *
-     * @param id test id.
-     * @return test.
+     * @param id Test id.
+     * @return Test.
      */
     Optional<Test> findById(final Integer id);
 
     /**
-     * Find all testDto by id.
+     * Find all TestDto by id.
      *
-     * @param id testDto id.
-     * @return testDto.
+     * @param id TestDto id.
+     * @return TestDto.
      */
     Optional<TestDto> findTestDtoById(final Integer id);
 
     /**
-     * Add new test.
+     * Add new Test.
      *
-     * @param test new test.
-     * @return new test
+     * @param test new Test to add.
+     * @return new Test.
      */
     Optional<Test> add(final Test test);
 
     /**
-     * Update test.
+     * Update Test.
      *
-     * @param test test to update.
+     * @param test Test to update.
      */
     void update(final Test test);
 
     /**
-     * Delete test.
+     * Delete Test.
      *
-     * @param id test id.
+     * @param id Test id.
      */
     void delete(final int id);
 }

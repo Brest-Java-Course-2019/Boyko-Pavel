@@ -17,36 +17,61 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * StudentDaoJdbcImpl implement StudentDao.
+ */
 @Component
 public class StudentDaoJdbcImpl implements StudentDao {
-
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(StudentDaoJdbcImpl.class);
+    /**
+     * SQL select all Student.
+     * type String
+     */
     @Value("${student.selectAllStudent}")
     private String selectAllStudent;
-
+    /**
+     * SQL select by Student login.
+     * type String
+     */
     @Value("${student.selectByStudentLogin}")
     private String selectByStudentLogin;
-
+    /**
+     * SQL insert Student.
+     * type String
+     */
     @Value("${student.insertStudent}")
     private String insertStudent;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentTestDtoJdbcDaoImpl.class);
-
+    /**
+     * Constant fields.
+     */
     private final static String STUDENT_LOGIN = "login";
     private final static String STUDENT_PASSWORD = "password";
     private final static String STUDENT_ID = "student_id";
     private final static String STUDENT_NAME = "name";
     private final static String STUDENT_SURNAME = "surname";
 
+    /**
+     * From property namedParameterJdbcTemplate.
+     */
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    /**
+     * Create new  QuestionDaoJdbcImpl for the given namedParameterJdbcTemplate.
+     *
+     * @param namedParameterJdbcTemplate input value.
+     */
     public StudentDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     /**
-     * Find all student.
+     * Find all Student.
      *
-     * @return student stream.
+     * @return Student stream.
      */
     @Override
     public Stream<Student> findAll() {
@@ -59,10 +84,10 @@ public class StudentDaoJdbcImpl implements StudentDao {
     }
 
     /**
-     * Find student by login.
+     * Find Student by login.
      *
-     * @param login student login.
-     * @return student.
+     * @param login Student login.
+     * @return Student.
      */
     @Override
     public Optional<Student> findByLogin(final String login) {
@@ -75,10 +100,10 @@ public class StudentDaoJdbcImpl implements StudentDao {
     }
 
     /**
-     * Add new student.
+     * Add new Student.
      *
-     * @param student new student.
-     * @return new student.
+     * @param student new Student.
+     * @return new Student.
      */
     @Override
     public Optional<Student> add(Student student) {
@@ -92,10 +117,10 @@ public class StudentDaoJdbcImpl implements StudentDao {
     }
 
     /**
-     * Add new student.
+     * Add new Student.
      *
-     * @param student new student.
-     * @return new student.
+     * @param student new Student.
+     * @return new Student.
      */
     private Optional<Student> insertStudent(Student student) {
 
@@ -113,6 +138,9 @@ public class StudentDaoJdbcImpl implements StudentDao {
         return Optional.of(student);
     }
 
+    /**
+     * inner StudentRowMapper implement RowMapper<Student>.
+     */
     private class StudentRowMapper implements RowMapper<Student> {
         /**
          * @param rs     the RowMapper which creates an object for each row

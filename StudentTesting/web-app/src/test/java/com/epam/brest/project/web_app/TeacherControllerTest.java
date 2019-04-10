@@ -42,7 +42,7 @@ class TeacherControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
-    @Ignore
+    @Test
     void getTestDtoAfterUnCorrectLogin() throws Exception {
 
         mockMvc.perform(

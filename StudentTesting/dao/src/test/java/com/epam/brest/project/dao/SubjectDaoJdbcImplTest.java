@@ -33,7 +33,7 @@ class SubjectDaoJdbcImplTest {
 
     @Test
     void findAll() {
-        Stream<Subject> subjects = subjectDao.findall();
+        Stream<Subject> subjects = subjectDao.findAll();
         assertNotNull(subjects);
         assertEquals(3, subjects.count());
     }
@@ -48,12 +48,12 @@ class SubjectDaoJdbcImplTest {
 
     @Test
     void add() {
-        Stream<Subject> countIdBeforeInsert = subjectDao.findall();
+        Stream<Subject> countIdBeforeInsert = subjectDao.findAll();
         Subject subject = new Subject();
         subject.setName(CHEMISTRY);
         Subject newDepartment = subjectDao.add(subject).get();
         assertNotNull(newDepartment.getSubjectId());
-        Stream<Subject> countIdAfterInsert = subjectDao.findall();
+        Stream<Subject> countIdAfterInsert = subjectDao.findAll();
         assertEquals(1, countIdAfterInsert.count() - countIdBeforeInsert.count());
     }
 
@@ -71,7 +71,7 @@ class SubjectDaoJdbcImplTest {
 
     @Test
     void delete() {
-        Stream<Subject> stream = subjectDao.findall();
+        Stream<Subject> stream = subjectDao.findAll();
         Subject subject = stream.findFirst().get();
         subjectDao.delete(subject.getSubjectId());
         Assertions.assertThrows(EmptyResultDataAccessException.class, () ->

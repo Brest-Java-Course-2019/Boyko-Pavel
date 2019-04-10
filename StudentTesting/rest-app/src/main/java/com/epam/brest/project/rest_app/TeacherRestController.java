@@ -11,16 +11,28 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+/**
+ * Rest Controller for Teacher.
+ */
 @RestController
 @RequestMapping(value = "/teacher")
 public class TeacherRestController implements TeacherService {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(TeacherRestController.class);
-
+    /**
+     * Service.
+     */
     @Autowired
     private TeacherService teacherService;
 
+    /**
+     * Method gets Teacher by login.
+     *
+     * @param teacher object stored login
+     * @return Teacher.
+     */
     @Override
     @PostMapping
     public Teacher findTeacherByLogin(@RequestBody Teacher teacher) throws EmptyResultDataAccessException {
@@ -28,6 +40,12 @@ public class TeacherRestController implements TeacherService {
         return teacherService.findTeacherByLogin(teacher);
     }
 
+    /**
+     * Method gets StudentTestDto by teacher id.
+     *
+     * @param id student id
+     * @return list StudentTestDto.
+     */
     @Override
     @GetMapping(value = "/{id}")
     public List<StudentTestDto> findAllDtoTestTeacher(@PathVariable Integer id) {

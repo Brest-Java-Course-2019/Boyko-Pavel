@@ -12,38 +12,59 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class implements TeacherService.
+ */
 @Service
 @Transactional
-public class TeacherServiceImpl implements  TeacherService {
-
+public class TeacherServiceImpl implements TeacherService {
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(TeacherServiceImpl.class);
-
+    /**
+     * teacherDao.
+     */
     private TeacherDao teacherDao;
 
+    /**
+     * Create new  TeacherServiceImpl.
+     *
+     * @param teacherDao input value.
+     */
     public TeacherServiceImpl(TeacherDao teacherDao) {
         this.teacherDao = teacherDao;
     }
 
+    /**
+     * Method gets Teacher by login.
+     *
+     * @param teacher object stored login
+     * @return Teacher.
+     * @throws EmptyResultDataAccessException if login un correct
+     */
     @Override
-    public Teacher findTeacherByLogin (Teacher teacher) throws EmptyResultDataAccessException {
+    public Teacher findTeacherByLogin(Teacher teacher) throws EmptyResultDataAccessException {
 
         LOGGER.debug("findTeacherByLogin({})", teacher);
 
         Teacher teacherRespond;
-        try{
+        try {
             teacherRespond = teacherDao.findTeacherByLogin(teacher.getLogin()).get();
-        }
-        catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             teacherRespond = null;
         }
         return teacherRespond;
     }
 
-
-
+    /**
+     * Method gets StudentTestDto by teacher id.
+     *
+     * @param id student id
+     * @return list StudentTestDto.
+     */
     @Override
-    public List<StudentTestDto> findAllDtoTestTeacher (Integer id)
-            throws EmptyResultDataAccessException {
+    public List<StudentTestDto> findAllDtoTestTeacher(Integer id){
 
         LOGGER.debug("findAllDtoTestTeacher({})", id);
 

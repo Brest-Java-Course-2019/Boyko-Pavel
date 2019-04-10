@@ -13,7 +13,9 @@ import org.springframework.web.client.RestTemplate;
  */
 public class TestDtoConsumer implements TestDtoService {
 
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(TestDtoConsumer.class);
 
     /**
@@ -38,7 +40,7 @@ public class TestDtoConsumer implements TestDtoService {
     }
 
     /**
-     * method findTestDtoById() get testDto through rest service.
+     * Method get testDto through rest service.
      *
      * @param id testDto id
      * @return body of response entity TestDto
@@ -51,7 +53,7 @@ public class TestDtoConsumer implements TestDtoService {
     }
 
     /**
-     * method addTestDto() add testDto through rest service.
+     * Method add testDto through rest service.
      *
      * @param testDto testDto to add
      */
@@ -62,7 +64,7 @@ public class TestDtoConsumer implements TestDtoService {
     }
 
     /**
-     * method deleteTestDto() delete testDto through rest service.
+     * Method delete testDto through rest service.
      *
      * @param id testDto to delete
      */
@@ -72,6 +74,11 @@ public class TestDtoConsumer implements TestDtoService {
         restTemplate.delete(url + "/" + id);
     }
 
+    /**
+     * Method update testDto through rest service.
+     *
+     * @param testDto testDto to update
+     */
     @Override
     public void updateTestDto(TestDto testDto) {
         restTemplate.put(url + "/editTest", testDto, TestDto.class);

@@ -4,23 +4,23 @@ import com.epam.brest.project.model.StudentAnswer;
 
 import java.util.List;
 
-
 /**
- * Student Answer Dao Interface.
+ * StudentAnswerDao interface.
  */
 public interface StudentAnswerDao {
 
     /**
-     * Find studentAnswer by student id.
+     * Find StudentAnswer by Student id.
      *
-     * @param studentId student id.
+     * @param studentId Student id.
+     * @return list StudentAnswer.
      */
     List<StudentAnswer> findStudentAnswerById(Integer studentId);
 
     /**
      * Add studentAnswer.
      *
-     * @param studentAnswer list studentAnswer to add.
+     * @param studentAnswer list StudentAnswer to add.
      */
     void addStudentAnswer(List<StudentAnswer> studentAnswer);
 }

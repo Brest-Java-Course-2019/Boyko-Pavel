@@ -7,61 +7,61 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * Question Dao Interface.
+ * QuestionDao interface.
  */
 public interface QuestionDao {
 
     /**
-     * Get all question.
+     * Get all Question.
      *
-     * @return question stream.
+     * @return Question stream.
      */
     Stream<Question> findAll();
 
 
     /**
-     * Get all question.
+     * Get all Question.
      *
-     * @param id test id.
-     * @return question list.
+     * @param id Test id.
+     * @return Question list.
      */
     List<Question> findAllQuestionByTestId(Integer id);
 
     /**
-     * Get question.
+     * Get Question.
      *
-     * @param id question id.
-     * @return question.
+     * @param id Question id.
+     * @return Question.
      */
     Optional<Question> findById(final Integer id);
 
     /**
      * Add question.
      *
-     * @param question object question.
+     * @param question Question to add.
      * @param idTest   test id.
-     * @return question.
+     * @return Question.
      */
     Optional<Question> add(final Question question, Integer idTest);
 
     /**
-     * Update question.
+     * Update Question.
      *
-     * @param question object question.
+     * @param question Question to update.
      */
     void update(final Question question);
 
     /**
-     * Delete question.
+     * Delete Question.
      *
-     * @param id test id.
+     * @param id Test id.
      */
     void deleteByTestId(final int id);
 
     /**
-     * Butch update question.
+     * Batch update Question.
      *
-     * @param question question list.
+     * @param question Question list to update.
      */
     void batchUpdate(final List<Question> question);
 }

@@ -15,7 +15,9 @@ import java.util.List;
  * Class StudentAnswerConsumer implements StudentAnswerService
  */
 public class StudentAnswerConsumer implements StudentAnswerService {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentAnswerConsumer.class);
 
     /**
@@ -40,7 +42,7 @@ public class StudentAnswerConsumer implements StudentAnswerService {
     }
 
     /**
-     * method addStudentAnswer add add student answer through rest service.
+     * Method add student answer through rest service.
      *
      * @param testDto   object which stores the answers.
      * @param studentId id student.
@@ -48,17 +50,17 @@ public class StudentAnswerConsumer implements StudentAnswerService {
     @Override
     public void addStudentAnswer(TestDto testDto, Integer studentId) {
         LOGGER.debug("addStudentAnswer({}, {})", testDto, studentId);
-        restTemplate.postForEntity(url + "/"+ studentId, testDto, TestDto.class);
+        restTemplate.postForEntity(url + "/" + studentId, testDto, TestDto.class);
     }
 
     /**
-     * method findAll() gets list student answer through rest service.
+     * Method gets list student answer through rest service.
      *
      * @return body of response entity student answer.
      */
     @Override
     public List<StudentAnswer> findStudentAnswerById(Integer studentId) {
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/"+ studentId, List.class);
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/" + studentId, List.class);
         return (List<StudentAnswer>) responseEntity.getBody();
     }
 }

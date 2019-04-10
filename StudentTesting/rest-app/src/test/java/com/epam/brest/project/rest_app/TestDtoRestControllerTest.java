@@ -1,11 +1,8 @@
 package com.epam.brest.project.rest_app;
 
-import com.epam.brest.project.DTO.StudentTestDto;
 import com.epam.brest.project.DTO.TestDto;
 import com.epam.brest.project.model.Question;
 import com.epam.brest.project.model.QuestionItem;
-import com.epam.brest.project.model.Teacher;
-import com.epam.brest.project.service.TeacherService;
 import com.epam.brest.project.service.TestDtoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
@@ -26,10 +23,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -37,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class TestDtoRestControllerTest {
 
     @Autowired
-    private TestDtoRestController testDtoRestController ;
+    private TestDtoRestController testDtoRestController;
 
     @Autowired
     private ObjectMapper mapper;
@@ -129,7 +124,6 @@ class TestDtoRestControllerTest {
     }
 
 
-
     private TestDto createTestDto() {
         TestDto testDto = new TestDto();
         testDto.setTestName("Algebra");
@@ -151,15 +145,15 @@ class TestDtoRestControllerTest {
         return questions;
     }
 
-    private List<QuestionItem> createQuestionItems(){
+    private List<QuestionItem> createQuestionItems() {
         List<QuestionItem> questionItems = new ArrayList<>();
-        for (int i = 0; i <4 ; i++) {
+        for (int i = 0; i < 4; i++) {
             QuestionItem questionItem = new QuestionItem();
-            questionItem.setDescription("questionItem_"+ i);
+            questionItem.setDescription("questionItem_" + i);
             questionItem.setQuestionItemId(i);
             questionItem.setAnswer(true);
             questionItems.add(questionItem);
         }
-        return  questionItems;
+        return questionItems;
     }
 }

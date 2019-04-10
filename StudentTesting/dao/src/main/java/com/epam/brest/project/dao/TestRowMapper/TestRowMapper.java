@@ -6,8 +6,13 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * TestRowMapper implement RowMapper<StudentTestDto>.
+ */
 public class TestRowMapper implements RowMapper<StudentTestDto> {
-
+    /**
+     * Constant fields.
+     */
     private static final String COUNT_QUESTIONS = "countQuestions";
     private static final String ID_TESTS = "test_id";
     private static final String TEST_NAME = "name";
@@ -15,15 +20,20 @@ public class TestRowMapper implements RowMapper<StudentTestDto> {
     private static final String DATE_OF_CREATING = "created_at";
     private static final String TEACHER_ID = "teacher_id";
 
-        @Override
-        public StudentTestDto mapRow(ResultSet resultSet, int i) throws SQLException {
-            StudentTestDto studentTestDTO = new StudentTestDto();
-            studentTestDTO.setCountQuestion(resultSet.getInt(COUNT_QUESTIONS));
-            studentTestDTO.setIdTests(resultSet.getInt(ID_TESTS));
-            studentTestDTO.setTestName(resultSet.getString(TEST_NAME));
-            studentTestDTO.setSubjectName(resultSet.getString(SUBJECT_NAME));
-            studentTestDTO.setDateOfCreating(resultSet.getDate(DATE_OF_CREATING));
-            studentTestDTO.setTeacherId(resultSet.getInt(TEACHER_ID));
-            return studentTestDTO;
-        }
+    /**
+     * @param resultSet the RowMapper which creates an object for each row
+     * @param i         the number of expected rows
+     * @return new StudentTestDTO
+     */
+    @Override
+    public StudentTestDto mapRow(ResultSet resultSet, int i) throws SQLException {
+        StudentTestDto studentTestDTO = new StudentTestDto();
+        studentTestDTO.setCountQuestion(resultSet.getInt(COUNT_QUESTIONS));
+        studentTestDTO.setIdTests(resultSet.getInt(ID_TESTS));
+        studentTestDTO.setTestName(resultSet.getString(TEST_NAME));
+        studentTestDTO.setSubjectName(resultSet.getString(SUBJECT_NAME));
+        studentTestDTO.setDateOfCreating(resultSet.getDate(DATE_OF_CREATING));
+        studentTestDTO.setTeacherId(resultSet.getInt(TEACHER_ID));
+        return studentTestDTO;
+    }
 }

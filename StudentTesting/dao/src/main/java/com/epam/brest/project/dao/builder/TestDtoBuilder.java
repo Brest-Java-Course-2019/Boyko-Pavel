@@ -9,17 +9,31 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * TestDtoBuilder class.
+ */
 public class TestDtoBuilder {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(TestDtoBuilder.class);
-
+    /**
+     * TestDto.
+     */
     private final TestDto testDto;
 
+    /**
+     * Constructor gets TestDto.
+     *
+     * @param testDto input value.
+     */
     public TestDtoBuilder(TestDto testDto) {
         this.testDto = testDto;
     }
 
+    /**
+     * Method set TestDto Question from newQuestions.
+     */
     private void buildQuestion() {
         String[] questions = testDto.getNewQuestion();
         List<Question> newQuestions;
@@ -40,6 +54,10 @@ public class TestDtoBuilder {
         LOGGER.debug("end buildQuestion({})", testDto);
     }
 
+    /**
+     * Method set TestDto QuestionItem from newDescription and newAnswer.
+     * @return list <List<QuestionItem>>
+     */
     private List<List<QuestionItem>> buildQuestionItem() {
         List<List<QuestionItem>> listsQuestionItem = new ArrayList<>();
         String[] newDescription = testDto.getNewDescription();
@@ -61,6 +79,10 @@ public class TestDtoBuilder {
         return listsQuestionItem;
     }
 
+    /**
+     * Method get TestDto from form and return TesDto.
+     * @return TestDto
+     */
     public TestDto getTestDto() {
         if (testDto.getNewQuestion() != null) {
             buildQuestion();
@@ -72,6 +94,12 @@ public class TestDtoBuilder {
         return testDto;
     }
 
+    /**
+     * Method set TestDto answer null.
+     *
+     * @param testDto input testDto
+     * @return testDto
+     */
     public static TestDto setAnswerFalse(TestDto testDto) {
         for (Question question : testDto.getQuestions()) {
             for (QuestionItem questionItem : question.getQuestionItems()) {

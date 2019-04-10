@@ -14,10 +14,10 @@ import java.util.List;
  * Class SubjectConsumer implements SubjectService
  */
 public class SubjectConsumer implements SubjectService {
-
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(SubjectConsumer.class);
-
 
     /**
      * Request url
@@ -41,7 +41,7 @@ public class SubjectConsumer implements SubjectService {
     }
 
     /**
-     * method findAll() get subject through rest service.
+     * Method get subject through rest service.
      *
      * @return body of response entity list subject testDto
      */

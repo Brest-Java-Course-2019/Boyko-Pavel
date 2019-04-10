@@ -12,16 +12,27 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.List;
 
-
+/**
+ * Rest Controller for Student.
+ */
 @RestController
 @RequestMapping(value = "/student")
 public class StudentRestController implements StudentService {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentRestController.class);
-
+    /**
+     * Service.
+     */
     @Autowired
     private StudentService studentService;
 
+    /**
+     * Method gets all StudentTestDto.
+     *
+     * @return list StudentTestDto.
+     */
     @Override
     @GetMapping
     public List<StudentTestDto> findAllDto() {
@@ -29,18 +40,31 @@ public class StudentRestController implements StudentService {
         return this.studentService.findAllDto();
     }
 
+    /**
+     * Method filtered by date StudentTestDto.
+     *
+     * @param id          student id
+     * @param dateBuilder object stored startDate and endDate
+     * @return list StudentTestDto.
+     */
     @Override
     @PostMapping(value = "/filter/{id}")
     public List<StudentTestDto> filterByDate(@RequestBody DateBuilder dateBuilder,
                                              @PathVariable Integer id) throws ParseException {
         LOGGER.debug("start rest controller filterByDate({}, {})", dateBuilder, id);
         Integer studentId = id;
-        if (id == 0){
-            studentId=null;
+        if (id == 0) {
+            studentId = null;
         }
         return studentService.filterByDate(dateBuilder, studentId);
     }
 
+    /**
+     * Method get Student by login.
+     *
+     * @param student object stored student login
+     * @return Student.
+     */
     @Override
     @PostMapping
     public Student findStudentByLogin(@RequestBody Student student) {
@@ -48,6 +72,12 @@ public class StudentRestController implements StudentService {
         return studentService.findStudentByLogin(student);
     }
 
+    /**
+     * Method gets all StudentTestDto by id student, id can be null then return all StudentTestDto.
+     *
+     * @param id student id
+     * @return list StudentTestDto.
+     */
     @Override
     @GetMapping(value = "/{id}")
     public List<StudentTestDto> findAllDtoTestStudent(@PathVariable Integer id) {

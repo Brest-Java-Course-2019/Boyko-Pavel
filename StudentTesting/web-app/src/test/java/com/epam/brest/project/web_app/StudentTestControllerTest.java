@@ -32,19 +32,6 @@ class StudentTestControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
-    @Ignore
-    void getTestDtoAfterUnCorrectLogin() throws Exception {
-
-        mockMvc.perform(
-                MockMvcRequestBuilders.post("/student")
-                        .param("login", "11")
-                        .param("password", "1")
-        ).andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("<td>Physics</td>")))
-        ;
-    }
-
     @Test
     void getTestDtoAfterCorrectLoginStudent() throws Exception {
 
@@ -55,6 +42,17 @@ class StudentTestControllerTest {
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/student"))
+        ;
+    }
+    @Test
+    void ShouldDoNotRedirectAfterUnCorrectLoginStudent() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/student")
+                        .param("login", "121")
+                        .param("password", "1")
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.model().hasErrors())
         ;
     }
 

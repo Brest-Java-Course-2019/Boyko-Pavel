@@ -19,46 +19,79 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * TestDaoJdbcImpl implement TestDao.
+ */
 @Component
 public class TestDaoJdbcImpl implements TestDao {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(TestDaoJdbcImpl.class);
-
+    /**
+     * Constant fields.
+     */
     private static final String TEST_ID = "test_id";
     private static final String TEST_NAME = "name";
     private static final String SUBJECT_NAME = "subject_name";
     private static final String TEACHER_ID = "teacher_id";
     private static final String SUBJECT_ID = "subject_id";
 
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
+    /**
+     * SQL select all Test.
+     * type String
+     */
     @Value("${test.selectAllTest}")
     private String selectAllTest;
-
+    /**
+     * SQL select Test by id.
+     * type String
+     */
     @Value("${test.selectTestByID}")
     private String selectTestByID;
-
+    /**
+     * SQL insert Test.
+     * type String
+     */
     @Value("${test.insertTest}")
     private String insertTest;
-
+    /**
+     * SQL select TestDTO by id.
+     * type String
+     */
     @Value("${test.selectTestDTOByID}")
     private String selectTestDTOByID;
-
+    /**
+     * SQL update Test.
+     * type String
+     */
     @Value("${test.updateTest}")
     private String updateTest;
-
+    /**
+     * SQL delete Test.
+     * type String
+     */
     @Value("${test.deleteTest}")
     private String deleteTest;
 
+    /**
+     * From property namedParameterJdbcTemplate.
+     */
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    /**
+     * Create new  QuestionDaoJdbcImpl for the given namedParameterJdbcTemplate.
+     *
+     * @param namedParameterJdbcTemplate input value.
+     */
     public TestDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     /**
-     * Find all test.
+     * Find all Test.
      *
-     * @return test stream.
+     * @return Test stream.
      */
     @Override
     public Stream<Test> findAll() {
@@ -70,10 +103,10 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     /**
-     * Find all test by id.
+     * Find all Test by id.
      *
-     * @param id test id.
-     * @return test.
+     * @param id Test id.
+     * @return Test.
      */
     @Override
     public Optional<Test> findById(Integer id) {
@@ -86,10 +119,10 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     /**
-     * Find all testDto by id.
+     * Find all TestDto by id.
      *
-     * @param id testDto id.
-     * @return testDto.
+     * @param id TestDto id.
+     * @return TestDto.
      */
     @Override
     public Optional<TestDto> findTestDtoById(Integer id) {
@@ -109,10 +142,10 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     /**
-     * Add new test.
+     * Add new Test.
      *
-     * @param test new test.
-     * @return new test
+     * @param test new Test.
+     * @return new Test
      */
     @Override
     public Optional<Test> add(Test test) {
@@ -123,10 +156,10 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     /**
-     * Add new test.
+     * Add new Test.
      *
-     * @param test new test.
-     * @return new test
+     * @param test new Test.
+     * @return new Test
      */
     private Optional<Test> insertTest(Test test) {
 
@@ -146,9 +179,9 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     /**
-     * Update test.
+     * Update Test.
      *
-     * @param test test to update.
+     * @param test Test to update.
      */
     @Override
     public void update(Test test) {
@@ -169,9 +202,9 @@ public class TestDaoJdbcImpl implements TestDao {
     }
 
     /**
-     * Delete test.
+     * Delete Test.
      *
-     * @param id test id.
+     * @param id Test id.
      */
     @Override
     public void delete(int id) {
@@ -185,6 +218,9 @@ public class TestDaoJdbcImpl implements TestDao {
                 .orElseThrow(() -> new RuntimeException("Failed to delete question"));
     }
 
+    /**
+     * inner TestRowMapper implement RowMapper<Test>.
+     */
     private class TestRowMapper implements RowMapper<Test> {
         /**
          * @param resultSet the RowMapper which creates an object for each row

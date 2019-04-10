@@ -18,7 +18,9 @@ import java.util.List;
  * Class StudentConsumer implements StudentService
  */
 public class StudentConsumer implements StudentService {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentConsumer.class);
 
     /**
@@ -43,7 +45,7 @@ public class StudentConsumer implements StudentService {
     }
 
     /**
-     * method findAllDto() filtered by date list student testDto through rest service.
+     * Method filtered by date list student testDto through rest service.
      *
      * @return body of response entity list student testDto
      */
@@ -55,7 +57,7 @@ public class StudentConsumer implements StudentService {
     }
 
     /**
-     * method filterByDate() gets list student testDto through rest service.
+     * Method gets list student testDto through rest service.
      *
      * @param dateBuilder object which store date
      * @param studentId   student id
@@ -75,7 +77,7 @@ public class StudentConsumer implements StudentService {
 
 
     /**
-     * method findStudentByLogin() gets student through rest service.
+     * Method gets student through rest service.
      *
      * @param student object stored login
      * @return body of response entity student
@@ -88,7 +90,7 @@ public class StudentConsumer implements StudentService {
     }
 
     /**
-     * method findAllDtoTestStudent() gets student testDto through rest service.
+     * Method gets student testDto through rest service.
      *
      * @param id student id
      * @return body of response entity student

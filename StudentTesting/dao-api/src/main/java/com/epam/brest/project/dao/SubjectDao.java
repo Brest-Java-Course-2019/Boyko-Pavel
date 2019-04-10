@@ -15,13 +15,13 @@ public interface SubjectDao {
      *
      * @return Subject stream.
      */
-    Stream<Subject> findall();
+    Stream<Subject> findAll();
 
     /**
      * Find Subject by id.
      *
-     * @param id subject.
-     * @return subject.
+     * @param id Subject.
+     * @return Subject.
      */
     Optional<Subject> findById(final Integer id);
 
@@ -29,6 +29,7 @@ public interface SubjectDao {
      * Add new Subject.
      *
      * @param subject new Subject.
+     * @return Subject
      */
     Optional<Subject> add(final Subject subject);
 
@@ -40,9 +41,9 @@ public interface SubjectDao {
     void update(final Subject subject);
 
     /**
-     * Delete subject.
+     * Delete Subject.
      *
-     * @param id id Subject for deleting.
+     * @param id id Subject.
      */
     void delete(final int id);
 }

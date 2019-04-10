@@ -16,7 +16,9 @@ import java.util.List;
  */
 public class TeacherConsumer implements TeacherService {
 
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(TeacherConsumer.class);
 
 
@@ -42,7 +44,7 @@ public class TeacherConsumer implements TeacherService {
     }
 
     /**
-     * method findTeacherByLogin() get teacher through rest service.
+     * Method get teacher through rest service.
      *
      * @return body of response entity teacher
      */
@@ -54,13 +56,13 @@ public class TeacherConsumer implements TeacherService {
     }
 
     /**
-     * method findAllDtoTestTeacher() get student testDto through rest service.
+     * Method get student testDto through rest service.
      *
      * @return body of response entity list student testDto
      */
     @Override
     public List<StudentTestDto> findAllDtoTestTeacher(Integer id) {
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/"+ id, List.class);
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/" + id, List.class);
         return (List<StudentTestDto>) responseEntity.getBody();
     }
 }

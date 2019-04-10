@@ -11,16 +11,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
+/**
+ * Rest Controller for Subject.
+ */
 @RestController
 @RequestMapping(value = "/subject")
 public class SubjectRestController implements SubjectService {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(SubjectRestController.class);
-
+    /**
+     * Service.
+     */
     @Autowired
     private SubjectService subjectService;
 
+    /**
+     * Method gets all Subject.
+     *
+     * @return list Subject.
+     */
     @Override
     @GetMapping
     public List<Subject> findAll() {

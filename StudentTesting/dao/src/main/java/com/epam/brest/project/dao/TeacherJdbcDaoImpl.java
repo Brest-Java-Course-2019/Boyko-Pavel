@@ -19,25 +19,45 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * TeacherJdbcDaoImpl implement TeacherDao.
+ */
 @Component
 public class TeacherJdbcDaoImpl implements TeacherDao {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(TeacherJdbcDaoImpl.class);
-
+    /**
+     * Constant fields.
+     */
     private static final String PASSWORD = "password";
     private static final String LOGIN = "login";
     private static final String TEACHER_ID = "teacher_id";
     private static final String TEACHER_NAME = "name";
     private static final String TEACHER_SURNAME = "surname";
-
+    /**
+     * SQL find all Teacher by login.
+     * type String
+     */
     @Value("${teacher.findAllTeacherByLogin}")
     private String findAllTeacherByLogin;
-
+    /**
+     * SQL find all TestDto by id Teacher.
+     * type String
+     */
     @Value("${teacher.findAllTestDtoTeacher}")
     private String findAllTestDtoTeacher;
-
+    /**
+     * From property namedParameterJdbcTemplate.
+     */
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    /**
+     * Create new  QuestionDaoJdbcImpl for the given namedParameterJdbcTemplate.
+     *
+     * @param namedParameterJdbcTemplate input value.
+     */
     public TeacherJdbcDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
@@ -76,6 +96,9 @@ public class TeacherJdbcDaoImpl implements TeacherDao {
                 .stream();
     }
 
+    /**
+     * inner TeacherRowMapper implement RowMapper<Teacher>.
+     */
     private class TeacherRowMapper implements RowMapper<Teacher> {
         /**
          * @param resultSet the RowMapper which creates an object for each row

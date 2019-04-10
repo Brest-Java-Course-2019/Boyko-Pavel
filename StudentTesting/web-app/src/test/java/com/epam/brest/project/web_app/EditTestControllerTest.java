@@ -3,6 +3,7 @@ package com.epam.brest.project.web_app;
 
 import com.epam.brest.project.model.Teacher;
 import org.hamcrest.Matchers;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,6 +37,7 @@ class EditTestControllerTest {
 
     private Teacher createTeacher() {
         Teacher teacher = new Teacher();
+        teacher.setTeacherId(1);
         teacher.setPassword("1");
         teacher.setLogin("admin1");
         return teacher;
@@ -68,6 +70,59 @@ class EditTestControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
                 .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("id=\"testName\" name=\"testName\" value=\"\"/>")))
+        ;
+    }
+
+    @Test
+    void gotoEditTest() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/editTest/2").sessionAttr("teacher", createTeacher())
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("id=\"questions0.questionName\" name=\"questions[0].questionName\">Count 3+2=</textarea>")))
+        ;
+    }
+
+
+    @Ignore
+    void updateTestById() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/editTest/1").sessionAttr("teacher", createTeacher())
+                        .sessionAttr("teacher", createTeacher())
+                        .param("subjectId", "2")
+                        .param("IdTest", "2")
+                        .param("testName", "update_Test")
+                        .param("teacherId", "1")
+                        .param("newQuestion", "update_Question")
+                        .param("newAnswer", "0", "1", "0", "0")
+                        .param("newDescription", "update_Desc1", "update_Desc2", "update_Desc3", "newDesc4")
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/teacher"))
+        ;
+    }
+
+    @Test
+    void ShouldRejectUpdateTestByIdIfFieldEmpty() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/editTest/1").sessionAttr("teacher", createTeacher())
+                        .sessionAttr("teacher", createTeacher())
+                        .param("subjectId", "2")
+                        .param("testName", "")
+                        .param("teacherId", "1")
+                        .param("newQuestion", "")
+                        .param("newDescription", "", "", "", "")
+                        .param("newAnswer", "0", "0", "0", "0")
+                        .param("idTest", "1")
+                        .param("questions[0].questionName", "")
+
+
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.model().hasErrors())
         ;
     }
 }

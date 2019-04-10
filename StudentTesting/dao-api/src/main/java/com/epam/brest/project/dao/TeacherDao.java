@@ -7,23 +7,23 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * TeacherDao Interface.
+ * TeacherDao interface.
  */
 public interface TeacherDao {
 
     /**
-     * Find all StudentTestDto by teacher id.
+     * Find all StudentTestDto by Teacher id.
      *
-     * @param teacherId id teacher
+     * @param teacherId id Teacher
      * @return StudentTestDto stream.
      */
     Stream<StudentTestDto> findAllDtoTeacher(Integer teacherId);
 
     /**
-     * Find all teacher by teacher login.
+     * Find all teacher by Teacher login.
      *
-     * @param login login teacher.
-     * @return teacher by login.
+     * @param login login Teacher.
+     * @return Teacher by login.
      */
     Optional<Teacher> findTeacherByLogin(String login);
 }

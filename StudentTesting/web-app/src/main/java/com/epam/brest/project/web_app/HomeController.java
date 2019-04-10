@@ -7,28 +7,41 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+/**
+ * EditTest web controller.
+ */
 @Controller
 @SessionAttributes({"student"})
-@ContextConfiguration(locations = {"classpath*:test-db.xml"})
 public class HomeController {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
-
+    /**
+     * studentService.
+     */
     @Autowired()
     private StudentService studentService;
 
+    /**
+     * set session attributes.
+     */
     @ModelAttribute
     public void addAttributes(Model model) {
         model.addAttribute("student", new Student());
     }
 
+    /**
+     * Add new TestDto.
+     *
+     * @return view redirect start page.
+     */
     @GetMapping(value = {"/"})
     public final String redirectStudentTests() {
 
@@ -37,6 +50,11 @@ public class HomeController {
         return "redirect:/start";
     }
 
+    /**
+     * Add new TestDto.
+     *
+     * @return view start page.
+     */
     @GetMapping(value = {"/start"})
     public final String studentTests(Model model) {
 
