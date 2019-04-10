@@ -3,7 +3,7 @@
 
 # Project Title
 
-Test Java project to study technologies such as git, maven, continuous integration, continuous delivery and others.
+Test Java project to study technologies such as git, maven, spring, JUnit, Thymeleaf, Bootstrap and others.
 
 ## Getting Started
 
